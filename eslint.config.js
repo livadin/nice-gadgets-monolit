@@ -12,6 +12,7 @@ export default tseslint.config(
     extends: [
       js.configs.recommended,
       ...tseslint.configs.recommended,
+      react.configs.recommended,
       prettier, // This is a config, so it goes under "extends"
     ],
     files: ["**/*.{ts,tsx}"],
