@@ -8,6 +8,7 @@ interface PageButtonProps {
   onClick?: () => void;
   width?: number;
   height?: number;
+  className?: string;
 }
 
 export const PageButton = ({
@@ -17,6 +18,7 @@ export const PageButton = ({
   onClick,
   width = 32,
   height = 32,
+  className,
 }: PageButtonProps) => (
   <UtilityButton
     width={width}
@@ -24,7 +26,7 @@ export const PageButton = ({
     selected={selected}
     disabled={disabled}
     onClick={onClick}
-    className={cn('group')}
+    className={cn('group', className)}
   >
     <span
       className={cn(

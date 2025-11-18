@@ -7,6 +7,7 @@ interface ArrowDownButtonProps {
   onClick?: () => void;
   width?: number;
   height?: number;
+  className?: string;
 }
 
 export const ArrowDownButton = ({
@@ -14,12 +15,12 @@ export const ArrowDownButton = ({
   onClick,
   width = 32,
   height = 32,
+  className,
 }: ArrowDownButtonProps) => (
   <UtilityButton
     disabled={disabled}
     onClick={onClick}
-    className={cn(
-      'group',)}
+    className={cn('group', className)}
     width={width}
     height={height}
   >
@@ -27,7 +28,7 @@ export const ArrowDownButton = ({
       <ArrowDownIcon />
     : <ArrowDownIcon
         className={cn(
-          'text-primary', 
+          'text-primary',
           'transition-transform duration-200 ease-in-out',
           'group-hover:scale-130',
           'group-active:scale-155',

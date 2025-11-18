@@ -8,6 +8,7 @@ interface MinusButtonProps {
   onClick?: () => void;
   width?: number;
   height?: number;
+  className?: string;
 }
 
 export const MinusButton = ({
@@ -15,11 +16,12 @@ export const MinusButton = ({
   onClick,
   width = 32,
   height = 32,
+  className,
 }: MinusButtonProps) => (
   <UtilityButton
     disabled={disabled}
     onClick={onClick}
-    className={cn('group')}
+    className={cn('group', className)}
     width={width}
     height={height}
   >
