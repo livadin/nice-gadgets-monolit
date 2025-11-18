@@ -1,42 +1,32 @@
 import cn from 'classnames';
 import { UtilityButton } from './UtilityButton';
+import { MenuIcon } from '../Icons/MenuIcon';
 
-interface PageButtonProps {
-  page: number;
-  selected?: boolean;
-  disabled?: boolean;
+type MenuButtonProps = {
   onClick?: () => void;
   className?: string;
   width?: number;
   height?: number;
-}
+};
 
-export const PageButton = ({
-  page,
-  selected,
-  disabled,
+export const MenuButton = ({
   onClick,
   className,
-  width = 32,
-  height = 32,
-}: PageButtonProps) => (
+  width = 48,
+  height = 48,
+}: MenuButtonProps) => (
   <UtilityButton
-    width={width}
-    height={height}
-    selected={selected}
-    disabled={disabled}
     onClick={onClick}
     className={cn('group', className)}
+    width={width}
+    height={height}
   >
-    <span
-      className={cn(
-        'w-[16px] h-[16px] inline-flex items-center justify-center',
+    <MenuIcon className={cn(
+        'w-[16px] h-[16px]',
         'transition-transform duration-200 ease-in-out',
         'group-hover:scale-130',
         'group-active:scale-155',
       )}
-    >
-      {page}
-    </span>
+    />
   </UtilityButton>
 );

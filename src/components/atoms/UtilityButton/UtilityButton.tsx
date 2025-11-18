@@ -8,7 +8,8 @@ interface UtilityButtonProps {
   disabled?: boolean;
   variant?: 'square' | 'round';
   className?: string;
-  size?: number;
+  width?: number;
+  height?: number;
 }
 
 export const UtilityButton: React.FC<UtilityButtonProps> = ({
@@ -18,7 +19,8 @@ export const UtilityButton: React.FC<UtilityButtonProps> = ({
   disabled = false,
   variant = 'square',
   className = '',
-  size = 32,
+  width = 32,
+  height = 32,
 }) => {
   const base = `inline-flex items-center justify-center border transition-colors duration-200`;
 
@@ -33,7 +35,7 @@ export const UtilityButton: React.FC<UtilityButtonProps> = ({
 
   return (
     <button
-      style={{ width: size, height: size }}
+      style={{ width, height }}
       className={cn(base, shape, states, className)}
       onClick={onClick}
       disabled={disabled}

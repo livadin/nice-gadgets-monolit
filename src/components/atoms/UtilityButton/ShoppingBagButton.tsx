@@ -1,42 +1,32 @@
 import cn from 'classnames';
 import { UtilityButton } from './UtilityButton';
+import { ShoppingBag } from '../Icons/ShoppingBag';
 
-interface PageButtonProps {
-  page: number;
-  selected?: boolean;
-  disabled?: boolean;
+type ShoppingBagProps = {
   onClick?: () => void;
   className?: string;
   width?: number;
   height?: number;
-}
+};
 
-export const PageButton = ({
-  page,
-  selected,
-  disabled,
+export const ShoppingBagButton = ({
   onClick,
   className,
-  width = 32,
-  height = 32,
-}: PageButtonProps) => (
+  width = 48,
+  height = 48,
+}: ShoppingBagProps) => (
   <UtilityButton
-    width={width}
-    height={height}
-    selected={selected}
-    disabled={disabled}
     onClick={onClick}
     className={cn('group', className)}
+    width={width}
+    height={height}
   >
-    <span
+    <ShoppingBag 
       className={cn(
-        'w-[16px] h-[16px] inline-flex items-center justify-center',
+        'w-[16px] h-[16px]',
         'transition-transform duration-200 ease-in-out',
         'group-hover:scale-130',
         'group-active:scale-155',
-      )}
-    >
-      {page}
-    </span>
+      )}/>
   </UtilityButton>
 );

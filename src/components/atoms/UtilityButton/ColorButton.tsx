@@ -6,6 +6,8 @@ interface ColorButtonProps {
   selected?: boolean;
   onClick?: () => void;
   className?: string;
+  width?: number;
+  height?: number;
 }
 
 export const ColorButton = ({
@@ -13,6 +15,8 @@ export const ColorButton = ({
   selected,
   onClick,
   className,
+  width = 32,
+  height = 32,
 }: ColorButtonProps) => (
   <UtilityButton
     variant="round"
@@ -22,17 +26,32 @@ export const ColorButton = ({
       {
         'border-primary': selected,
       },
+      'group',
       className,
     )}
-    size={40}
+    width={width}
+    height={height}
   >
     <span
-      className="block rounded-full"
+      className="block rounded-full bg-white p-[1px]"
       style={{
-        width: 30,
-        height: 30,
-        backgroundColor: color,
+        width: width - 2,
+        height: height - 2,
       }}
-    />
+    >
+      <span
+        className={cn(
+          'block rounded-full',
+          'transition-transform duration-200 ease-in-out',
+          'group-hover:scale-100',
+          'group-active:scale-115',
+        )}
+        style={{
+          width: '100%',
+          height: '100%',
+          backgroundColor: color,
+        }}
+      />
+    </span>
   </UtilityButton>
 );

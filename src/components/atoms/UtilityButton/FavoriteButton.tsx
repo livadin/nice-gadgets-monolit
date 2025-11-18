@@ -7,21 +7,37 @@ type FavoriteButtonProps = {
   selected?: boolean;
   onClick?: () => void;
   className?: string;
-  size?: number;
+  width?: number;
+  height?: number;
 };
 
 export const FavoriteButton = ({
   selected,
   onClick,
   className,
+  width = 48,
+  height = 48,
 }: FavoriteButtonProps) => (
   <UtilityButton
     onClick={onClick}
-    className={cn(className)}
-    size={40}
+    className={cn('group',className)}
+    width={width}
+    height={height}
   >
     {selected ?
-      <HeartFilledIcon className="w-[16px] h-[16px]" />
-    : <HeartIcon className="w-[16px] h-[16px]" />}
+      <HeartFilledIcon 
+        className={cn( 
+          'w-[16px] h-[16px]', 
+          'transition-transform duration-200 ease-in-out',
+          'group-hover:scale-130',
+          'group-active:scale-155',
+        )}/>
+    : <HeartIcon 
+        className={cn(
+          'w-[16px] h-[16px]',
+          'transition-transform duration-200 ease-in-out',
+          'group-hover:scale-130',
+          'group-active:scale-155',
+        )}/>}
   </UtilityButton>
 );

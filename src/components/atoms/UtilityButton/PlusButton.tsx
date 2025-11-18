@@ -1,42 +1,35 @@
 import cn from 'classnames';
 import { UtilityButton } from './UtilityButton';
+import { IconPlus } from '../Icons/IconPlus';
 
-interface PageButtonProps {
-  page: number;
-  selected?: boolean;
-  disabled?: boolean;
+
+
+type PlusButtonProps = {
   onClick?: () => void;
   className?: string;
   width?: number;
   height?: number;
-}
+};
 
-export const PageButton = ({
-  page,
-  selected,
-  disabled,
+export const PlusButton = ({
   onClick,
   className,
   width = 32,
   height = 32,
-}: PageButtonProps) => (
+}: PlusButtonProps) => (
   <UtilityButton
-    width={width}
-    height={height}
-    selected={selected}
-    disabled={disabled}
     onClick={onClick}
     className={cn('group', className)}
+    width={width}
+    height={height}
   >
-    <span
+    <IconPlus
       className={cn(
-        'w-[16px] h-[16px] inline-flex items-center justify-center',
+        'w-[16px] h-[16px]',
         'transition-transform duration-200 ease-in-out',
         'group-hover:scale-130',
         'group-active:scale-155',
       )}
-    >
-      {page}
-    </span>
+    />
   </UtilityButton>
 );
