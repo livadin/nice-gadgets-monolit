@@ -16,16 +16,16 @@ export const Dropdown: React.FC<DropdownProps> = ({ label, description, items })
   return (
     <div className="relative inline-block">
       {description && (
-        <label className="block text-sm text-gray-600 mb-2">{description}</label>
+        <label className="block text-sm text-secondary mb-1">{description}</label>
       )}
       
       <Select.Root value={selectedItem} onValueChange={setSelectedItem} onOpenChange={setIsOpen}>
         <Select.Trigger
-           className="w-[136px] h-10 px-4 py-3 bg-white border border-gray-300 rounded-none text-left flex items-center justify-between
-            hover:border-gray-400 transition-colors data-[state=open]:border-gray-900 outline-none focus:outline-none focus-visible:ring-0"
+           className="w-[136px] h-10 px-4 py-3 bg-white border border-icon rounded-none text-left flex items-center justify-between 
+            hover:border-secondary transition-colors data-[state=open]:border-primary outline-none focus:outline-none focus-visible:ring-0"
         >
           <Select.Value placeholder={label}>
-            <span className="text-gray-700">{selectedItem}</span>
+            <span>{selectedItem}</span>
           </Select.Value>
           <Select.Icon>
             {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon /> }
@@ -34,7 +34,7 @@ export const Dropdown: React.FC<DropdownProps> = ({ label, description, items })
 
         <Select.Portal>
           <Select.Content
-            className="w-[136px] bg-white border border-gray-300 rounded-none shadow-lg overflow-hidden z-50"
+            className="w-[136px] bg-white border border-element rounded-none shadow-lg overflow-hidden z-50"
             position="popper"
             sideOffset={4}
           >
@@ -43,12 +43,12 @@ export const Dropdown: React.FC<DropdownProps> = ({ label, description, items })
                 <Select.Item
                   key={index}
                   value={item}
-                  className={`px-4 py-3 cursor-pointer transition-colors hover:bg-gray-50 focus:bg-gray-50 outline-none ${
+                  className={`px-4 py-3 cursor-pointer transition-colors text-secondary hover:text-primary hover:bg-hover-bg  outline-none ${
                     index !== items.length - 1 ? 'border-b border-gray-100' : ''
                   }`}
                 >
                   <Select.ItemText>
-                    <span className="text-gray-700">{item}</span>
+                    <span>{item}</span>
                   </Select.ItemText>
                 </Select.Item>
               ))}
