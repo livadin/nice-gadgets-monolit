@@ -68,7 +68,7 @@ export const WelcomeSlider: React.FC = () => {
           <SwiperSlide className="">
             <a
               href="#"
-              className="block h-80 bg-black md:h-[189px] mx-[51px] lg:h-[400px]"
+              className="block h-80 bg-black md:h-[189px] md:mx-[51px] lg:h-[400px]"
             >
               <img
                 src={isMd ? banner.path : banner.path320}
