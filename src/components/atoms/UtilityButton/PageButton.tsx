@@ -30,7 +30,7 @@ export const PageButton = ({
   >
     <span
       className={cn(
-        'w-[16px] h-[16px] inline-flex items-center justify-center',
+        'w-4 h-4 inline-flex items-center justify-center',
         'transition-transform duration-200 ease-in-out',
         'group-hover:scale-130',
         'group-active:scale-155',

@@ -22,7 +22,7 @@ export const ColorButton = ({
     variant="round"
     onClick={onClick}
     className={cn(
-      'border-1',
+      'border',
       {
         'border-primary': selected,
       },
@@ -33,7 +33,7 @@ export const ColorButton = ({
     height={height}
   >
     <span
-      className="block rounded-full bg-white p-[1px]"
+      className="block rounded-full bg-white p-px"
       style={{
         width: width - 2,
         height: height - 2,

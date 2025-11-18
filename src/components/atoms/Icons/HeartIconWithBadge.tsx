@@ -14,7 +14,7 @@ export const HeartIconWithBadge: React.FC<Props> = ({ className, count }) => {
         <span className="
             absolute -top-1 -right-1
             bg-accent-red text-white
-            text-[9px] w-[10px] h-[12px]
+            text-[9px] w-2.5 h-3
             flex items-center justify-center
             rounded-full"
         >

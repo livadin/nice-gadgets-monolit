@@ -6,5 +6,5 @@ type Props = {
 };
 
 export const HeartIcon: React.FC<Props> = ({ className }) => {
-  return <RadixHeartIcon className={cn('w-[16px] h-[16px] text-primary', className)} />;
+  return <RadixHeartIcon className={cn('w-4 h-4 text-primary', className)} />;
 };
