@@ -6,7 +6,6 @@ interface PageButtonProps {
   selected?: boolean;
   disabled?: boolean;
   onClick?: () => void;
-  className?: string;
   width?: number;
   height?: number;
 }
@@ -16,7 +15,6 @@ export const PageButton = ({
   selected,
   disabled,
   onClick,
-  className,
   width = 32,
   height = 32,
 }: PageButtonProps) => (
@@ -26,11 +24,11 @@ export const PageButton = ({
     selected={selected}
     disabled={disabled}
     onClick={onClick}
-    className={cn('group', className)}
+    className={cn('group')}
   >
     <span
       className={cn(
-        'w-[16px] h-[16px] inline-flex items-center justify-center',
+        'w-4 h-4 inline-flex items-center justify-center',
         'transition-transform duration-200 ease-in-out',
         'group-hover:scale-130',
         'group-active:scale-155',

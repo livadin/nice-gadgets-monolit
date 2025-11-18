@@ -6,5 +6,5 @@ type Props = {
 };
 
 export const CloseIcon: React.FC<Props> = ({ className }) => {
-  return <Cross1Icon className={cn('w-[16px] h-[16px] text-primary', className)} />;
+  return <Cross1Icon className={cn('w-4 h-4 text-primary', className)} />;
 };
