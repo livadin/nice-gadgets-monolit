@@ -5,20 +5,18 @@ import { HomeIcon } from '../Icons/HomeIcon';
 
 type HomeButtonProps = {
   onClick?: () => void;
-  className?: string;
   width?: number;
   height?: number;
 };
 
 export const HomeButton = ({
   onClick,
-  className,
   width = 16,
   height = 16,
 }: HomeButtonProps) => (
   <UtilityButton
     onClick={onClick}
-    className={cn('group border-none', className)}
+    className={cn('group border-none')}
     width={width}
     height={height}
   >

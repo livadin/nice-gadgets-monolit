@@ -6,20 +6,18 @@ import { IconPlus } from '../Icons/IconPlus';
 
 type PlusButtonProps = {
   onClick?: () => void;
-  className?: string;
   width?: number;
   height?: number;
 };
 
 export const PlusButton = ({
   onClick,
-  className,
   width = 32,
   height = 32,
 }: PlusButtonProps) => (
   <UtilityButton
     onClick={onClick}
-    className={cn('group', className)}
+    className={cn('group')}
     width={width}
     height={height}
   >

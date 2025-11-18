@@ -4,20 +4,18 @@ import { ShoppingBag } from '../Icons/ShoppingBag';
 
 type ShoppingBagProps = {
   onClick?: () => void;
-  className?: string;
   width?: number;
   height?: number;
 };
 
 export const ShoppingBagButton = ({
   onClick,
-  className,
   width = 48,
   height = 48,
 }: ShoppingBagProps) => (
   <UtilityButton
     onClick={onClick}
-    className={cn('group', className)}
+    className={cn('group')}
     width={width}
     height={height}
   >

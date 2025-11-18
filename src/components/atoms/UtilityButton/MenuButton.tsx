@@ -4,20 +4,18 @@ import { MenuIcon } from '../Icons/MenuIcon';
 
 type MenuButtonProps = {
   onClick?: () => void;
-  className?: string;
   width?: number;
   height?: number;
 };
 
 export const MenuButton = ({
   onClick,
-  className,
   width = 48,
   height = 48,
 }: MenuButtonProps) => (
   <UtilityButton
     onClick={onClick}
-    className={cn('group', className)}
+    className={cn('group')}
     width={width}
     height={height}
   >

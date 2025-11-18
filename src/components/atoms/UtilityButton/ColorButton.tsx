@@ -5,7 +5,6 @@ interface ColorButtonProps {
   color: string;
   selected?: boolean;
   onClick?: () => void;
-  className?: string;
   width?: number;
   height?: number;
 }
@@ -14,7 +13,6 @@ export const ColorButton = ({
   color,
   selected,
   onClick,
-  className,
   width = 32,
   height = 32,
 }: ColorButtonProps) => (
@@ -27,7 +25,6 @@ export const ColorButton = ({
         'border-primary': selected,
       },
       'group',
-      className,
     )}
     width={width}
     height={height}

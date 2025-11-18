@@ -6,7 +6,6 @@ import { IconMinus } from '../Icons/IconMinus';
 interface MinusButtonProps {
   disabled?: boolean;
   onClick?: () => void;
-  className?: string;
   width?: number;
   height?: number;
 }
@@ -14,14 +13,13 @@ interface MinusButtonProps {
 export const MinusButton = ({
   disabled,
   onClick,
-  className,
   width = 32,
   height = 32,
 }: MinusButtonProps) => (
   <UtilityButton
     disabled={disabled}
     onClick={onClick}
-    className={cn('group', className)}
+    className={cn('group')}
     width={width}
     height={height}
   >
@@ -33,7 +31,6 @@ export const MinusButton = ({
           'transition-transform duration-200 ease-in-out',
           'group-hover:scale-130',
           'group-active:scale-155',
-          className,
         )}
       />
     }

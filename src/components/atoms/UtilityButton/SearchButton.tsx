@@ -6,20 +6,18 @@ import { SearchIcon } from '../Icons/SearchIcon';
 
 type SearchButtonProps = {
   onClick?: () => void;
-  className?: string;
   width?: number;
   height?: number;
 };
 
 export const SearchButton = ({
   onClick,
-  className,
   width = 16,
   height = 16,
 }: SearchButtonProps) => (
   <UtilityButton
     onClick={onClick}
-    className={cn('group border-none', className)}
+    className={cn('group border-none')}
     width={width}
     height={height}
   >

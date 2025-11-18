@@ -6,7 +6,6 @@ interface PageButtonProps {
   selected?: boolean;
   disabled?: boolean;
   onClick?: () => void;
-  className?: string;
   width?: number;
   height?: number;
 }
@@ -16,7 +15,6 @@ export const PageButton = ({
   selected,
   disabled,
   onClick,
-  className,
   width = 32,
   height = 32,
 }: PageButtonProps) => (
@@ -26,7 +24,7 @@ export const PageButton = ({
     selected={selected}
     disabled={disabled}
     onClick={onClick}
-    className={cn('group', className)}
+    className={cn('group')}
   >
     <span
       className={cn(

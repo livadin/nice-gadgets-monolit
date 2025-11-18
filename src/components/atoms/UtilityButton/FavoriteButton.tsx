@@ -6,7 +6,6 @@ import { HeartFilledIcon } from '../Icons/HeartFilledIcon';
 type FavoriteButtonProps = {
   selected?: boolean;
   onClick?: () => void;
-  className?: string;
   width?: number;
   height?: number;
 };
@@ -14,13 +13,12 @@ type FavoriteButtonProps = {
 export const FavoriteButton = ({
   selected,
   onClick,
-  className,
   width = 48,
   height = 48,
 }: FavoriteButtonProps) => (
   <UtilityButton
     onClick={onClick}
-    className={cn('group',className)}
+    className={cn('group')}
     width={width}
     height={height}
   >
