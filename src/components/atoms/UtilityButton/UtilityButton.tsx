@@ -35,8 +35,7 @@ export const UtilityButton: React.FC<UtilityButtonProps> = ({
 
   return (
     <button
-      style={{ width, height }}
-      className={cn(base, shape, states, className)}
+      className={cn(base, shape, states, width, height, className)}
       onClick={onClick}
       disabled={disabled}
     >
