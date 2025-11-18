@@ -7,16 +7,18 @@ type HomeButtonProps = {
   onClick?: () => void;
   width?: number;
   height?: number;
+  className?: string;
 };
 
 export const HomeButton = ({
   onClick,
   width = 16,
   height = 16,
+  className,
 }: HomeButtonProps) => (
   <UtilityButton
     onClick={onClick}
-    className={cn('group border-none')}
+    className={cn('group border-none', className)}
     width={width}
     height={height}
   >

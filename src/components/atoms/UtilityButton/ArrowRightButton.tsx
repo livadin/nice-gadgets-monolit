@@ -2,12 +2,12 @@ import cn from 'classnames';
 import { UtilityButton } from './UtilityButton';
 import { ArrowRightIcon } from '../Icons/ArrowRightIcon';
 
-
 interface ArrowRightProps {
   disabled?: boolean;
   onClick?: () => void;
   width?: number;
   height?: number;
+  className?: string;
 }
 
 export const ArrowRightButton = ({
@@ -15,11 +15,12 @@ export const ArrowRightButton = ({
   onClick,
   width = 32,
   height = 32,
+  className,
 }: ArrowRightProps) => (
   <UtilityButton
     disabled={disabled}
     onClick={onClick}
-    className={cn('group')}
+    className={cn('group', className)}
     width={width}
     height={height}
   >

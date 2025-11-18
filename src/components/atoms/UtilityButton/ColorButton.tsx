@@ -7,6 +7,7 @@ interface ColorButtonProps {
   onClick?: () => void;
   width?: number;
   height?: number;
+  className?: string
 }
 
 export const ColorButton = ({
@@ -15,6 +16,7 @@ export const ColorButton = ({
   onClick,
   width = 32,
   height = 32,
+  className,
 }: ColorButtonProps) => (
   <UtilityButton
     variant="round"
@@ -25,6 +27,7 @@ export const ColorButton = ({
         'border-primary': selected,
       },
       'group',
+      className,
     )}
     width={width}
     height={height}

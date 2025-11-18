@@ -6,16 +6,18 @@ type CloseButtonProps = {
   onClick?: () => void;
   width?: number;
   height?: number;
+  className?: string;
 };
 
 export const CloseButton = ({
   onClick,
   width = 48,
   height = 48,
+  className,
 }: CloseButtonProps) => (
   <UtilityButton
     onClick={onClick}
-    className={cn('group')}
+    className={cn('group', className)}
     width={width}
     height={height}
   >

@@ -6,20 +6,23 @@ type MenuButtonProps = {
   onClick?: () => void;
   width?: number;
   height?: number;
+  className?: string;
 };
 
 export const MenuButton = ({
   onClick,
   width = 48,
   height = 48,
+  className,
 }: MenuButtonProps) => (
   <UtilityButton
     onClick={onClick}
-    className={cn('group')}
+    className={cn('group', className)}
     width={width}
     height={height}
   >
-    <MenuIcon className={cn(
+    <MenuIcon
+      className={cn(
         'w-4 h-4',
         'transition-transform duration-200 ease-in-out',
         'group-hover:scale-130',
