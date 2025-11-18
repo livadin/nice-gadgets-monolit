@@ -8,14 +8,14 @@
 @font-face {
   font-family: 'Mont';
   src: url('./assets/fonts/Mont-Bold.otf') format('opentype');
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Mont';
   src: url('./assets/fonts/Mont-SemiBold.otf') format('opentype');
-  font-weight: 700;
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -34,6 +34,8 @@
   --color-white: #ffffff;
   --color-accent-green: #27ae60;
   --color-accent-red: #eb5757;
+
+  --shadow-custom: 0px 3px 13px 0px #17203166;
 }
 
 html {
