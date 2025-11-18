@@ -8,6 +8,6 @@ type Props = {
 
 export const ShoppingBag: React.FC<Props> = ({ className }) => {
   return (
-    <ArchiveIcon className={cn('w-[16px] h-[16px] text-primary', className)} />
+    <ArchiveIcon className={cn('w-4 h-4 text-primary', className)} />
   );
 };

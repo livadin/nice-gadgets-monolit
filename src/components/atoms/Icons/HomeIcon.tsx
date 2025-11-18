@@ -8,7 +8,7 @@ type Props = {
 export const HomeIcon: React.FC<Props> = ({ className }) => {
   return (
     <RadixHomeIcon
-      className={cn('w-[16px] h-[16px] text-primary', className)}
+      className={cn('w-4 h-4 text-primary', className)}
     />
   );
 };
