@@ -12,14 +12,17 @@ import { ArrowRightButton } from '../../../atoms/UtilityButton/ArrowRightButton'
 
 const BANNERS: WelcomeBanner[] = [
   {
+    id: 0,
     path: '/gadgets/img/banners/WelcomeSliderBanner.png',
     path320: '/gadgets/img/banners/WelcomeSliderBanner320.png',
   },
   {
+    id: 1,
     path: '/gadgets/img/banners/WelcomeSliderBanner.png',
     path320: '/gadgets/img/banners/WelcomeSliderBanner320.png',
   },
   {
+    id: 2,
     path: '/gadgets/img/banners/WelcomeSliderBanner.png',
     path320: '/gadgets/img/banners/WelcomeSliderBanner320.png',
   },
@@ -65,7 +68,7 @@ export const WelcomeSlider: React.FC = () => {
     >
       {BANNERS.map((banner) => {
         return (
-          <SwiperSlide className="">
+          <SwiperSlide className="" key={banner.id}>
             <a
               href="#"
               className="block h-80 bg-black md:h-[189px] md:mx-[51px] lg:h-[400px]"
