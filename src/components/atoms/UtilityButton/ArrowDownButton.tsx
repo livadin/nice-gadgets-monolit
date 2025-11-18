@@ -5,7 +5,6 @@ import { ArrowDownIcon } from '../Icons/ArrowDownIcon';
 interface ArrowDownButtonProps {
   disabled?: boolean;
   onClick?: () => void;
-  className?: string;
   width?: number;
   height?: number;
 }
@@ -13,7 +12,6 @@ interface ArrowDownButtonProps {
 export const ArrowDownButton = ({
   disabled,
   onClick,
-  className,
   width = 32,
   height = 32,
 }: ArrowDownButtonProps) => (
@@ -21,9 +19,7 @@ export const ArrowDownButton = ({
     disabled={disabled}
     onClick={onClick}
     className={cn(
-      'group',
-      className,
-    )}
+      'group',)}
     width={width}
     height={height}
   >
@@ -35,7 +31,6 @@ export const ArrowDownButton = ({
           'transition-transform duration-200 ease-in-out',
           'group-hover:scale-130',
           'group-active:scale-155',
-          className,
         )}
       />
     }

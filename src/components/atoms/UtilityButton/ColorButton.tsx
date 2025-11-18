@@ -5,7 +5,6 @@ interface ColorButtonProps {
   color: string;
   selected?: boolean;
   onClick?: () => void;
-  className?: string;
   width?: number;
   height?: number;
 }
@@ -14,7 +13,6 @@ export const ColorButton = ({
   color,
   selected,
   onClick,
-  className,
   width = 32,
   height = 32,
 }: ColorButtonProps) => (
@@ -22,18 +20,17 @@ export const ColorButton = ({
     variant="round"
     onClick={onClick}
     className={cn(
-      'border-1',
+      'border',
       {
         'border-primary': selected,
       },
       'group',
-      className,
     )}
     width={width}
     height={height}
   >
     <span
-      className="block rounded-full bg-white p-[1px]"
+      className="block rounded-full bg-white p-px"
       style={{
         width: width - 2,
         height: height - 2,

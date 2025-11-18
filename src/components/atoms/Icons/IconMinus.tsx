@@ -6,5 +6,5 @@ type Props = {
 };
 
 export const IconMinus: React.FC<Props> = ({ className }) => {
-  return <MinusIcon className={cn('w-[16px] h-[16px] text-icon', className)} />;
+  return <MinusIcon className={cn('w-4 h-4 text-icon', className)} />;
 };
