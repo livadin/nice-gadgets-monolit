@@ -35,17 +35,14 @@ export const WelcomeSlider: React.FC = () => {
     null,
   );
 
-  // Функции-обработчики
   const handlePrev = () => {
     if (swiperInstance) {
-      // Вызываем встроенную логику Swiper
       swiperInstance.slidePrev();
     }
   };
 
   const handleNext = () => {
     if (swiperInstance) {
-      // Вызываем встроенную логику Swiper
       swiperInstance.slideNext();
     }
   };
