@@ -41,3 +41,16 @@
 html {
   font-family: 'Mont', sans-serif;
 }
+
+@keyframes underline-slide {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@utility animate-underline {
+  animation: underline-slide 300ms ease-out forwards;
+}

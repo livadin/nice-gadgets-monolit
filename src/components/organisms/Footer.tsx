@@ -1,6 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
-import { ArrowUpButton } from '../../atoms/UtilityButton';
+import { ArrowUpButton } from '../atoms/UtilityButton';
+
 
 
 export const Footer: React.FC = () => {
