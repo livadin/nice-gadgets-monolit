@@ -39,6 +39,15 @@
   --shadow-custom: 0px 3px 13px 0px #17203166;
 }
 
+@layer components {
+  .h1 {
+    @apply text-primary font-extrabold leading-[41px] md:leading-14 text-[32px] md:text-[48px] tracking-[-1%];
+  }
+  .h2 {
+    @apply text-primary font-extrabold leading-[41px] text-[22px] md:text-[32px] tracking-[-1%];
+  }
+}
+
 html {
   font-family: 'Mont', sans-serif;
 }
