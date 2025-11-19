@@ -2,25 +2,25 @@ import { ShoppingBag } from "./ShoppingBag";
 
 
 type Props = {
-  count?: number;
+  countBag?: number;
   className?: string;
 };
 
-export const ShoppingBagWithBadge: React.FC<Props> = ({ className, count }) => {
+export const ShoppingBagWithBadge: React.FC<Props> = ({ className, countBag }) => {
   return (
     <div className="relative inline-block">
       <ShoppingBag className={className} />
 
-      {count && count > 0 && (
+      {countBag && countBag > 0 && (
         <span
           className="
             absolute -top-1 -right-1
             bg-accent-red text-white
-            text-[9px] w-2.5 h-3
+            text-[8px] w-2.5 h-3
             flex items-center justify-center
             rounded-full"
         >
-          {count}
+          {countBag}
         </span>
       )}
     </div>
