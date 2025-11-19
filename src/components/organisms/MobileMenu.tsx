@@ -1,10 +1,10 @@
 import React from "react";
 import cn from "classnames";
-import { NAV_ITEMS } from "../molecules/HeaderActions/Navbar";
 import { Logo } from "../atoms/Logo/Logo";
 import { CloseButton } from "../atoms/UtilityButton";
 import { FavoriteButtonWithBadge } from "../atoms/UtilityButton/FavoriteButtonWithBadge";
 import { ShoppingBagWithBadgeButton } from "../atoms/UtilityButton/ShoppingBagWithBadgeButton";
+import { NAV_ITEMS } from "../../utilities/constants";
 type Props = {
   isOpen: boolean;
   onClose: () => void;

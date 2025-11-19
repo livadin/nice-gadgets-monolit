@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import cn from "classnames";
+import { NAV_ITEMS } from "../../../utilities/constants";
 
 type Props = {
   className?: string;
 };
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const NAV_ITEMS = ["Home", "Phones", "Tablets", "Accessories"];
 
 export const Navbar: React.FC<Props> = ({ className }) => {
   const [activeItem, setActiveItem] = useState("Home");
@@ -43,3 +41,4 @@ export const Navbar: React.FC<Props> = ({ className }) => {
     </nav>
   );
 };
+
