@@ -2,11 +2,11 @@ import type React from "react";
 import { useState } from "react";
 import { PrimaryButton } from "../../atoms/PrimaryButton/PrimaryButtom";
 import { FavoriteButton } from "../../atoms/UtilityButton";
-import type { Product } from "../../../types/Product";
+import type { CategoryProduct } from "../../../types/CategoryProduct";
 
 
 type ProductCardProps = {
-    product: Product;
+    product: CategoryProduct;
 };
 
 export const ProductCard: React.FC<ProductCardProps> = ({
