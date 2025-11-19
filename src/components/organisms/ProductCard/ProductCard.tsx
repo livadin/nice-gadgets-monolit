@@ -17,7 +17,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     const [selectedFavorite, setSelectedFavorite] = useState(false);
 
     return (
-      <div className="w-[272px] p-7 pb-4 rounded-none border border-element hover:shadow-custom bg-white">
+      <div className="w-[100%] p-7 pb-4 rounded-none border border-element hover:shadow-custom bg-white">
         <div className="h-[200px] flex items-center justify-center mb-4">
           <img
             src={product.images[0]}
