@@ -25,6 +25,7 @@
   --breakpoint-*: initial;
   --breakpoint-sm: 320px;
   --breakpoint-md: 640px;
+  --breakpoint-md-lg: 768px;
   --breakpoint-lg: 1200px;
   --color-primary: #313237;
   --color-secondary: #89939a;
@@ -36,6 +37,21 @@
   --color-accent-red: #eb5757;
 
   --shadow-custom: 0px 3px 13px 0px #17203166;
+}
+
+@layer components {
+  .h1 {
+    @apply text-primary font-extrabold leading-[41px] md:leading-14 text-[32px] md:text-[48px] tracking-[-1%];
+  }
+  .h2 {
+    @apply text-primary font-extrabold leading-[41px] text-[22px] md:text-[32px];
+  }
+  .h4 {
+    @apply text-primary font-bold leading-none text-[20px] md:font-semibold;
+  }
+  .body-text {
+    @apply text-secondary font-normal leading-[21px] text-[14px];
+  }
 }
 
 html {

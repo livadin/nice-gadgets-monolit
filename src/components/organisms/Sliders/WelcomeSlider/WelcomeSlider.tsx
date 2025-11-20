@@ -56,39 +56,44 @@ export const WelcomeSlider: React.FC = () => {
   }, []);
 
   return (
-    <Swiper
-      className="h-[352px] md:h-[220px] lg:h-[432px]"
-      modules={[Navigation, Pagination]}
-      pagination
-      loop
-      onSwiper={setSwiperInstance}
-    >
-      {BANNERS.map((banner) => {
-        return (
-          <SwiperSlide className="" key={banner.id}>
-            <a
-              href="#"
-              className="block h-80 bg-black md:h-[189px] md:mx-[51px] lg:h-[400px]"
+    <section>
+      <Swiper
+        className="h-[352px] md:h-[220px] lg:h-[432px]"
+        modules={[Navigation, Pagination]}
+        pagination
+        loop
+        onSwiper={setSwiperInstance}
+      >
+        {BANNERS.map((banner) => {
+          return (
+            <SwiperSlide
+              className=""
+              key={banner.id}
             >
-              <img
-                src={isMd ? banner.path : banner.path320}
-                alt=""
-                className="h-full mx-auto md:w-[490px] lg:w-[1040px]"
-              />
-            </a>
-          </SwiperSlide>
-        );
-      })}
-      <div className="hidden md:inline-flex">
-        <ArrowLeftButton
-          className="absolute top-0 z-10 w-8 h-[189px] lg:h-[400px]"
-          onClick={handlePrev}
-        ></ArrowLeftButton>
-        <ArrowRightButton
-          className="absolute top-0 right-0 z-10 w-8 h-[189px] lg:h-[400px]"
-          onClick={handleNext}
-        ></ArrowRightButton>
-      </div>
-    </Swiper>
+              <a
+                href="#"
+                className="block h-80 bg-black md:h-[189px] md:mx-[51px] lg:h-[400px]"
+              >
+                <img
+                  src={isMd ? banner.path : banner.path320}
+                  alt=""
+                  className="h-full mx-auto md:w-[490px] lg:w-[1040px]"
+                />
+              </a>
+            </SwiperSlide>
+          );
+        })}
+        <div className="hidden md:inline-flex">
+          <ArrowLeftButton
+            className="absolute top-0 z-10 w-8 h-[189px] lg:h-[400px]"
+            onClick={handlePrev}
+          ></ArrowLeftButton>
+          <ArrowRightButton
+            className="absolute top-0 right-0 z-10 w-8 h-[189px] lg:h-[400px]"
+            onClick={handleNext}
+          ></ArrowRightButton>
+        </div>
+      </Swiper>
+    </section>
   );
 };
