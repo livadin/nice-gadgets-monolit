@@ -15,6 +15,16 @@ export const Pagination: React.FC<PaginationProps> = ({
   onPageChange,
 }) => {
   const totalPages = Math.ceil(totalProducts / itemsPerPage);
+  const visibleButtons = 4;
+
+  const startButton = Math.max(1, currentPage - Math.floor(visibleButtons / 2));
+  const endButton = Math.min(totalPages, startButton + visibleButtons - 1);
+
+  const buttons = [];
+
+  for (let i = startButton; i <= endButton; i++) {
+    buttons.push(i);
+  }
 
   const handlePrev = () => {
     if (currentPage > 1) {
@@ -38,8 +48,7 @@ export const Pagination: React.FC<PaginationProps> = ({
       />
 
       <div className="flex items-center gap-2">
-        {[...Array(totalPages)].map((_, index) => {
-          const page = index + 1;
+        {buttons.map((page) => {
 
           return (
             <PageButton
