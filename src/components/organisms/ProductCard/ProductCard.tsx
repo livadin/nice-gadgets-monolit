@@ -2,11 +2,11 @@ import type React from "react";
 import { useState } from "react";
 import { PrimaryButton } from "../../atoms/PrimaryButton/PrimaryButtom";
 import { FavoriteButton } from "../../atoms/UtilityButton";
-import type { CategoryProduct } from "../../../types/CategoryProduct";
+import type { SimpleProduct } from "../../../types/CategoryProduct";
 
 
 type ProductCardProps = {
-    product: CategoryProduct;
+    product: SimpleProduct;
 };
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -20,7 +20,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       <div className="w-full p-7 pb-4 rounded-none border border-element hover:shadow-custom bg-white">
         <div className="h-[200px] flex items-center justify-center mb-4">
           <img
-            src={product.images[0]}
+            src={product.image}
             alt={product.name}
             className="rounded-xl min-w-full h-full object-contain"
           />
@@ -32,11 +32,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </h3>
           <div className="flex items-center gap-2">
             <p className="text-2xl text-primary font-bold">
-              ${product.priceDiscount}
+              ${product.price}
             </p>
-            {product.priceRegular && (
+            {product.fullPrice && (
               <p className="text-2xl text-secondary line-through">
-                ${product.priceRegular}
+                ${product.fullPrice}
               </p>
             )}
           </div>
@@ -77,4 +77,4 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       </div>
     );
-};  
+};
