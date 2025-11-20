@@ -25,6 +25,7 @@
   --breakpoint-*: initial;
   --breakpoint-sm: 320px;
   --breakpoint-md: 640px;
+  --breakpoint-md-lg: 768px;
   --breakpoint-lg: 1200px;
   --color-primary: #313237;
   --color-secondary: #89939a;
