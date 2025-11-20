@@ -7,8 +7,7 @@ type FavoritesTemplateProps = {
 };
 
 export const FavoritesTemplate: React.FC<FavoritesTemplateProps> = ({ products }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [items, setItems] = useState<CategoryProduct[]>(products);
+  const [items] = useState<CategoryProduct[]>(products);
   const [isEmpty, setIsEmpty] = useState(items.length === 0);
 
   useEffect(() => {
