@@ -9,7 +9,7 @@ type CartPageTemplateProps = {
 };
 
 export const CartPageTemplate: React.FC<CartPageTemplateProps> = ({ cartProducts }) => {
-  const [products, setProducts] = useState<CategoryProduct[]>(cartProducts);
+  const [products] = useState<CategoryProduct[]>(cartProducts);
 
   const hasProducts = products.length > 0;
 
