@@ -2,19 +2,19 @@
 import { ArrowLeftButton, ArrowRightButton, PageButton } from "../../atoms/UtilityButton";
 
 type PaginationProps = {
-  total: number;
-  perPage: number;
+  totalProducts: number;
+  itemsPerPage: number;
   currentPage: number;
   onPageChange: (page: number) => void;
 };
 
 export const Pagination: React.FC<PaginationProps> = ({
-  total,
-  perPage,
+  totalProducts,
+  itemsPerPage,
   currentPage,
   onPageChange,
 }) => {
-  const totalPages = Math.ceil(total / perPage);
+  const totalPages = Math.ceil(totalProducts / itemsPerPage);
 
   const handlePrev = () => {
     if (currentPage > 1) {
@@ -29,11 +29,12 @@ export const Pagination: React.FC<PaginationProps> = ({
   };
 
   return (
-    <div className="flex justify-center items-center gap-2 mt-10">
+    <div className="flex justify-center items-center gap-4 mt-6 md:mt-10">
 
       <ArrowLeftButton
         disabled={currentPage === 1}
         onClick={handlePrev}
+        className="w-8 h-8"
       />
 
       <div className="flex items-center gap-2">
@@ -42,6 +43,7 @@ export const Pagination: React.FC<PaginationProps> = ({
 
           return (
             <PageButton
+              className="w-8 h-8"
               key={page}
               page={page}
               selected={page === currentPage}
@@ -53,6 +55,7 @@ export const Pagination: React.FC<PaginationProps> = ({
       </div>
 
       <ArrowRightButton
+        className="w-8 h-8"
         disabled={currentPage === totalPages}
         onClick={handleNext}
       />

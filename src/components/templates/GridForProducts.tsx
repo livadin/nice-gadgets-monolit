@@ -10,7 +10,6 @@ export const GridForProducts: React.FC<GridForProductsProps> = ({ products }) =>
   return (
     <div className="
       grid
-      justify-center
       grid-cols-[repeat(1,minmax(230px,288px))]
       md:grid-cols-[repeat(2,minmax(230px,288px))]
       md-lg:grid-cols-[repeat(3,minmax(230px,288px))]

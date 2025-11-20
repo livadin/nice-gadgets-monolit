@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import * as Select from "@radix-ui/react-select";
 import { ArrowUpIcon } from "../../atoms/Icons/ArrowUpIcon";
 import { ArrowDownIcon } from "../../atoms/Icons/ArrowDownIcon";
+
 type DropdownProps = {
+  className: string;
   label: string;
   description?: string;
   items: string[];
@@ -11,6 +13,7 @@ type DropdownProps = {
 };
 
 export const Dropdown: React.FC<DropdownProps> = ({
+  className,
   label,
   description,
   items,
@@ -40,8 +43,8 @@ export const Dropdown: React.FC<DropdownProps> = ({
         onOpenChange={setIsOpen}
       >
         <Select.Trigger
-          className="w-[136px] h-10 px-4 py-3 bg-white border border-icon rounded-none text-left flex items-center justify-between 
-            hover:border-secondary transition-colors data-[state=open]:border-primary outline-none"
+          className={`w-[136px] h-10 px-4 py-3 bg-white border border-icon rounded-none text-left flex items-center justify-between 
+            hover:border-secondary transition-colors data-[state=open]:border-primary outline-none ${className}`}
         >
           <Select.Value placeholder={label}>
             <span>{selectedItem}</span>

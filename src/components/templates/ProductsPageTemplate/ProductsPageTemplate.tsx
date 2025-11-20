@@ -1,38 +1,37 @@
 import type { CategoryProduct } from '../../../types/CategoryProduct';
 import { ArrowLeftIcon } from '../../atoms/Icons/ArrowLeftIcon';
 import { HomeButton } from '../../atoms/UtilityButton';
+import { Dropdown } from '../../molecules/Dropdown/Dropdown';
 import { GridForProducts } from '../GridForProducts';
-import { ItemsOnPage } from './ItemsOnPage';
 import { Pagination } from './Pagination';
-import { ProductSort } from './ProductsSort';
 
 type Props = {
   title: string;
-  products?: CategoryProduct;
+  products?: CategoryProduct[];
   totalProducts: number;
-  currentPage: number;
-  itemsOnPage: number;
-  sort: string;
 
-  onSortChange: (value: string) => void;
-  onItemsOnPageChange: (value: number) => void;
-  onPageChange: (page: number) => void;
+  sort: string;
+  perPage: number;
+  currentPage: number;
+  onSortChange?: (value: string) => void;
+  onPageChange?: (page: number) => void;
+  onPerPageChange?: (value: string) => void;
 };
 
-export const ProductsPageTemplate: React.FC<Props> = ({
+export const ProductsPageTemplate: React.FC<Props> = ({ 
   title,
   products,
   totalProducts,
-  currentPage,
-  itemsOnPage,
   sort,
+  perPage,
+  currentPage,
   onSortChange,
-  onItemsOnPageChange,
   onPageChange,
+  onPerPageChange,
 }) => {
   return (
-    <div className="container mx-auto pt-6 pb-16 lg:pb-20">
-      <div className="flex items-center gap-2 text-sm text-secondary mb-6 lg:mb-10">
+    <section className="w-full">
+      <div className='flex items-center gap-2 text-sm text-secondary mb-6 lg:mb-10'>
         <HomeButton />
         <ArrowLeftIcon />
         <p>Phones</p>
@@ -40,22 +39,42 @@ export const ProductsPageTemplate: React.FC<Props> = ({
       <h1 className="mb-2 text-primary font-extrabold leading-[41px] md:leading-14 text-[32px] md:text-[48px] tracking-[-1%]">
         {title}
       </h1>
-      <p className="text-secondary text-[14px] leading-[21px] mb-8 md:mb-10">
-        {totalProducts} models
-      </p>
+      <p className='text-secondary text-[14px] leading-[21px] mb-8 md:mb-10'>{totalProducts} models</p>
 
-      <div className="flex flex-row gap-4 mb-6">
-        <ProductSort currentValue={sort} onChange={onSortChange}/>
-        <ItemsOnPage currentValue={itemsOnPage} onChange={onItemsOnPageChange}/>
+    <div className='flex flex-col gap-6'>
+      <div className='flex flex-row gap-4'>
+        <Dropdown  
+          description='Sort by'
+          label={sort}
+          currentValue={sort}
+          items={['Newest', 'Oldest', 'Cheapest', 'Most expensive']}
+          onChange={onSortChange}
+          className='md:w-[187px] lg:w-44'
+        />
+
+        <Dropdown 
+          description='Items on page'
+          label={String(perPage)}
+          currentValue={String(perPage)}
+          items={['8', '16', '24', '48']}
+          onChange={onPerPageChange}
+          className='lg:w-32'
+        />
       </div>
-      <GridForProducts products={products}/>
+          
+          
+        <GridForProducts products={products}/>
 
-      <Pagination
-        total={totalProducts}
-        perPage={itemsOnPage}
-        currentPage={currentPage}
-        onPageChange={onPageChange}
-      />
+        <div className='w-full flex justify-center mt-4'>
+          <Pagination  
+            totalProducts={totalProducts}
+            itemsPerPage={perPage}
+            currentPage={currentPage}
+            onPageChange={onPageChange}
+          />
+      </div>
+
     </div>
+  </section>
   );
 };
