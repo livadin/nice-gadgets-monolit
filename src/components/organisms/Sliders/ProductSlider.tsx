@@ -38,44 +38,46 @@ export const ProductSlider: React.FC<Props> = ({ products, title }) => {
   };
 
   return (
-    <Swiper
-      modules={[Navigation]}
-      spaceBetween={16}
-      slidesPerView="auto"
-      onSwiper={setSwiperInstance}
-      onSlideChange={handleSlideChange}
-    >
-      <div
-        slot="container-start"
-        className="mb-6 flex justify-between"
+    <section>
+      <Swiper
+        modules={[Navigation]}
+        spaceBetween={16}
+        slidesPerView="auto"
+        onSwiper={setSwiperInstance}
+        onSlideChange={handleSlideChange}
       >
-        <h2 className="h2">{title}</h2>
         <div
           slot="container-start"
-          className=""
+          className="mb-6 flex justify-between"
         >
-          <ArrowLeftButton
-            className="w-8 h-8 mr-4"
-            onClick={handlePrev}
-            disabled={!hasPrev}
-          />
-          <ArrowRightButton
-            className="w-8 h-8"
-            onClick={handleNext}
-            disabled={!hasNext}
-          />
-        </div>
-      </div>
-      {products.map((product) => {
-        return (
-          <SwiperSlide
-            className="w-auto! pb-4"
-            key={product.id}
+          <h2 className="h2">{title}</h2>
+          <div
+            slot="container-start"
+            className=""
           >
-            <ProductCard product={product} />
-          </SwiperSlide>
-        );
-      })}
-    </Swiper>
+            <ArrowLeftButton
+              className="w-8 h-8 mr-4"
+              onClick={handlePrev}
+              disabled={!hasPrev}
+            />
+            <ArrowRightButton
+              className="w-8 h-8"
+              onClick={handleNext}
+              disabled={!hasNext}
+            />
+          </div>
+        </div>
+        {products.map((product) => {
+          return (
+            <SwiperSlide
+              className="w-auto! pb-4"
+              key={product.id}
+            >
+              <ProductCard product={product} />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </section>
   );
 };
