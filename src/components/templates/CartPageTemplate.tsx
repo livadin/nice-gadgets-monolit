@@ -1,8 +1,8 @@
 import { useState } from "react";
 import type { CategoryProduct } from "../../types/CategoryProduct";
 import { BackButton } from "../atoms/BackButton/BackButton";
-import { CartSummary } from "../organisms/CartSummary/CartSummary";
-import { ProductCardCart } from "../organisms/ProductCardCart/ProductCardCart";
+import { CartSummary } from "../organisms/CartSummary";
+import { ProductCardCart } from "../organisms/ProductCardCart";
 
 type CartPageTemplateProps = {
   cartProducts: CategoryProduct[];

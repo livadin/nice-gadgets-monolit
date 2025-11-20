@@ -1,8 +1,8 @@
 import type React from "react";
 import { useState } from "react";
-import { CloseIcon } from "../../atoms/Icons/CloseIcon";
-import type { CategoryProduct } from "../../../types/CategoryProduct";
-import { MinusButton, PlusButton } from "../../atoms/UtilityButton";
+import { CloseIcon } from "../atoms/Icons/CloseIcon";
+import type { CategoryProduct } from "../../types/CategoryProduct";
+import { MinusButton, PlusButton } from "../atoms/UtilityButton";
 
 type ProductCardCartProps = {
   cartProduct: CategoryProduct;
