@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { ProductCard } from "../organisms/ProductCard/ProductCard";
-import type { CategoryProduct } from "../../types/CategoryProduct";
+import type { SimpleProduct } from "../../types/CategoryProduct";
 
 type FavoritesTemplateProps = {
-  products: CategoryProduct[];
+  products: SimpleProduct[];
 };
 
 export const FavoritesTemplate: React.FC<FavoritesTemplateProps> = ({ products }) => {
-  const [items] = useState<CategoryProduct[]>(products);
+  const [items] = useState<SimpleProduct[]>(products);
   const [isEmpty, setIsEmpty] = useState(items.length === 0);
 
   useEffect(() => {
