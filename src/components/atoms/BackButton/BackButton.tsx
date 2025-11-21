@@ -3,10 +3,11 @@ import cn from 'classnames';
 
 type BackButtonProps = {
   text?: string;
+  className?: string;
   onClick?: () => void;
 };
 
-export const BackButton: React.FC<BackButtonProps> = ({ text, onClick }) => {
+export const BackButton: React.FC<BackButtonProps> = ({ text, className, onClick }) => {
   return (
     <button
       onClick={onClick}
@@ -14,7 +15,8 @@ export const BackButton: React.FC<BackButtonProps> = ({ text, onClick }) => {
         "flex items-center gap-1",
         "text-xs font-semibold text-secondary",
         "hover:text-primary",
-        "transition-colors duration-300"
+        "transition-colors duration-300",
+        className
       )}
     >
       <ArrowLeftIcon className='text-primary'/>
