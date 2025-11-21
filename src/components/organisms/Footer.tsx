@@ -1,6 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import { ArrowUpButton } from '../atoms/UtilityButton';
+import { Logo } from '../atoms/Logo/Logo';
 
 export const Footer: React.FC = () => {
   const handleScrollToTop = () => {
@@ -11,26 +12,21 @@ export const Footer: React.FC = () => {
     <footer className="border-t border-element">
       <div
         className={cn(
-          'mx-auto w-full',
-          'px-4 md:px-6 lg:px-0',
+          'w-full',
+          'px-4 md:px-6',
           'flex flex-col gap-8 py-8 lg:py-10',
           'md:flex-row md:items-center md:justify-between',
-          'lg:max-w-[1200px]',
+          'lg:max-w-[1200px] lg:mx-auto lg:px-8',
         )}
       >
         <a
           href="/"
           className={cn(
             'block',
-            'transition-transform duration-300 ease-in-out hover:scale-105',
             'self-start md:self-center',
           )}
         >
-          <img
-            src="src/assets/icons/logo/logoMonolit.svg"
-            alt="Monolit"
-            width={89}
-          />
+          <Logo />
         </a>
 
         <nav
