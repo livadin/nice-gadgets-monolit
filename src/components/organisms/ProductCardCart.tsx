@@ -15,7 +15,7 @@ export const ProductCardCart: React.FC<ProductCardCartProps> = ({
   return (
     <div className="flex flex-col md:flex-row md:items-center md:justify-between p-4 md:p-6 border border-element">
       <div className="flex items-center justify-between gap-x-4 md:gap-x-6">
-        <div className="flex items-center flex-shrink-0 gap-x-4 md:gap-x-6">
+        <div className="flex items-center shrink-0 gap-x-4 md:gap-x-6">
           <CloseIcon />
           <div className="h-[66px] flex items-center justify-center m-[7px]">
             <img
@@ -26,7 +26,7 @@ export const ProductCardCart: React.FC<ProductCardCartProps> = ({
           </div>
         </div>
 
-        <h3 className="text-[14px] text-primary font-normal break-words md:pr-4">
+        <h3 className="text-[14px] text-primary font-normal wrap-break-words md:pr-4">
           {cartProduct.name}
         </h3>
       </div>
@@ -34,14 +34,14 @@ export const ProductCardCart: React.FC<ProductCardCartProps> = ({
       <div className="flex justify-between items-center mt-4 md:mt-0 md:gap-x-10">
         <div className="flex items-center">
           <PlusButton
-            className="w-[32px] h-[32px]"
+            className="w-8 h-8"
             onClick={() => setCount((prev) => prev + 1)}
           />
           <span className="text-[14px] text-black font-normal mx-[13px] text-center">
             {count}
           </span>
           <MinusButton
-            className="w-[32px] h-[32px]"
+            className="w-8 h-8"
             onClick={() => setCount((prev) => Math.max(1, prev - 1))}
           />
         </div>

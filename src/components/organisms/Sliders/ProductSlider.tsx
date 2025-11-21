@@ -1,15 +1,15 @@
 import { Swiper, SwiperSlide, type SwiperClass } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import { ProductCard } from '../ProductCard/ProductCard';
+import { ProductCard } from '../ProductCard';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
-import type { CategoryProduct } from '../../../types/CategoryProduct';
+import type { SimpleProduct } from '../../../types/CategoryProduct';
 import { ArrowLeftButton, ArrowRightButton } from '../../atoms/UtilityButton';
 import { useState } from 'react';
 
 type Props = {
-  products: CategoryProduct[];
+  products: SimpleProduct[];
   title: string;
 };
 

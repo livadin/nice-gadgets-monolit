@@ -13,18 +13,18 @@ import { ArrowRightButton } from '../../../atoms/UtilityButton/ArrowRightButton'
 const BANNERS: WelcomeBanner[] = [
   {
     id: 0,
-    path: '/gadgets/img/banners/WelcomeSliderBanner.png',
-    path320: '/gadgets/img/banners/WelcomeSliderBanner320.png',
+    path: '/nice-gadgets-monolit/gadgets/img/banners/WelcomeSliderBanner.png',
+    path320: '/nice-gadgets-monolit/gadgets/img/banners/WelcomeSliderBanner320.png',
   },
   {
     id: 1,
-    path: '/gadgets/img/banners/WelcomeSliderBanner.png',
-    path320: '/gadgets/img/banners/WelcomeSliderBanner320.png',
+    path: '/nice-gadgets-monolit/gadgets/img/banners/WelcomeSliderBanner.png',
+    path320: '/nice-gadgets-monolit/gadgets/img/banners/WelcomeSliderBanner320.png',
   },
   {
     id: 2,
-    path: '/gadgets/img/banners/WelcomeSliderBanner.png',
-    path320: '/gadgets/img/banners/WelcomeSliderBanner320.png',
+    path: '/nice-gadgets-monolit/gadgets/img/banners/WelcomeSliderBanner.png',
+    path320: '/nice-gadgets-monolit/gadgets/img/banners/WelcomeSliderBanner320.png',
   },
 ];
 

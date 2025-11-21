@@ -1,14 +1,14 @@
-import { ArrowLeftIcon } from "@radix-ui/react-icons";
+import { ArrowRightIcon } from '../../atoms/Icons/ArrowRightIcon';
 import { HomeButton } from "../../atoms/UtilityButton";
 import { Dropdown } from "../../molecules/Dropdown/Dropdown";
-import { GridForProducts } from "../GridForProducts";
+import { GridForProducts } from "./GridForProducts";
 import { Pagination } from "./Pagination";
-import type { CategoryProduct } from "../../../types/CategoryProduct";
+import type { SimpleProduct } from "../../../types/CategoryProduct";
 import type { SortOption } from "../../../types/SortProducts";
 
 type Props = {
   title: string;
-  products: CategoryProduct[];
+  products: SimpleProduct[];
   totalProducts: number;
 
   sort: SortOption;
@@ -33,9 +33,9 @@ export const ProductsPageTemplate: React.FC<Props> = ({
   return (
     <section className="w-full flex flex-col">
       <div className="w-full mb-6">
-        <div className='flex items-center gap-2 text-sm text-secondary mb-6 lg:mb-10'>
+        <div className="flex items-center gap-2 text-sm text-secondary mb-6 lg:mb-10">
           <HomeButton />
-          <ArrowLeftIcon />
+          <ArrowRightIcon />
           <p>Phones</p>
         </div>
 
@@ -43,40 +43,42 @@ export const ProductsPageTemplate: React.FC<Props> = ({
           {title}
         </h1>
 
-      <p className='text-secondary text-[14px] leading-[21px] mb-8 md:mb-10'>{totalProducts} models</p>
+        <p className="text-secondary text-[14px] leading-[21px] mb-8 md:mb-10">
+          {totalProducts} models
+        </p>
 
-      <div className='flex flex-col gap-6'>
-        <div className='flex flex-row gap-4'>
-          <Dropdown 
-            description='Sort by'
-            label={sort}
-            currentValue={sort}
-            items={['Newest', 'Oldest', 'Cheapest', 'Most expensive']}
-            onChange={onSortChange}
-            className='md:w-[187px] lg:w-44'
-          />
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-row gap-4">
+            <Dropdown
+              description="Sort by"
+              label={sort}
+              currentValue={sort}
+              items={['Newest', 'Oldest', 'Cheapest', 'Most expensive']}
+              onChange={onSortChange}
+              className="md:w-[187px] lg:w-44"
+            />
 
-          <Dropdown 
-            description='Items on page'
-            label={String(perPage)}
-            currentValue={String(perPage)}
-            items={['8', '16', '24', '48']}
-            onChange={onPerPageChange}
-            className='lg:w-32'
-          />
+            <Dropdown
+              description="Items on page"
+              label={String(perPage)}
+              currentValue={String(perPage)}
+              items={['8', '16', '24', '48']}
+              onChange={onPerPageChange}
+              className="lg:w-32"
+            />
+          </div>
         </div>
       </div>
-      </div>
 
-      <GridForProducts products={products}/>
-        <div className='flex justify-center items-center'>
-          <Pagination  
-            totalProducts={totalProducts}
-            itemsPerPage={perPage}
-            currentPage={currentPage}
-            onPageChange={onPageChange}
-          />
-        </div>
-  </section>
+      <GridForProducts products={products} />
+      <div className="flex justify-center items-center">
+        <Pagination
+          totalProducts={totalProducts}
+          itemsPerPage={perPage}
+          currentPage={currentPage}
+          onPageChange={onPageChange}
+        />
+      </div>
+    </section>
   );
 };

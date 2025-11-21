@@ -1,4 +1,4 @@
-import type { CategoryProduct } from '../../types/CategoryProduct';
+import type { SimpleProduct } from '../../types/CategoryProduct';
 import { ShopByCategory } from '../organisms/ShopByCategory';
 import { ProductSlider } from '../organisms/Sliders/ProductSlider';
 import { WelcomeSlider } from '../organisms/Sliders/WelcomeSlider/WelcomeSlider';
@@ -6,13 +6,13 @@ import { WelcomeSlider } from '../organisms/Sliders/WelcomeSlider/WelcomeSlider'
 type Props = {
   title: string;
   firstSliderTitle: string;
-  firstSliderProducts: CategoryProduct[];
+  firstSliderProducts: SimpleProduct[];
   categoryTitle: string;
   categoryImages: string[];
   categoryColors: string[];
   categoriesCount: number[];
   secondSliderTitle: string;
-  secondSliderProducts: CategoryProduct[];
+  secondSliderProducts: SimpleProduct[];
 };
 
 export const HomePageTemplate: React.FC<Props> = ({

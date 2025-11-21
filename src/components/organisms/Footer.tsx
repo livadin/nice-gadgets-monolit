@@ -19,15 +19,7 @@ export const Footer: React.FC = () => {
           'lg:max-w-[1200px] lg:mx-auto lg:px-8',
         )}
       >
-        <a
-          href="/"
-          className={cn(
-            'block',
-            'self-start md:self-center',
-          )}
-        >
-          <Logo />
-        </a>
+        <Logo />
 
         <nav
           className={cn(
@@ -37,7 +29,6 @@ export const Footer: React.FC = () => {
             'lg:gap-24',
           )}
         >
-
           <a
             href="https://github.com/fs-aug25-Monolit-Digital/nice-gadgets-monolit"
             target="_blank"
@@ -85,7 +76,7 @@ export const Footer: React.FC = () => {
           </a>
         </nav>
 
-        <button
+        <a
           onClick={handleScrollToTop}
           className={cn(
             'flex items-center gap-4',
@@ -107,7 +98,7 @@ export const Footer: React.FC = () => {
           </span>
 
           <ArrowUpButton />
-        </button>
+        </a>
       </div>
     </footer>
   );
