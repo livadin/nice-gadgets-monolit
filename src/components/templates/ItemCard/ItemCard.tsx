@@ -54,7 +54,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({ itemProduct, productList }) 
                 <Header />
             </header>
 
-            <main className="container mx-auto px-4 p-6">
+            <main className="container w-auto md:max-w-[758px] lg:max-w-[1200px] mx-auto px-4 pt-6 md:px-8">
                 
                 <div className="flex items-center gap-2 overflow-hidden sm:mb-6 md:mb-10">
                     <HomeIcon className="shrink-0" />
@@ -78,10 +78,11 @@ export const ItemCard: React.FC<ItemCardProps> = ({ itemProduct, productList }) 
                     <h3 className="sm:text-2xl md:text-3xl font-extrabold sm:mb-8 md:mb-10">{currentProduct.name}</h3>
                 </div>
                 
-                <div className="flex flex-col sm:flex-row justify-between gap-16 mb-20">
+                <div className="flex flex-col md:flex-row justify-between md:gap-16 mb-20">
                         
-                       <div className="flex gap-6">
-                            <div className="flex flex-row sm:flex-col gap-3 w-full sm:w-20">
+                       <div className="flex flex-col md:flex-row gap-6 mb-10 md:mb-0">
+                            <div className="flex flex-row md:flex-col gap-3 w-full md:w-20 
+                                order-2 md:order-1 justify-center md:justify-start">
                                 {currentProduct.images.slice(1).map((img, index) => (
                                     <img 
                                         key={index}
@@ -98,7 +99,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({ itemProduct, productList }) 
                                 ))}
                             </div>
                             <div className="w-full sm:w-[288px] md:w-[287px] lg:w-[464px]
-                             aspect-square flex items-center justify-center overflow-hidden mx-auto sm:mx-0">
+                             aspect-square flex items-center justify-center overflow-hidden mx-auto md:mx-0 order-1 md:order-2">
                                 <img
                                     src={mainImage}
                                     alt={currentProduct.name}
@@ -107,7 +108,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({ itemProduct, productList }) 
                             </div>
                         </div>
 
-                    <div className="flex flex-col gap-8 md:w-[48%]">
+                    <div className="flex flex-col gap-5 md:w-[48%]">
                         <div className="w-full max-w-[320px]">
                             
                             <div className="flex items-center justify-between mb-2">
@@ -196,7 +197,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({ itemProduct, productList }) 
                 </div>
 
                 <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-10">
-                    <div className="w-full lg:w-[48%]">
+                    <div className="w-auto lg:w-[48%]">
                         <h3 className="text-2xl font-extrabold mb-4">About</h3>
                         
                         <div className="border-t border-element pt-6 mb-6">
@@ -225,7 +226,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({ itemProduct, productList }) 
                         </div>
                     </div>
                     
-                    <div className="w-full lg:w-[48%] mb-12 lg:mb-14">
+                    <div className="w-auto lg:w-[48%] mb-12 lg:mb-14">
                         <h3 className="text-2xl font-extrabold mb-4">Tech specs</h3>
                         
                         <div className="border-t border-element text-[14px] text-right space-y-2 pt-2">

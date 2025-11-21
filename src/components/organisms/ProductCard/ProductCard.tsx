@@ -27,7 +27,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
 
         <div className="mb-2">
-          <h3 className="text-[14px] text-primary font-normal mb-2 min-h-6">
+          <h3 className="text-[14px] text-primary font-normal mb-2 h-12 overflow-hidden">
             {product.name}
           </h3>
           <div className="flex items-center gap-2">
@@ -42,7 +42,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         </div>
 
-        <div className="border-t border-element pt-4 mb-1">
+        <div className="border-t border-element pt-4 mb-1 shrink-0">
           <div className="flex justify-between mb-2">
             <span className="text-xs text-secondary">Screen</span>
             <span className="text-xs text-primary font-semibold">{product.screen}</span>
@@ -65,6 +65,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               buttonText={selectedPrimary ? 'Added' : 'Add to cart'}
               selected={selectedPrimary}
               onClick={() => setSelectedPrimary((prev) => !prev)}
+              className="m-4"
             />
           </div>
           <div className="pt-4 -ml-3">
