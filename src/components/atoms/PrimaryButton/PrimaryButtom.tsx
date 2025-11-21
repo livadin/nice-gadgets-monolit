@@ -3,26 +3,16 @@ import cn from 'classnames';
 
 type PrimaryButtonProps = {
   buttonText?: string;
-<<<<<<< HEAD
-  selected?: boolean;
-  onClick?: () => void;
-  className: string;
-=======
   selected?: boolean
   onClick?: () => void
   className?: string;
->>>>>>> c08a62f3c34ed7f15e185c2f4a2d6ffdc3f2376d
 }
 
 export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   buttonText,
   selected,
   onClick,
-<<<<<<< HEAD
-  className
-=======
   className,
->>>>>>> c08a62f3c34ed7f15e185c2f4a2d6ffdc3f2376d
 }) => {
   return (
     <button
