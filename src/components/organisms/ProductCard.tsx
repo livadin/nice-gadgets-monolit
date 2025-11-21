@@ -40,7 +40,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         </div>
 
-        {/* --- ХАРАКТЕРИСТИКИ --- */}
         <div className="border-t border-element pt-4 mb-6 space-y-2">
           <div className="flex justify-between">
             <span className="text-xs text-secondary">Screen</span>
@@ -58,8 +57,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         </div>
 
-        {/* --- КНОПКИ --- */}
-        {/* items-center вирівнює кнопку і сердечко по центру по вертикалі */}
         <div className="flex items-center gap-4 justify-between mt-auto">
           <div className="flex-grow">
             <PrimaryButton
@@ -69,7 +66,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             />
           </div>
           
-          {/* Прибрав pt-4 та -ml-3. Тепер сердечко стоїть рівно */}
           <div>
             <FavoriteButton
               className="w-12 h-12 flex items-center justify-center border border-element rounded-full hover:bg-gray-50 transition-colors"
