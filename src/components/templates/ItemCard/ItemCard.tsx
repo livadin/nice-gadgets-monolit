@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Footer } from "../../organisms/Footer";
 import { HomeIcon } from "../../atoms/Icons/HomeIcon";
 import { ArrowRightIcon } from "../../atoms/Icons/ArrowRightIcon";
 import { ArrowLeftIcon } from "../../atoms/Icons/ArrowLeftIcon";
-import { Header } from "../../organisms/Header";
 import type { CategoryProduct } from "../../../types/CategoryProduct";
 import { ProductSlider } from "../../organisms/Sliders/ProductSlider";
 import { PrimaryButton } from "../../atoms/PrimaryButton/PrimaryButtom";
@@ -49,11 +47,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({ itemProduct, productList }) 
 
     return (
         <div className="min-h-screen flex flex-col">
-            
-            <header className="relative w-full bg-white h-12 lg:h-16 border-b border-element z-50">
-                <Header />
-            </header>
-
+                        
             <main className="container w-auto md:max-w-[758px] lg:max-w-[1200px] mx-auto px-4 pt-6 md:px-8">
                 
                 <div className="flex items-center gap-2 overflow-hidden sm:mb-6 md:mb-10">
@@ -113,7 +107,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({ itemProduct, productList }) 
                             
                             <div className="flex items-center justify-between mb-2">
                                 <h3 className="text-xs text-secondary">Available colors</h3>
-                                <span className="text-xs text-secondary">ID: {'ну тіпа айді'}</span>
+                                <span className="text-xs text-secondary">ID: is real id  </span>
                             </div>
 
                             <div className="flex gap-2">
@@ -272,9 +266,6 @@ export const ItemCard: React.FC<ItemCardProps> = ({ itemProduct, productList }) 
             
             </main>
 
-            <footer>
-                <Footer />
-            </footer>
         </div>
     );
 };

@@ -3,21 +3,26 @@ import { useState } from "react";
 import { PrimaryButton } from "../../atoms/PrimaryButton/PrimaryButtom";
 import { FavoriteButton } from "../../atoms/UtilityButton";
 import type { SimpleProduct } from "../../../types/CategoryProduct";
-
+import cn from 'classnames';
 
 type ProductCardProps = {
     product: SimpleProduct;
+    className?: string;
 };
 
 export const ProductCard: React.FC<ProductCardProps> = ({
     product,
+    className,
 }) => {
     
     const [selectedPrimary, setSelectedPrimary] = useState(false);
     const [selectedFavorite, setSelectedFavorite] = useState(false);
 
     return (
-      <div className="w-full p-7 pb-4 rounded-none border border-element hover:shadow-custom bg-white">
+      <div className={cn(
+        "w-full p-7 pb-4 rounded-none border border-element hover:shadow-custom bg-white",
+        className
+      )}>
         <div className="h-[200px] flex items-center justify-center mb-4">
           <img
             src={product.image}
