@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Logo } from '../atoms/Logo/Logo';
 import { MenuButton } from '../atoms/UtilityButton/MenuButton';
 import { HeaderActions } from '../molecules/HeaderActions/HeaderActions.tsx';
 import { Navbar } from '../molecules/HeaderActions/Navbar';
 import { MobileMenu } from '../organisms/MobileMenu';
+import { Logo } from '../atoms/Logo/Logo.tsx';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,11 +21,11 @@ export const Header: React.FC = () => {
   }, [isMenuOpen]);
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-white h-12 lg:h-16 border-b border-element z-50">
-      <div className="flex items-center justify-between h-full pl-4 lg:pl-6 pr-0">
+    <header className="fixed top-0 left-0 pl-4 w-full bg-white h-12 lg:h-16 border-b border-element z-50">
+      <div className="flex items-center justify-between h-full lg:pl-6 pr-0">
         <div className="flex items-center h-full">
-          <Logo />
-          <Navbar className="ml-4 lg:ml-6" />
+          <Logo className="w-16 h-5 md:h-[22px] lg:w-20 lg:h-7"/>
+          <Navbar className="ml-10 lg:ml-10" />
         </div>
 
         <div className="flex items-center h-full">
