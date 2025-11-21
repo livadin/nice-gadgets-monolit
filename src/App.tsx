@@ -3,7 +3,6 @@ import { Footer } from './components/organisms/Footer';
 import { Header } from './components/organisms/Header';
 
 function App() {
-
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -11,6 +10,7 @@ function App() {
       <Footer />
     </div>
   );
+
 }
 
 export default App;

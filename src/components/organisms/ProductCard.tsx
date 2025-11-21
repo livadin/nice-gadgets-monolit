@@ -19,7 +19,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       <div className="w-full p-7 pb-4 rounded-none border border-element hover:shadow-custom bg-white">
         <div className="h-[200px] flex items-center justify-center mb-4">
           <img
-            src={`${import.meta.env.BASE_URL}${product.image}`}
+            src={product.image}
             alt={product.name}
             className="h-full w-full object-contain"
           />
