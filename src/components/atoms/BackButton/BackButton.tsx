@@ -1,5 +1,5 @@
-import { ArrowLeftIcon } from '../Icons/ArrowLeftIcon';
 import cn from 'classnames';
+import { ArrowLeftButton } from '../UtilityButton';
 
 type BackButtonProps = {
   text?: string;
@@ -16,12 +16,12 @@ export const BackButton: React.FC<BackButtonProps> = ({ text, className, onClick
         "text-xs font-semibold text-secondary",
         "hover:text-primary",
         "transition-colors duration-300",
+        'group',
         className
       )}
     >
-      <ArrowLeftIcon className='text-primary'/>
+      <ArrowLeftButton className='border-0'/>
       {text}
     </button>
   );
 };
-
