@@ -97,7 +97,7 @@ export const Footer: React.FC = () => {
             Back to top
           </span>
 
-          <ArrowUpButton />
+          <ArrowUpButton className='w-[32px] h-[32px]'/>
         </a>
       </div>
     </footer>
