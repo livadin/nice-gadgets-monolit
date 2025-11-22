@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { HomeIcon } from "../../atoms/Icons/HomeIcon";
 import { ArrowRightIcon } from "../../atoms/Icons/ArrowRightIcon";
-import { ArrowLeftIcon } from "../../atoms/Icons/ArrowLeftIcon";
 import type { CategoryProduct, SimpleProduct } from "../../../types/CategoryProduct";
 import { ProductSlider } from "../../organisms/Sliders/ProductSlider";
 import { PrimaryButton } from "../../atoms/PrimaryButton/PrimaryButtom";
 import { ColorButton, FavoriteButton, PageButton } from "../../atoms/UtilityButton";
+import { BackButton } from "../../atoms/BackButton/BackButton";
 
 type ItemCardProps = {
     itemProduct: CategoryProduct;
@@ -76,8 +76,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({ itemProduct, productList, pr
                 </div>
                 
                 <div className="flex items-center gap-1 mb-4">
-                    <ArrowLeftIcon className="text-primary" />
-                    <p className="text-secondary">Back</p>
+                    <BackButton text="Back" className="mt-[25px] md:mt-9" />
                 </div>
                 
                 <div>
@@ -252,18 +251,28 @@ export const ItemCard: React.FC<ItemCardProps> = ({ itemProduct, productList, pr
                                 <span className="text-secondary">RAM</span>
                                 <span className="text-primary">{currentProduct.ram}</span>
                             </div>
-                             <div className="flex justify-between">
-                                <span className="text-secondary">Built in memory</span>
-                                <span className="text-primary">{currentProduct.capacity}</span>
-                            </div>
-                             <div className="flex justify-between">
-                                <span className="text-secondary">Camera</span>
-                                <span className="text-primary">{currentProduct.camera}</span>
-                            </div>
-                             <div className="flex justify-between">
-                                <span className="text-secondary">Zoom</span>
-                                <span className="text-primary">{currentProduct.zoom}</span>
-                            </div>
+                            {currentProduct.category !== 'accessories' ? (
+                                <>
+                                <div className="flex justify-between">
+                                    <span className="text-secondary">Built in memory</span>
+                                    <span className="text-primary">{currentProduct.capacity}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-secondary">Camera</span>
+                                    <span className="text-primary">{currentProduct.camera}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-secondary">Zoom</span>
+                                    <span className="text-primary">{currentProduct.zoom}</span>
+                                </div>
+                                </>
+                            ) : (
+                                <div className="flex justify-between">
+                                    <span className="text-secondary">Display size</span>
+                                    <span className="text-primary">{currentProduct.capacity}</span>
+                                </div>
+                            )}
+                        
                              <div className="flex justify-between">
                                 <span className="text-secondary">Cell</span>
                                 <span className="text-primary wrap-break-words max-w-[60%]">{currentProduct.cell.join(', ')}</span>
