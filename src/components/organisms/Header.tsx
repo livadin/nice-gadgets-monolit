@@ -7,7 +7,6 @@ import { Logo } from '../atoms/Logo/Logo.tsx';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState('Home');
 
   {
     /* I added useEffect to block scrolling when Menu is open */
@@ -40,8 +39,6 @@ export const Header: React.FC = () => {
       <MobileMenu
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
-        activeItem={activeItem}
-        setActiveItem={setActiveItem}
       />
     </header>
   );

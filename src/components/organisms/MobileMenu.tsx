@@ -18,7 +18,7 @@ export const MobileMenu: React.FC<Props> = ({
   return (
     <div
       className={cn(
-        "fixed inset-0 z-40 bg-white flex flex-col transform transition-transform duration-300",
+        "fixed inset-0 z-50 bg-white flex flex-col transform transition-transform duration-300",
         isOpen ? "translate-x-0" : "translate-x-full"
       )}
     >
@@ -71,6 +71,7 @@ export const MobileMenu: React.FC<Props> = ({
       <div className="flex border-t border-element">
         <NavLink
           to="/favourites"
+          onClick={onClose}
           className="relative flex-1 h-12 flex items-center justify-center"
         >
           {({ isActive }) => (
@@ -79,7 +80,7 @@ export const MobileMenu: React.FC<Props> = ({
 
               {isActive && (
                 <span className="
-                  absolute left-0 top-0
+                  absolute left-0 bottom-0
                   w-full h-[3px]
                   bg-primary
                   animate-underline
@@ -92,6 +93,7 @@ export const MobileMenu: React.FC<Props> = ({
 
         <NavLink
           to="/cart"
+          onClick={onClose}
           className="relative flex-1 h-12 flex items-center justify-center"
         >
           {({ isActive }) => (
@@ -100,7 +102,7 @@ export const MobileMenu: React.FC<Props> = ({
 
               {isActive && (
                 <span className="
-                  absolute left-0 top-0
+                  absolute left-0 bottom-0
                   w-full h-[3px]
                   bg-primary
                   animate-underline
