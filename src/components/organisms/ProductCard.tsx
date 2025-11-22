@@ -19,7 +19,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
     return (
       <div className={
-        `w-full p-7 pb-4 rounded-none border border-element hover:shadow-custom bg-white
+        `w-full p-7 rounded-none border border-element hover:shadow-custom bg-white
         ${className}`
       }>
         <div className="h-[200px] flex items-center justify-center mb-4">
@@ -68,7 +68,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               buttonText={selectedPrimary ? 'Added' : 'Add to cart'}
               selected={selectedPrimary}
               onClick={() => setSelectedPrimary((prev) => !prev)}
-              className="m-4"
+              className="lg:w-40"
             />
           </div>
           
