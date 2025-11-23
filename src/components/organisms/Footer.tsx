@@ -97,7 +97,7 @@ export const Footer: React.FC = () => {
             Back to top
           </span>
 
-          <ArrowUpButton className='w-[32px] h-[32px] transition-colors duration-300'/>
+          <ArrowUpButton className='w-[32px] h-[32px] bg-white-2 transition-colors duration-300'/>
         </a>
       </div>
     </footer>

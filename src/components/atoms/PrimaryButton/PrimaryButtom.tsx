@@ -24,8 +24,8 @@ export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
         "transition-shadow duration-300",
         "w-[175px] h-10",
     selected
-      ? "bg-white text-accent-green border border-element"
-      : "bg-primary text-white",
+      ? "bg-white-2 text-accent-green border border-element"
+      : "bg-primary-dark text-white-dark",
       className
       )}
     >

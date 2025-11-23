@@ -28,40 +28,42 @@
   --breakpoint-md-lg: 768px;
   --breakpoint-lg: 1200px;
   --color-primary: #313237;
+  --color-primary-dark: #313237;
   --color-secondary: #89939a;
   --color-icon: #b4bdc3;
   --color-element: #e2e6e9;
   --color-hover-bg: #fafbfc;
+  --color-hover-bg-2: #fafbfc;
   --color-white: #ffffff;
+  --color-white-dark: #ffffff;
+  --color-white-2: #ffffff;
+  --color-white-card: #ffffff;
   --color-accent-green: #27ae60;
   --color-accent-red: #eb5757;
+  --color-unhover: #fff;
 
   --shadow-custom: 0px 3px 13px 5px #17203166;
 }
 
-html[data-theme="dark"] {
-  --color-primary: #ffffff;
-  --color-secondary: #b4bdc3;
-  --color-icon: #89939a;
-  --color-element: #3a3a3a;
-  --color-hover-bg: #2a2a2a;
-  --color-white: #1a1a1a;
-  --color-accent-green: #27ae60;
-  --color-accent-red: #eb5757;
 
-  --shadow-custom: 0px 3px 13px 5px #ffffff66;
-}
 
 html.dark {
   --color-primary: #ffffff;
+  --color-primary-2: #323542;
+  --color-primary-dark: #905BFF;
   --color-secondary: #b4bdc3;
+  --color-unhover: #75767f;
   --color-icon: #89939a;
   --color-element: #3a3a3a;
   --color-hover-bg: #2a2a2a;
-  --color-white: #1a1a1a;
-  --color-accent-green: #27ae60;
+  --color-hover-bg-2: #323542;
+  --color-white: #0f1121;
+  --color-white-dark: #ffffff;
+  --color-white-2: #323542;
+  --color-white-card: #161827;
+  --color-accent-green: #ffffff;
   --color-accent-red: #eb5757;
-
+  
   --shadow-custom: 0px 3px 13px 5px #17203166;
 }
 

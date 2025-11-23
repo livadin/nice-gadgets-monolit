@@ -85,11 +85,11 @@ export const WelcomeSlider: React.FC = () => {
         })}
         <div className="hidden md:inline-flex">
           <ArrowLeftButton
-            className="absolute top-0 z-10 w-8 h-[189px] lg:h-[400px]"
+            className="absolute top-0 z-10 w-8 h-[189px] lg:h-[400px] bg-white-2 transition-colors duration-300"
             onClick={handlePrev}
           ></ArrowLeftButton>
           <ArrowRightButton
-            className="absolute top-0 right-0 z-10 w-8 h-[189px] lg:h-[400px]"
+            className="absolute top-0 right-0 z-10 w-8 h-[189px] lg:h-[400px] bg-white-2 transition-colors duration-300"
             onClick={handleNext}
           ></ArrowRightButton>
         </div>

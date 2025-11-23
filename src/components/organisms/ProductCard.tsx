@@ -19,7 +19,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
     return (
       <div className={
-        `w-full p-7 rounded-none border border-element hover:shadow-custom bg-white transition-colors duration-300
+        `w-full p-7 rounded-none border border-element hover:shadow-custom bg-white-card transition-colors duration-300
         ${className}`
       }>
         <div className="h-[200px] flex items-center justify-center mb-4">
@@ -74,7 +74,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           
           <div>
             <FavoriteButton
-              className="w-10 h-10 flex items-center justify-center border border-element rounded-full hover:bg-white transition-colors duration-300"
+              className="w-10 h-10 flex items-center justify-center border border-element rounded-full bg-white-2 hover:bg-white transition-colors duration-300"
               selected={selectedFavorite}
               onClick={() => setSelectedFavorite((prev) => !prev)}
             />
