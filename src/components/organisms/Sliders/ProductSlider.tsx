@@ -73,7 +73,7 @@ export const ProductSlider: React.FC<Props> = ({ products, title }) => {
               className="w-auto! pb-4"
               key={product.id}
             >
-              <ProductCard product={product} className='w-[288px]' />
+              <ProductCard product={product} className='max-w-[272px]' />
             </SwiperSlide>
           );
         })}
