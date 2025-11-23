@@ -1,18 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { ProductCard } from "../organisms/ProductCard";
-import type { SimpleProduct } from "../../types/CategoryProduct";
+import React, { useState, useEffect } from 'react';
+import { ProductCard } from '../organisms/ProductCard';
+import type { SimpleProduct } from '../../types/CategoryProduct';
+import { MainLoader } from '../atoms/Loaders/MainLoader';
 
 type FavoritesTemplateProps = {
   products: SimpleProduct[];
+  isLoading: boolean;
 };
 
-export const FavoritesTemplate: React.FC<FavoritesTemplateProps> = ({ products }) => {
+export const FavoritesTemplate: React.FC<FavoritesTemplateProps> = ({
+  products,
+  isLoading,
+}) => {
   const [items] = useState<SimpleProduct[]>(products);
   const [isEmpty, setIsEmpty] = useState(items.length === 0);
 
   useEffect(() => {
     setIsEmpty(items.length === 0);
   }, [items]);
+
+  if (isLoading)
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <MainLoader />
+      </div>
+    );
 
   return (
     <section className="container mx-auto md:m-0">

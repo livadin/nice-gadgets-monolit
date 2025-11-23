@@ -1,17 +1,39 @@
-import { useEffect, useState } from "react";
-import type { SimpleProduct } from "../../types/CategoryProduct";
-import { getProducts } from "../../utilities/fetchApi";
+import {
+  getAccessories,
+  getPhones,
+  getProducts,
+  getTablets,
+} from '../../utilities/fetchApi';
+import { useProducts } from '../../hooks/useProduct';
+import { HomePageTemplate } from '../templates/HomePageTemplate';
+import { useHomePageProducts } from '../../hooks/useHomePageProducts';
 
 export const HomePage: React.FC = () => {
-  const [products, setProducts] = useState<SimpleProduct[]>([]);
+  const { data: products, isLoading } = useProducts(getProducts);
+  const { data: phones } = useProducts(getPhones);
+  const { data: tablets } = useProducts(getTablets);
+  const { data: accessories } = useProducts(getAccessories);
 
-  useEffect(() => {
-    getProducts().then(productsFromServer => {
-        setProducts(productsFromServer);
-    });
-  }, [])
+  const { hotPricesProducts, brandNewProducts } = useHomePageProducts(products);
 
-  console.log(products);
-
-  return <section></section>;
+  const categoryImages = [
+    'gadgets/img/category-phones.webp',
+    'gadgets/img/category-tablets.webp',
+    'gadgets/img/category-accessories.webp',
+  ];
+    
+  return (
+    <HomePageTemplate
+      isLoading={isLoading}
+      title={'Welcome to Monolit store!'}
+      firstSliderTitle={'Brand new models'}
+      firstSliderProducts={brandNewProducts}
+      categoryTitle={'Shop by category'}
+      categoryImages={categoryImages}
+      categoryColors={['#4d4c4e', '#7b7a7c', '#d7c1cf']}
+      categoriesCount={[phones.length, tablets.length, accessories.length]}
+      secondSliderTitle={'Hot prices'}
+      secondSliderProducts={hotPricesProducts}
+    />
+  );
 };

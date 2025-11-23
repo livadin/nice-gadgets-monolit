@@ -1,9 +1,11 @@
 import type { SimpleProduct } from '../../types/CategoryProduct';
+import { MainLoader } from '../atoms/Loaders/MainLoader';
 import { ShopByCategory } from '../organisms/ShopByCategory';
 import { ProductSlider } from '../organisms/Sliders/ProductSlider';
 import { WelcomeSlider } from '../organisms/Sliders/WelcomeSlider/WelcomeSlider';
 
 type Props = {
+  isLoading: boolean;
   title: string;
   firstSliderTitle: string;
   firstSliderProducts: SimpleProduct[];
@@ -16,6 +18,7 @@ type Props = {
 };
 
 export const HomePageTemplate: React.FC<Props> = ({
+  isLoading,
   title,
   firstSliderTitle,
   firstSliderProducts,
@@ -26,6 +29,13 @@ export const HomePageTemplate: React.FC<Props> = ({
   secondSliderTitle,
   secondSliderProducts,
 }) => {
+  if (isLoading)
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <MainLoader />
+      </div>
+    );
+  
   return (
     <section>
       <h1 className="h1 mb-6 md:mb-8 lg:mb-14">{title}</h1>

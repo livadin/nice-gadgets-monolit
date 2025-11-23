@@ -11,7 +11,7 @@ function wait(delay: number) {
 }
 
 function request<T>(fileName: string): Promise<T> {
-  return wait(100)
+  return wait(450)
     .then(() => axios.get(BASE_URL + fileName))
     .then((response) => {
       return response.data;

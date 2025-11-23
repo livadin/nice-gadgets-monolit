@@ -3,17 +3,27 @@ import type { SimpleProduct } from '../../../types/CategoryProduct';
 import { BackButton } from '../../atoms/BackButton/BackButton';
 import { CartSummary } from './CartSummary';
 import { ProductCardCart } from '../../organisms/ProductCardCart';
+import { MainLoader } from '../../atoms/Loaders/MainLoader';
 
 type CartPageTemplateProps = {
   cartProducts: SimpleProduct[];
+  isLoading: boolean;
 };
 
 export const CartPageTemplate: React.FC<CartPageTemplateProps> = ({
   cartProducts,
+  isLoading,
 }) => {
   const [products] = useState<SimpleProduct[]>(cartProducts);
 
   const hasProducts = products.length > 0;
+
+  if (isLoading)
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <MainLoader />
+      </div>
+    );
 
   return (
     <section className="mx-auto flex justify-center">
