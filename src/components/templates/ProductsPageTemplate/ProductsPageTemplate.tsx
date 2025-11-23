@@ -1,12 +1,14 @@
 import { ArrowRightIcon } from '../../atoms/Icons/ArrowRightIcon';
-import { HomeButton } from "../../atoms/UtilityButton";
-import { Dropdown } from "../../molecules/Dropdown/Dropdown";
-import { GridForProducts } from "./GridForProducts";
-import { Pagination } from "./Pagination";
-import type { SimpleProduct } from "../../../types/CategoryProduct";
-import type { SortOption } from "../../../types/SortProducts";
+import { HomeButton } from '../../atoms/UtilityButton';
+import { Dropdown } from '../../molecules/Dropdown/Dropdown';
+import { GridForProducts } from './GridForProducts';
+import { Pagination } from './Pagination';
+import type { SimpleProduct } from '../../../types/CategoryProduct';
+import type { SortOption } from '../../../types/SortProducts';
+import { MainLoader } from '../../atoms/Loaders/MainLoader';
 
 type Props = {
+  isLoading: boolean;
   title: string;
   products: SimpleProduct[];
   totalProducts: number;
@@ -19,7 +21,8 @@ type Props = {
   onPerPageChange?: (value: string) => void;
 };
 
-export const ProductsPageTemplate: React.FC<Props> = ({ 
+export const ProductsPageTemplate: React.FC<Props> = ({
+  isLoading,
   title,
   products,
   totalProducts,
@@ -30,6 +33,12 @@ export const ProductsPageTemplate: React.FC<Props> = ({
   onPageChange,
   onPerPageChange,
 }) => {
+  if (isLoading)
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <MainLoader />
+      </div>
+    );
   return (
     <section className="w-full flex flex-col">
       <div className="w-full mb-6">
@@ -55,7 +64,7 @@ export const ProductsPageTemplate: React.FC<Props> = ({
               currentValue={sort}
               items={['Newest', 'Oldest', 'Cheapest', 'Most expensive']}
               onChange={onSortChange}
-              className="md:w-[187px] lg:w-44"
+              className="md:w-[187px] lg:w-44 transition-colors duration-300"
             />
 
             <Dropdown
@@ -64,7 +73,7 @@ export const ProductsPageTemplate: React.FC<Props> = ({
               currentValue={String(perPage)}
               items={['8', '16', '24', '48']}
               onChange={onPerPageChange}
-              className="lg:w-32"
+              className="lg:w-32 transition-colors duration-300"
             />
           </div>
         </div>

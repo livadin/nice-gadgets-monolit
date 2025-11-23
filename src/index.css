@@ -36,7 +36,7 @@
   --color-accent-green: #27ae60;
   --color-accent-red: #eb5757;
 
-  --shadow-custom: 0px 3px 13px 0px #17203166;
+  --shadow-custom: 0px 3px 13px 5px #17203166;
 }
 
 html[data-theme="dark"] {
@@ -49,7 +49,7 @@ html[data-theme="dark"] {
   --color-accent-green: #27ae60;
   --color-accent-red: #eb5757;
 
-  --shadow-custom: 0px 3px 13px 0px #00000066;
+  --shadow-custom: 0px 3px 13px 5px #ffffff66;
 }
 
 html.dark {
@@ -62,7 +62,7 @@ html.dark {
   --color-accent-green: #27ae60;
   --color-accent-red: #eb5757;
 
-  --shadow-custom: 0px 3px 13px 0px #00000066;
+  --shadow-custom: 0px 3px 13px 5px #17203166;
 }
 
 @layer components {
@@ -74,6 +74,9 @@ html.dark {
   }
   .h4 {
     @apply text-primary font-bold leading-none text-[20px] md:font-semibold;
+  }
+  .buttons {
+    @apply text-primary font-semibold leading-[21px] text-[14px];
   }
   .body-text {
     @apply text-secondary font-normal leading-[21px] text-[14px];

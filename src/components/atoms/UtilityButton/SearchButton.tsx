@@ -11,13 +11,14 @@ type SearchButtonProps = {
 
 export const SearchButton = ({
   onClick,
-  width = 16,
-  height = 16,
+  width = 48,
+  height = 48,
   className,
 }: SearchButtonProps) => (
+  
   <UtilityButton
     onClick={onClick}
-    className={cn('group border-none', className)}
+    className={cn('group', className)}
     width={width}
     height={height}
   >

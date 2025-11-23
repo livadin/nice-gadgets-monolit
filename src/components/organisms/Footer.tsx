@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="border-t border-element transition-colors duration-300">
+    <footer className="border-t border-element bg-white transition-colors duration-300">
       <div
         className={cn(
           'w-full',
