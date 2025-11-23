@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { UtilityButton } from './UtilityButton';
 
 interface PageButtonProps {
-  page: number;
+  page: number | string;
   selected?: boolean;
   disabled?: boolean;
   onClick?: () => void;
