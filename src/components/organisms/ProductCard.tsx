@@ -6,26 +6,31 @@ import type { SimpleProduct } from "../../types/CategoryProduct";
 
 type ProductCardProps = {
     product: SimpleProduct;
+    className?: string;
 };
 
 export const ProductCard: React.FC<ProductCardProps> = ({
     product,
+    className,
 }) => {
     
     const [selectedPrimary, setSelectedPrimary] = useState(false);
     const [selectedFavorite, setSelectedFavorite] = useState(false);
 
     return (
-      <div className="w-full p-7 pb-4 rounded-none border border-element hover:shadow-custom bg-white">
+      <div className={
+        `w-full p-7 rounded-none border border-element hover:shadow-custom bg-white
+        ${className}`
+      }>
         <div className="h-[200px] flex items-center justify-center mb-4">
           <img
-            src={`${import.meta.env.BASE_URL}${product.image}`}
+            src={product.image}
             alt={product.name}
             className="h-full w-full object-contain"
           />
         </div>
         <div className="mb-4 grow">
-          <h3 className="text-[14px] text-primary font-normal mb-2 min-h-10 line-clamp-2">
+          <h3 className="text-[14px] text-primary font-normal mb-2 min-h-10 line-clamp-2 max-w-52 wrap-break-word">
             {product.name}
           </h3>
           <div className="flex items-center gap-3">
@@ -63,12 +68,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               buttonText={selectedPrimary ? 'Added' : 'Add to cart'}
               selected={selectedPrimary}
               onClick={() => setSelectedPrimary((prev) => !prev)}
+              className="lg:w-40"
             />
           </div>
           
           <div>
             <FavoriteButton
-              className="w-12 h-12 flex items-center justify-center border border-element rounded-full hover:bg-gray-50 transition-colors"
+              className="w-10 h-10 flex items-center justify-center border border-element rounded-full hover:bg-gray-50 transition-colors"
               selected={selectedFavorite}
               onClick={() => setSelectedFavorite((prev) => !prev)}
             />

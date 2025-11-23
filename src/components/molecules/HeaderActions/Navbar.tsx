@@ -1,14 +1,20 @@
-import React, { useState } from "react";
 import cn from "classnames";
 import { NAV_ITEMS } from "../../../utilities/constants";
+import { NavLink } from "react-router-dom";
 
+const getLinkClass = ({ isActive }: { isActive: boolean }) =>
+  cn(
+    "relative h-full flex items-center uppercase px-1 py-0 leading-none transition-colors",
+
+    isActive
+      ? "text-primary"
+      : "text-secondary hover:text-primary"
+  );
 type Props = {
   className?: string;
 };
 
 export const Navbar: React.FC<Props> = ({ className }) => {
-  const [activeItem, setActiveItem] = useState("Home");
-
   return (
     <nav
       className={cn(
@@ -17,25 +23,22 @@ export const Navbar: React.FC<Props> = ({ className }) => {
       )}
     >
       {NAV_ITEMS.map(item => {
-        const isActive = activeItem === item;
-
         return (
-          <button
-            key={item}
-            onClick={() => setActiveItem(item)}
-            className={cn(
-              "relative h-full flex items-center uppercase px-1 py-0 leading-none transition-colors",
-              isActive
-                ? "text-primary"
-                : "text-secondary hover:text-primary"
-            )}
+          <NavLink
+            key={item.path}
+            to={item.path}
+            className={getLinkClass}
           >
-            {item}
+            {({ isActive }) => (
+            <>
+              {item.label}
 
-            {isActive && (
-              <span className="absolute left-0 bottom-0 w-full h-[3px] bg-primary origin-left animate-underline"></span>
-            )}
-          </button>
+              {isActive && (
+                <span className="absolute left-0 bottom-0 w-full h-[3px] bg-primary origin-left animate-underline"></span>
+              )}
+            </>
+          )}
+          </NavLink>
         );
       })}
     </nav>
