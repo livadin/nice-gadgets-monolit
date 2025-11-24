@@ -1,30 +1,30 @@
 import { useState } from 'react';
 import { PrimaryButton } from '../../atoms/PrimaryButton/PrimaryButtom';
-import type { SimpleProduct } from '../../../types/CategoryProduct';
+import type { CartItem } from '../../../stores/useCartStore';
 
-type CartProductsProps = {
-  cartProducts: SimpleProduct[];
+
+type CartSummaryProps = {
+  cartProducts: CartItem[];
 };
 
-export const CartSummary: React.FC<CartProductsProps> = ({ cartProducts }) => {
+export const CartSummary: React.FC<CartSummaryProps> = ({ cartProducts }) => {
   const [selectedCheckoutButton, setSelectedCheckoutButton] = useState(false);
 
-  const total = cartProducts.reduce((sum, product) => {
-    return sum + product.price;
+  const totalAmount = cartProducts.reduce((sum, product) => {
+    return sum + product.price * product.quantity;
+  }, 0);
+
+  const totalItems = cartProducts.reduce((sum, product) => {
+    return sum + product.quantity;
   }, 0);
 
   return (
     <div className="flex flex-col items-center justify-center box-border border border-element p-6 h-[190px] lg:h-[206px] lg:w-[368px]">
-      <h3 className="text-[32px] text-primary font-extrabold">{`$${total}`}</h3>
+      <h3 className="text-[32px] text-primary font-extrabold">{`$${totalAmount}`}</h3>
 
-      <div
-        className="
-        relative flex flex-col items-center w-full
-        after:content-[''] after:block after:w-full after:h-px after:bg-element after:my-4
-      "
-      >
+      <div className="relative flex flex-col items-center w-full after:content-[''] after:block after:w-full after:h-px after:bg-element after:my-4">
         <span className="text-sm font-semibold text-secondary">
-          {`Total for ${cartProducts.length} items`}
+          {`Total for ${totalItems} item${totalItems !== 1 ? 's' : ''}`}
         </span>
       </div>
 
@@ -32,7 +32,9 @@ export const CartSummary: React.FC<CartProductsProps> = ({ cartProducts }) => {
         className="w-full h-12"
         buttonText="Checkout"
         selected={selectedCheckoutButton}
-        onClick={() => setSelectedCheckoutButton((prev) => !prev)}
+        onClick={() => {
+            setSelectedCheckoutButton(true);
+        }}
       />
     </div>
   );

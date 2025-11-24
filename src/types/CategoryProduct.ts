@@ -1,4 +1,4 @@
-// Об'єднані типи
+// Combined types
 export type Category = 'phones' | 'tablets' | 'accessories';
 
 export type DescriptionItem = {
@@ -6,7 +6,7 @@ export type DescriptionItem = {
   text: string[];
 };
 
-// Основний тип детального продукта 
+// Main type for detailed product
 export type CategoryProduct = {
   id: string;
   category: Category;
@@ -29,20 +29,20 @@ export type CategoryProduct = {
   cell: string[];
 };
 
-// Детальні типи по категоріям
+// Detailed types for each category
 export type PhoneDetails = CategoryProduct;
 export type TabletDetails = CategoryProduct;
 export type AccessoryDetails = CategoryProduct;
 
-// Загальний детальний продукт
+// General detailed product
 export type DetailedProduct =
   | PhoneDetails
   | TabletDetails
   | AccessoryDetails;
 
-// SIMPLE PRODUCT (для списків і карточок)
+// Simple product type (for lists and cards)
 export type SimpleProduct = {
-  id: number;
+  id: number | string; 
   category: Category;
 
   itemId: string;
@@ -56,6 +56,6 @@ export type SimpleProduct = {
   color: string;
   ram: string;
 
-  year: number;
+  year?: number;
   image: string;
 };
