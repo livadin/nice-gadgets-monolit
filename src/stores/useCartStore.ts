@@ -2,7 +2,6 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import type { SimpleProduct } from '../types/CategoryProduct';
 
-
 export interface CartItem extends SimpleProduct {
   quantity: number;
 }
@@ -10,9 +9,10 @@ export interface CartItem extends SimpleProduct {
 interface CartState {
   cart: CartItem[];
   addToCart: (product: SimpleProduct) => void;
-  removeFromCart: (productId: number) => void;
-  increaseQuantity: (productId: number) => void; 
-  decreaseQuantity: (productId: number) => void;
+  // ID може бути рядком або числом
+  removeFromCart: (productId: number | string) => void;
+  increaseQuantity: (productId: number | string) => void;
+  decreaseQuantity: (productId: number | string) => void;
   clearCart: () => void;
 }
 
@@ -23,10 +23,10 @@ export const useCartStore = create<CartState>()(
 
       addToCart: (product) => {
         const { cart } = get();
+        // Порівняння працюватиме коректно для string id
         const existingItem = cart.find((item) => item.id === product.id);
 
         if (existingItem) {
-          // Якщо товар вже є — просто збільшуємо кількість
           set({
             cart: cart.map((item) =>
               item.id === product.id
@@ -35,7 +35,6 @@ export const useCartStore = create<CartState>()(
             ),
           });
         } else {
-          // Якщо немає — додаємо з quantity: 1
           set({ cart: [...cart, { ...product, quantity: 1 }] });
         }
       },

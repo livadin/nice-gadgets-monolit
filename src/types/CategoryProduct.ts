@@ -42,7 +42,7 @@ export type DetailedProduct =
 
 // SIMPLE PRODUCT (для списків і карточок)
 export type SimpleProduct = {
-  id: number;
+  id: number | string; 
   category: Category;
 
   itemId: string;
@@ -56,6 +56,6 @@ export type SimpleProduct = {
   color: string;
   ram: string;
 
-  year: number;
+  year?: number;
   image: string;
 };

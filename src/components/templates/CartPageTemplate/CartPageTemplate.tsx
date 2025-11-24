@@ -37,10 +37,10 @@ export const CartPageTemplate: React.FC<CartPageTemplateProps> = ({
           <div className="flex flex-col gap-4 lg:w-[752px]">
             {hasProducts ? (
               cartProducts.map((product) => (
-                <ProductCardCart
-                  key={product.id}
-                  cartProduct={product}
-                />
+                  <ProductCardCart
+                    key={product.id}
+                    cartProduct={product}
+                  />
               ))
             ) : (
               <div className="flex flex-col items-center justify-center py-20">

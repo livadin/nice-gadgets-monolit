@@ -6,6 +6,7 @@ import type { SimpleProduct } from "../../types/CategoryProduct";
 import { useFavouritesStore } from "../../stores/useFavouritesStore";
 import { useCartStore } from "../../stores/useCartStore";
 
+
 type ProductCardProps = {
   product: SimpleProduct;
   className?: string;
@@ -28,36 +29,39 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
+
     <div
-      className={`group w-full p-7 rounded-none border border-element bg-white-card transition-all duration-300 ease-linear
+      className={` w-full p-7 rounded-none border border-element bg-white-card transition-all duration-300 ease-linear
         ${className}`}
     >
-      <Link
-        to={`/${product.category}/${product.itemId}`}
-        className="h-[200px] flex items-center justify-center mb-6"
-      >
-        <img
-          src={product.image}
-          alt={product.name}
-          className="h-full w-full object-contain transition-all duration-300 ease-linear group-hover:scale-[1.1]"
-        />
-      </Link>
-
-      <div className="mb-4 grow">
-        <Link to={`/${product.category}/${product.itemId}`}>
-          <h3 className="text-[14px] text-primary transition-colors duration-300 font-normal mb-2 min-h-10 line-clamp-2 max-w-52 wrap-break-word group-hover:text-primary-dark">
-            {product.name}
-          </h3>
+      <div className="group">
+          <Link
+          to={`/${product.category}/${product.itemId}`}
+          className="h-[200px] flex items-center justify-center mb-6"
+        >
+          <img
+            src={product.image}
+            alt={product.name}
+            className="h-full w-full object-contain transition-all duration-300 ease-linear group-hover:scale-[1.1]"
+          />
         </Link>
-        <div className="flex items-center gap-3">
-          <p className="text-2xl text-primary transition-colors duration-300 font-bold">
-            ${product.price}
-          </p>
-          {product.fullPrice && (
-            <p className="text-sm text-secondary transition-colors duration-300 line-through mt-1">
-              ${product.fullPrice}
+
+        <div className="mb-4 grow">
+          <Link to={`/${product.category}/${product.itemId}`}>
+            <h3 className="text-[14px] text-primary transition-colors duration-300 font-normal mb-2 min-h-10 line-clamp-2 max-w-52 wrap-break-word group-hover:text-primary-dark">
+              {product.name}
+            </h3>
+          </Link>
+          <div className="flex items-center gap-3">
+            <p className="text-2xl text-primary transition-colors duration-300 font-bold">
+              ${product.price}
             </p>
-          )}
+            {product.fullPrice && (
+              <p className="text-sm text-secondary transition-colors duration-300 line-through mt-1">
+                ${product.fullPrice}
+              </p>
+            )}
+          </div>
         </div>
       </div>
 
@@ -87,8 +91,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </span>
         </div>
       </div>
-
-      <div className="flex items-center gap-4 justify-between mt-auto">
+      <div className="flex items-center gap-4 justify-between mt-auto ">
         <div className="grow">
           <PrimaryButton
             buttonText={isAdded ? "Added" : "Add to cart"}
