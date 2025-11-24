@@ -1,4 +1,5 @@
-import { CATEGORIES } from '../../utilities/constants';
+import { Link } from 'react-router-dom';
+import { CATEGORIES, NAV_ITEMS } from '../../utilities/constants';
 
 type Props = {
   title: string;
@@ -13,6 +14,8 @@ export const ShopByCategory: React.FC<Props> = ({
   images,
   colors,
 }) => {
+    const preparedCategories = NAV_ITEMS.slice(1);
+
   return (
     <section className="w-fit mx-auto md:m-0">
       <h2 className="h2 mb-6">{title}</h2>
@@ -27,17 +30,17 @@ export const ShopByCategory: React.FC<Props> = ({
                 className={`w-[288px] h-72 overflow-hidden mb-6 md:w-[187px] md:h-[187px] lg:w-[368px] lg:h-[368px]`}
                 style={{ backgroundColor: `${colors[categoryIndex]}` }}
               >
-                <a href="#">
+                <Link to={preparedCategories[categoryIndex].path}>
                   <img
                     src={images[categoryIndex]}
                     alt=""
                     className="translate-x-[60px] translate-y-[60px] md:translate-x-[45px] md:translate-y-[45px] lg:translate-x-20 lg:translate-y-20"
                   />
-                </a>
+                </Link>
               </div>
-              <a href="#">
+              <Link to={preparedCategories[categoryIndex].path}>
                 <h4 className="h4 mb-1">{category}</h4>
-              </a>
+              </Link>
               <div className="body-text">{`${categoriesCount[categoryIndex]} models`}</div>
             </div>
           );

@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { HomePage } from '../components/pages/HomePage';
 import { PhonesPage } from '../components/pages/PhonesPage';
 import { TabletsPage } from '../components/pages/TabletsPage';
@@ -16,12 +16,16 @@ export const AppRoutes = () => (
     </Route>
 
     <Route element={<MainLayout />}>
-      <Route path="/phones" element={<PhonesPage />} />
+      <Route path="/phones" element={<PhonesPage />}></Route>
+      <Route path='/phones/:productSlug' element={<PhonesPage />}></Route>
       <Route path="/tablets" element={<TabletsPage />} />
+      <Route path='/tablets/:productSlug' element={<TabletsPage />}></Route>
       <Route path="/accessories" element={<AccessoriesPage />} />
+      <Route path='/accessories/:productSlug' element={<AccessoriesPage />}></Route>
       <Route path="/favourites" element={<FavouritePage />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Route>
+    <Route path="/home" element={<Navigate to="/" replace />} />
 </Routes>
 );

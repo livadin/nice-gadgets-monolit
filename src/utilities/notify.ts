@@ -1,5 +1,5 @@
 import { useNotificationStore } from '../stores/notification.store';
-import { productsServiceErrorText, type ProductsServiceError } from '../types/enumErrorText';
+import { productsServiceErrorText, type ProductsServiceError } from '../types/errorText';
 
 const show = () => useNotificationStore.getState().showNotification;
 
@@ -14,7 +14,7 @@ export const notifyProductError = (error: ProductsServiceError) => {
 // cart
 export const notifyAddToCart = () => {
   show()(
-    'Added to cart',
+    'Added to cartF',
     'success',
   );
 };
