@@ -10,7 +10,7 @@ export const HeaderActions: React.FC = () => {
         className="h-full flex items-center justify-center"
       >
         <FavoriteButtonWithBadge
-          className="w-12 lg:w-16 h-full"
+          className="w-12 lg:w-16 h-full transition-colors duration-300"
           count={10}
         />
       </NavLink>
@@ -20,7 +20,7 @@ export const HeaderActions: React.FC = () => {
         className="h-full flex items-center justify-center"
       >
         <ShoppingBagWithBadgeButton
-          className="w-12 lg:w-16 h-full"
+          className="w-12 lg:w-16 h-full transition-colors duration-300"
           countBag={1}
         />
       </NavLink>

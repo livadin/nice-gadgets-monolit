@@ -64,7 +64,7 @@ export const ProductsPageTemplate: React.FC<Props> = ({
               currentValue={sort}
               items={['Newest', 'Oldest', 'Cheapest', 'Most expensive']}
               onChange={onSortChange}
-              className="md:w-[187px] lg:w-44"
+              className="md:w-[187px] lg:w-44 transition-colors duration-300"
             />
 
             <Dropdown
@@ -73,7 +73,7 @@ export const ProductsPageTemplate: React.FC<Props> = ({
               currentValue={String(perPage)}
               items={['8', '16', '24', '48']}
               onChange={onPerPageChange}
-              className="lg:w-32"
+              className="lg:w-32 transition-colors duration-300"
             />
           </div>
         </div>

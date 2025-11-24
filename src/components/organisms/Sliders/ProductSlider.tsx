@@ -56,12 +56,12 @@ export const ProductSlider: React.FC<Props> = ({ products, title }) => {
             className=""
           >
             <ArrowLeftButton
-              className="w-8 h-8 mr-4"
+              className="w-8 h-8 mr-4 hover:bg-white-2"
               onClick={handlePrev}
               disabled={!hasPrev}
             />
             <ArrowRightButton
-              className="w-8 h-8"
+              className="w-8 h-8 hover:bg-white-2"
               onClick={handleNext}
               disabled={!hasNext}
             />
@@ -73,7 +73,7 @@ export const ProductSlider: React.FC<Props> = ({ products, title }) => {
               className="w-auto! pb-4"
               key={product.id}
             >
-              <ProductCard product={product} className='w-[288px]' />
+              <ProductCard product={product} className='max-w-[272px]' />
             </SwiperSlide>
           );
         })}

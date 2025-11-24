@@ -5,7 +5,7 @@ type LogoProps = {
 export const Logo: React.FC<LogoProps> = ({ className = '' }) => {
   return (
     <a href="/">
-      <span className={`flex items-center text-lg text-zinc-900 dark:text-white ${className}`}>
+      <span className={`flex items-center text-lg text-primary transition-colors duration-300 ${className}`}>
         <span className="uppercase">m</span>
 
         <svg
@@ -20,7 +20,7 @@ export const Logo: React.FC<LogoProps> = ({ className = '' }) => {
 
           <rect 
             x="2.1" y="4" width="5.8" height="3.8" rx="1.9" 
-            className="fill-white dark:fill-black" 
+            className="fill-white transition-colors duration-300" 
           />
 
           <circle cx="3.6" cy="5.8" r="0.5" fill="currentColor"/>

@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="border-t border-element">
+    <footer className="border-t border-element bg-white transition-colors duration-300">
       <div
         className={cn(
           'w-full',
@@ -97,7 +97,7 @@ export const Footer: React.FC = () => {
             Back to top
           </span>
 
-          <ArrowUpButton className='w-[32px] h-[32px]'/>
+          <ArrowUpButton className='w-[32px] h-[32px] bg-white-2 transition-colors duration-300'/>
         </a>
       </div>
     </footer>

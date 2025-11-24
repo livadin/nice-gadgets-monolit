@@ -5,6 +5,8 @@ import { Footer } from "../organisms/Footer";
 export const HomeLayout = () => {
   return (
     <>
+    <div className="bg-white transition-colors duration-300">
+
       <Header />
         <main className="
           pt-[72px] md:pt-20 lg:pt-[120px]
@@ -16,6 +18,7 @@ export const HomeLayout = () => {
       </main>
 
       <Footer />
+    </div>
     </>
   );
 };

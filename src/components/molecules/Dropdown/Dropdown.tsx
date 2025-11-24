@@ -43,11 +43,11 @@ export const Dropdown: React.FC<DropdownProps> = ({
         onOpenChange={setIsOpen}
       >
         <Select.Trigger
-          className={`w-[136px] h-10 px-4 py-3 bg-white border border-icon rounded-none text-left flex items-center justify-between 
+          className={`w-[136px] h-10 px-4 py-3 bg-white-2 border border-icon rounded-none text-left flex items-center justify-between 
             hover:border-secondary transition-colors data-[state=open]:border-primary outline-none ${className}`}
         >
           <Select.Value placeholder={label}>
-            <span>{selectedItem}</span>
+            <span className="text-primary transition-colors duration-300">{selectedItem}</span>
           </Select.Value>
           <Select.Icon>
             {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
@@ -65,8 +65,8 @@ export const Dropdown: React.FC<DropdownProps> = ({
                 <Select.Item
                   key={index}
                   value={item}
-                  className={`px-4 py-3 cursor-pointer transition-colors text-secondary hover:text-primary hover:bg-hover-bg  outline-none ${
-                    index !== items.length - 1 ? "border-b border-gray-100" : ""
+                  className={`px-4 py-3 cursor-pointer text-secondary hover:text-primary hover:bg-hover-bg-2 transition-colors duration-300 outline-none ${
+                    index !== items.length - 1 ? "border-b border-element" : ""
                   }`}
                 >
                   <Select.ItemText>{item}</Select.ItemText>

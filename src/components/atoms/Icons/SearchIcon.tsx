@@ -6,5 +6,5 @@ type Props = {
 };
 
 export const SearchIcon: React.FC<Props> = ({ className }) => {
-  return <MagnifyingGlassIcon className={cn('w-4 h-4 text-primary', className)} />;
+  return <MagnifyingGlassIcon className={cn('w-4 h-4 text-primary transition-colors duration-300', className)} />;
 };

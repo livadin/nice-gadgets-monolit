@@ -43,7 +43,7 @@ export const Pagination: React.FC<PaginationProps> = ({
       <ArrowLeftButton
         disabled={currentPage === 1}
         onClick={handlePrev}
-        className="w-8 h-8"
+        className="w-8 h-8 bg-white-2 hover:bg-white-2"
       />
 
       <div className="flex items-center gap-2">
@@ -62,7 +62,7 @@ export const Pagination: React.FC<PaginationProps> = ({
       </div>
 
       <ArrowRightButton
-        className="w-8 h-8"
+        className="w-8 h-8 bg-white-2"
         disabled={currentPage === totalPages}
         onClick={handleNext}
       />

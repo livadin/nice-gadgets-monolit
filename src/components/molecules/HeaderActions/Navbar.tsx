@@ -34,7 +34,7 @@ export const Navbar: React.FC<Props> = ({ className }) => {
               {item.label}
 
               {isActive && (
-                <span className="absolute left-0 bottom-0 w-full h-[3px] bg-primary origin-left animate-underline"></span>
+                <span className="absolute left-0 bottom-0 w-full h-[3px] bg-primary origin-left animate-underline transition-colors duration-300"></span>
               )}
             </>
           )}

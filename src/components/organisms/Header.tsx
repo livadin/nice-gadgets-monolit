@@ -6,6 +6,7 @@ import { MobileMenu } from '../organisms/MobileMenu';
 import { Logo } from '../atoms/Logo/Logo';
 import { SearchButtonWithInput } from '../atoms/UtilityButton/SearchButtonWithInput';
 import { SearchInput } from '../molecules/SearchInput/SearchInput';
+import { ThemeButton } from '../atoms/UtilityButton/ThemeButton';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,7 +16,7 @@ export const Header: React.FC = () => {
   }, [isMenuOpen]);
 
   return (
-    <header className="fixed top-0 left-0 pl-4 w-full bg-white h-12 lg:h-16 border-b border-element z-50">
+    <header className="fixed top-0 left-0 pl-4 w-full bg-white h-12 lg:h-16 border-b transition-colors duration-300 border-element z-50">
       <div className="flex items-center justify-between h-full lg:pl-6 pr-0">
         
         <div className="flex items-center h-full">
@@ -27,8 +28,8 @@ export const Header: React.FC = () => {
           <SearchInput onSearch={() => {}} />
         </div>
 
-        <div className="flex items-center h-full ">
-          
+        <div className="flex items-center h-full">
+          <ThemeButton />
           <div className="flex lg:hidden items-center">
              <SearchButtonWithInput className="w-[48px] h-[48px]" />
           </div>
@@ -36,7 +37,7 @@ export const Header: React.FC = () => {
           <HeaderActions />
           
           <MenuButton
-            className="md:hidden h-full w-12 lg:w-16"
+            className="md:hidden h-full w-12 lg:w-16 transition-colors duration-300"
             onClick={() => setIsMenuOpen(true)}
           />
         </div>

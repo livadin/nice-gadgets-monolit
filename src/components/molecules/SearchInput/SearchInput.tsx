@@ -21,7 +21,7 @@ export const SearchInput: React.FC<SearchProps> = ({ onSearch, className = '' })
       onSubmit={handleSubmit}
       className={`flex w-full items-stretch shadow-sm rounded-md overflow-hidden ${className}`}
     >
-      <div className="relative flex-1 bg-white min-w-0">
+      <div className="relative flex-1 bg-white min-w-0 transition-colors duration-300">
         <input
           type="text"
           value={query}
@@ -43,14 +43,14 @@ export const SearchInput: React.FC<SearchProps> = ({ onSearch, className = '' })
         type="submit"
         className="
           flex items-center justify-center gap-2
-          px-6 bg-primary text-white font-medium
+          px-6 bg-primary-dark text-white font-medium
           rounded-r-md
           transition-all duration-300 ease-in-out hover:scale-105
           active:scale-95
           shrink-0
         "
       >
-        <SearchIcon className='w-4 h-4 text-white'/>
+        <SearchIcon className='w-4 h-4 text-white-dark transition-colors duration-300'/>
       </button>
     </form>
   );
