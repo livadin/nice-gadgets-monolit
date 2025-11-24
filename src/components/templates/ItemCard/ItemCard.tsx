@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; 
+import cn from 'classnames';
+
+// Icons & Components
 import { HomeIcon } from '../../atoms/Icons/HomeIcon';
 import { ArrowRightIcon } from '../../atoms/Icons/ArrowRightIcon';
-import type {
-  CategoryProduct,
-  SimpleProduct,
-} from '../../../types/CategoryProduct';
 import { ProductSlider } from '../../organisms/Sliders/ProductSlider';
 import { PrimaryButton } from '../../atoms/PrimaryButton/PrimaryButtom';
 import {
@@ -14,11 +14,17 @@ import {
 } from '../../atoms/UtilityButton';
 import { BackButton } from '../../atoms/BackButton/BackButton';
 import { MainLoader } from '../../atoms/Loaders/MainLoader';
+
+// Stores & Types
 import { useCartStore } from '../../../stores/useCartStore';
 import { useFavouritesStore } from '../../../stores/useFavouritesStore';
+import type {
+  CategoryProduct,
+  SimpleProduct,
+} from '../../../types/CategoryProduct';
 
 type ItemCardProps = {
-  itemProduct: CategoryProduct | undefined;
+  itemProduct: CategoryProduct | undefined; 
   productList: CategoryProduct[];
   productsForSlider: SimpleProduct[];
   isLoading: boolean;
@@ -30,7 +36,8 @@ export const ItemCard: React.FC<ItemCardProps> = ({
   productsForSlider,
   isLoading,
 }) => {
-  const [currentProduct, setCurrentProduct] = useState<CategoryProduct | undefined>(itemProduct);
+  const navigate = useNavigate();
+  
   const [mainImage, setMainImage] = useState<string>('');
 
   // --- ZUSTAND HOOKS ---
@@ -39,7 +46,6 @@ export const ItemCard: React.FC<ItemCardProps> = ({
 
   useEffect(() => {
     if (itemProduct) {
-      setCurrentProduct(itemProduct);
       setMainImage(itemProduct.images?.[0] || '');
     }
   }, [itemProduct]);
@@ -52,62 +58,32 @@ export const ItemCard: React.FC<ItemCardProps> = ({
     );
   }
   
-  if (!itemProduct || !currentProduct) {
-    return null;
+  if (!itemProduct) {
+    return null; 
   }
 
-  // --- ЛОГІКА ПЕРЕВІРКИ СТАНУ (Кошик / Обране) ---
-  // Перевіряємо за currentProduct.id (який є унікальним для кольору/пам'яті)
-  const isAddedToCart = cart.some((item) => item.id === currentProduct.id);
-  const isFavorite = favourites.some((item) => item.id === currentProduct.id);
+  const isAddedToCart = cart.some((item) => item.id === itemProduct.id);
+  const isFavorite = favourites.some((item) => item.id === itemProduct.id);
 
-  // --- ХЕЛПЕРИ ЗМІНИ МОДЕЛІ ---
-  const handleCapacityChange = (capacity: string) => {
-    const foundCapacity = productList.find(
-      (list) =>
-        list.namespaceId === currentProduct.namespaceId &&
-        list.capacity === capacity &&
-        list.color === currentProduct.color,
-    );
-    if (foundCapacity) {
-      setCurrentProduct(foundCapacity);
-      setMainImage(foundCapacity.images[0]);
-    }
-  };
+  const createSimpleProduct = (): SimpleProduct => ({
+    id: itemProduct.id,
+    category: itemProduct.category,
+    itemId: itemProduct.id, 
+    name: itemProduct.name,
+    fullPrice: itemProduct.priceRegular,
+    price: itemProduct.priceDiscount || itemProduct.priceRegular,
+    screen: itemProduct.screen,
+    capacity: itemProduct.capacity,
+    color: itemProduct.color,
+    ram: itemProduct.ram,
+    image: itemProduct.images[0],
+  });
 
-  const hanldeColorChange = (color: string) => {
-    const foundColor = productList.find(
-      (list) =>
-        list.namespaceId === currentProduct.namespaceId &&
-        list.color === color &&
-        list.capacity === currentProduct.capacity,
-    );
-    if (foundColor) {
-      setCurrentProduct(foundColor);
-      setMainImage(foundColor.images[0]);
-    }
-  };
+  const productToSave = createSimpleProduct();
 
-  // --- ПІДГОТОВКА ОБ'ЄКТА ДЛЯ СТОРУ ---
-  // Перетворюємо CategoryProduct на SimpleProduct, щоб Store його прийняв
-  const productToSave: SimpleProduct = {
-    id: currentProduct.id, // Тепер це рядок, і типи це дозволяють
-    itemId: currentProduct.namespaceId || currentProduct.id,
-    name: currentProduct.name,
-    fullPrice: currentProduct.priceRegular,
-    price: currentProduct.priceDiscount || currentProduct.priceRegular,
-    screen: currentProduct.screen,
-    capacity: currentProduct.capacity,
-    color: currentProduct.color,
-    ram: currentProduct.ram,
-    image: currentProduct.images[0], // Беремо перше фото як головне для кошика
-    category: currentProduct.category,
-  };
-
-  // --- ОБРОБНИКИ КЛІКІВ ---
   const handleCartClick = () => {
     if (isAddedToCart) {
-      removeFromCart(currentProduct.id);
+      removeFromCart(itemProduct.id);
     } else {
       addToCart(productToSave);
     }
@@ -117,9 +93,47 @@ export const ItemCard: React.FC<ItemCardProps> = ({
     toggleFavourite(productToSave);
   };
 
+  const getColorPath = (color: string) => {
+    const match = productList.find(
+      (p) =>
+        p.namespaceId === itemProduct.namespaceId &&
+        p.capacity === itemProduct.capacity &&
+        p.color === color
+    );
+    
+    if (!match) {
+      const fallbackMatch = productList.find(
+        (p) => p.namespaceId === itemProduct.namespaceId && p.color === color
+      );
+      return fallbackMatch ? `/${fallbackMatch.category}/${fallbackMatch.id}` : null;
+    }
+
+    return match ? `/${match.category}/${match.id}` : null;
+  };
+
+  const getCapacityPath = (capacity: string) => {
+    const match = productList.find(
+      (p) =>
+        p.namespaceId === itemProduct.namespaceId &&
+        p.color === itemProduct.color &&
+        p.capacity === capacity
+    );
+    return match ? `/${match.category}/${match.id}` : null;
+  };
+
+  const onColorClick = (color: string) => {
+    const path = getColorPath(color);
+    if (path) navigate(path);
+  };
+
+  const onCapacityClick = (capacity: string) => {
+    const path = getCapacityPath(capacity);
+    if (path) navigate(path);
+  };
+
   let availableColor: string[] = [];
-  if (currentProduct.colorsAvailable) {
-    availableColor = [...currentProduct.colorsAvailable];
+  if (itemProduct.colorsAvailable) {
+    availableColor = [...itemProduct.colorsAvailable];
   }
 
   return (
@@ -130,7 +144,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({
         <p className="text-primary capitalize">{itemProduct.category}</p>
         <ArrowRightIcon />
         <p className="text-secondary whitespace-nowrap overflow-hidden text-ellipsis">
-          {currentProduct.name}
+          {itemProduct.name}
         </p>
       </div>
 
@@ -139,20 +153,19 @@ export const ItemCard: React.FC<ItemCardProps> = ({
       </div>
 
       <div>
-        <h3 className="sm:text-2xl md:text-3xl font-extrabold sm:mb-8 md:mb-10">
-          {currentProduct.name}
+        <h3 className="sm:text-2xl md:text-3xl font-extrabold sm:mb-8 md:mb-10 text-primary">
+          {itemProduct.name}
         </h3>
       </div>
 
       <div className="flex flex-col md:flex-row justify-between md:gap-16 mb-20">
-        {/* ГАЛЕРЕЯ */}
         <div className="flex flex-col md:flex-row gap-6 mb-10 md:mb-0">
           <div className="flex flex-row md:flex-col gap-3 w-full md:w-20 order-2 md:order-1 justify-center md:justify-start">
-            {currentProduct.images.slice(0, 5).map((img, index) => (
+            {itemProduct.images.slice(0, 5).map((img, index) => (
               <img
                 key={index}
                 src={img}
-                alt={currentProduct.name}
+                alt={itemProduct.name}
                 className={`h-14 w-14 object-contain cursor-pointer border md:h-16 md:w-16 lg:h-20 lg:w-20 transition-transform duration-300 border-element hover:border-secondary active:border-primary p-2 rounded-none ${
                   mainImage === img ? 'scale-110 border-primary' : 'hover:scale-110'
                 }`}
@@ -163,18 +176,16 @@ export const ItemCard: React.FC<ItemCardProps> = ({
           <div className="w-full sm:w-[288px] md:w-[287px] lg:w-[464px] aspect-square flex items-center justify-center overflow-hidden mx-auto md:mx-0 order-1 md:order-2">
             <img
               src={mainImage}
-              alt={currentProduct.name}
+              alt={itemProduct.name}
               className="max-w-full max-h-full object-contain"
             />
           </div>
         </div>
 
-        {/* ПАНЕЛЬ ВИБОРУ */}
         <div className="flex flex-col gap-5 md:w-[48%]">
           <div className="w-full max-w-[320px]">
-            <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xs text-secondary">Available colors</h3>
-              <span className="text-xs text-secondary">ID: {currentProduct.id}</span>
             </div>
 
             <div className="flex gap-2">
@@ -182,8 +193,8 @@ export const ItemCard: React.FC<ItemCardProps> = ({
                 <ColorButton
                   key={index}
                   color={color}
-                  selected={currentProduct.color === color}
-                  onClick={() => hanldeColorChange(color)}
+                  selected={itemProduct.color === color}
+                  onClick={() => onColorClick(color)}
                 />
               ))}
             </div>
@@ -195,8 +206,8 @@ export const ItemCard: React.FC<ItemCardProps> = ({
                   <PageButton
                     key={index}
                     page={cap}
-                    selected={currentProduct.capacity === cap}
-                    onClick={() => handleCapacityChange(cap)}
+                    selected={itemProduct.capacity === cap}
+                    onClick={() => onCapacityClick(cap)}
                     className="text-[12px] px-6 py-2.5"
                   />
                 ))}
@@ -206,11 +217,11 @@ export const ItemCard: React.FC<ItemCardProps> = ({
             <div className="border-t border-element pt-4 mt-8">
               <div className="flex items-center gap-4 mb-4">
                 <span className="text-primary text-[32px] font-extrabold">
-                  ${currentProduct.priceDiscount || currentProduct.priceRegular}
+                  ${itemProduct.priceDiscount || itemProduct.priceRegular}
                 </span>
-                {currentProduct.priceDiscount && (
+                {itemProduct.priceDiscount && (
                   <span className="text-secondary text-[22px] line-through font-medium">
-                    ${currentProduct.priceRegular}
+                    ${itemProduct.priceRegular}
                   </span>
                 )}
               </div>
@@ -233,19 +244,19 @@ export const ItemCard: React.FC<ItemCardProps> = ({
             <div className="text-xs space-y-2 mt-8">
               <div className="flex justify-between">
                 <span className="text-secondary">Screen</span>
-                <span className="text-primary">{currentProduct.screen}</span>
+                <span className="text-primary">{itemProduct.screen}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-secondary">Resolution</span>
-                <span className="text-primary">{currentProduct.resolution}</span>
+                <span className="text-primary">{itemProduct.resolution}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-secondary">Processor</span>
-                <span className="text-primary">{currentProduct.processor}</span>
+                <span className="text-primary">{itemProduct.processor}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-secondary">RAM</span>
-                <span className="text-primary">{currentProduct.ram}</span>
+                <span className="text-primary">{itemProduct.ram}</span>
               </div>
             </div>
           </div>
@@ -254,10 +265,10 @@ export const ItemCard: React.FC<ItemCardProps> = ({
 
       <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-10">
         <div className="w-auto lg:w-[48%]">
-          <h3 className="text-2xl font-extrabold mb-4">About</h3>
-          {currentProduct.description.map((desc, i) => (
+          <h3 className="text-2xl font-extrabold mb-4 text-primary">About</h3>
+          {itemProduct.description.map((desc, i) => (
              <div key={i} className={`mb-8 ${i === 0 ? 'border-t border-element pt-6' : ''}`}>
-               <h4 className="font-bold text-[16px] lg:text-xl mb-4">{desc.title}</h4>
+               <h4 className="font-bold text-[16px] lg:text-xl mb-4 text-primary">{desc.title}</h4>
                <div className="text-secondary font-medium text-[14px] space-y-2">
                  {desc.text.map((paragraph, j) => <p key={j}>{paragraph}</p>)}
                </div>
@@ -266,44 +277,44 @@ export const ItemCard: React.FC<ItemCardProps> = ({
         </div>
 
         <div className="w-auto lg:w-[48%] mb-12 lg:mb-14">
-          <h3 className="text-2xl font-extrabold mb-4">Tech specs</h3>
+          <h3 className="text-2xl font-extrabold mb-4 text-primary">Tech specs</h3>
           <div className="border-t border-element text-[14px] text-right space-y-2 pt-2">
             <div className="flex justify-between mt-6">
               <span className="text-secondary">Screen</span>
-              <span className="text-primary">{currentProduct.screen}</span>
+              <span className="text-primary">{itemProduct.screen}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-secondary">Resolution</span>
-              <span className="text-primary">{currentProduct.resolution}</span>
+              <span className="text-primary">{itemProduct.resolution}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-secondary">Processor</span>
-              <span className="text-primary">{currentProduct.processor}</span>
+              <span className="text-primary">{itemProduct.processor}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-secondary">RAM</span>
-              <span className="text-primary">{currentProduct.ram}</span>
+              <span className="text-primary">{itemProduct.ram}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-secondary">Built in memory</span>
-              <span className="text-primary">{currentProduct.capacity}</span>
+              <span className="text-primary">{itemProduct.capacity}</span>
             </div>
-            {currentProduct.camera && (
+            {itemProduct.camera && (
               <div className="flex justify-between">
                 <span className="text-secondary">Camera</span>
-                <span className="text-primary">{currentProduct.camera}</span>
+                <span className="text-primary">{itemProduct.camera}</span>
               </div>
             )}
-            {currentProduct.zoom && (
+            {itemProduct.zoom && (
               <div className="flex justify-between">
                 <span className="text-secondary">Zoom</span>
-                <span className="text-primary">{currentProduct.zoom}</span>
+                <span className="text-primary">{itemProduct.zoom}</span>
               </div>
             )}
             <div className="flex justify-between">
               <span className="text-secondary">Cell</span>
               <span className="text-primary wrap-break-words max-w-[60%]">
-                {currentProduct.cell.join(', ')}
+                {itemProduct.cell.join(', ')}
               </span>
             </div>
           </div>

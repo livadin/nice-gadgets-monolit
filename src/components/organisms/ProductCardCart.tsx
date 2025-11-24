@@ -19,12 +19,12 @@ export const ProductCardCart: React.FC<ProductCardCartProps> = ({
           onClick={() => removeFromCart(cartProduct.id)}
         />
         
-        <div className="flex flex-row shrink-0 gap-x-4 md:gap-x-6 group">
+        <div className="flex flex-row flex-1 shrink-0 gap-x-4 md:gap-x-6 group">
           <Link 
             to={`/${cartProduct.category}/${cartProduct.itemId}`}
             className="flex items-center gap-x-4" 
           >
-            <div className="h-[66px] flex items-center justify-center m-[7px]">
+            <div className="w-[80px] flex items-center justify-center m-[7px]">
               <img
                 src={cartProduct.image}
                 alt={cartProduct.name}

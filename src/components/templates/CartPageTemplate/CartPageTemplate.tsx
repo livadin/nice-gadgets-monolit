@@ -34,7 +34,7 @@ export const CartPageTemplate: React.FC<CartPageTemplateProps> = ({
         </h1>
 
         <div className="box-border lg:flex items-start my-8 gap-4">
-          <div className="flex flex-col gap-4 lg:w-[752px]">
+          <div className="flex flex-col gap-4 sm:mb-8 lg:w-[752px]">
             {hasProducts ? (
               cartProducts.map((product) => (
                   <ProductCardCart
