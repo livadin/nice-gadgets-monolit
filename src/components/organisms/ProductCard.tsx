@@ -3,6 +3,7 @@ import { useState } from "react";
 import { PrimaryButton } from "../atoms/PrimaryButton/PrimaryButtom";
 import { FavoriteButton } from "../atoms/UtilityButton";
 import type { SimpleProduct } from "../../types/CategoryProduct";
+import { Link } from "react-router-dom";
 
 type ProductCardProps = {
     product: SimpleProduct;
@@ -22,13 +23,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         `w-full p-7 rounded-none border border-element hover:shadow-custom bg-white
         ${className}`
       }>
-        <div className="h-[200px] flex items-center justify-center mb-4">
+        <Link to={`/${product.category}/${product.itemId}`} className="h-[200px] flex items-center justify-center mb-4">
           <img
             src={product.image}
             alt={product.name}
             className="h-full w-full object-contain"
           />
-        </div>
+        </Link>
         <div className="mb-4 grow">
           <h3 className="text-[14px] text-primary font-normal mb-2 min-h-10 line-clamp-2 max-w-52 wrap-break-word">
             {product.name}

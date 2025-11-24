@@ -35,7 +35,6 @@ export const ProductSlider: React.FC<Props> = ({ products, title }) => {
   const handleSlideChange = (s: SwiperClass) => {
     setHasPrev(!s.isBeginning);
     setHasNext(!s.isEnd);
-    console.log(s.isEnd)
   };
 
   return (

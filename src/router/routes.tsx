@@ -16,9 +16,12 @@ export const AppRoutes = () => (
     </Route>
 
     <Route element={<MainLayout />}>
-      <Route path="/phones" element={<PhonesPage />} />
+      <Route path="/phones" element={<PhonesPage />}></Route>
+      <Route path='/phones/:productSlug' element={<PhonesPage />}></Route>
       <Route path="/tablets" element={<TabletsPage />} />
+      <Route path='/tablets/:productSlug' element={<TabletsPage />}></Route>
       <Route path="/accessories" element={<AccessoriesPage />} />
+      <Route path='/accessories/:productSlug' element={<AccessoriesPage />}></Route>
       <Route path="/favourites" element={<FavouritePage />} />
       <Route path="/cart" element={<CartPage />} />
     </Route>

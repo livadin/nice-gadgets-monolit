@@ -6,7 +6,6 @@ type GridForProductsProps = {
 } 
  
 export const GridForProducts: React.FC<GridForProductsProps> = ({ products }) => { 
-  console.log(products) 
   return ( 
     <div className=" 
       grid 
