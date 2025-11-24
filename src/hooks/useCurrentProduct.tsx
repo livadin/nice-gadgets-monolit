@@ -12,7 +12,7 @@ export function useCurrentProduct(categoryProducts: CategoryProduct[]) {
 
   useEffect(() => {
     if (productSlug) {
-      window.scrollTo({ top: 64, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [productSlug]);
 
