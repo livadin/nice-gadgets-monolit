@@ -1,3 +1,13 @@
+import { useFavouritesStore } from '../../stores/useFavouritesStore';
+import { FavoritesTemplate } from '../templates/FavoritesTemplate';
+
 export const FavouritePage = () => {
-  return <p>favourites</p>
-}
+  const favourites = useFavouritesStore((state) => state.favourites);
+
+  return (
+    <FavoritesTemplate 
+      products={favourites} 
+      isLoading={false}
+    />
+  );
+};

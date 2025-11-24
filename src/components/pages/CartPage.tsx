@@ -1,3 +1,13 @@
+import { useCartStore } from "../../stores/useCartStore";
+import { CartPageTemplate } from "../templates/CartPageTemplate/CartPageTemplate";
+
 export const CartPage = () => {
-  return <p>cart</p>
-}
+  const cart = useCartStore((state) => state.cart);
+
+  return (
+    <CartPageTemplate
+      cartProducts={cart} 
+      isLoading={false} 
+    />
+  );
+};

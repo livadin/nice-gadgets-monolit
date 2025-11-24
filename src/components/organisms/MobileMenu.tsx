@@ -6,6 +6,8 @@ import { FavoriteButtonWithBadge } from "../atoms/UtilityButton/FavoriteButtonWi
 import { ShoppingBagWithBadgeButton } from "../atoms/UtilityButton/ShoppingBagWithBadgeButton";
 import { NAV_ITEMS } from "../../utilities/constants";
 import { NavLink } from "react-router-dom";
+import { useFavouritesStore } from "../../stores/useFavouritesStore";
+import { useCartStore } from "../../stores/useCartStore";
 type Props = {
   isOpen: boolean;
   onClose: () => void;
@@ -15,6 +17,8 @@ export const MobileMenu: React.FC<Props> = ({
   isOpen,
   onClose,
 }) => {
+  const favouritesCount = useFavouritesStore((state) => state.favourites.length);
+  const cartCount = useCartStore((state) => state.cart.length);
   return (
     <div
       className={cn(
@@ -76,7 +80,18 @@ export const MobileMenu: React.FC<Props> = ({
         >
           {({ isActive }) => (
             <>
-              <FavoriteButtonWithBadge className="flex-1 h-12"/>
+            {
+              favouritesCount > 0 ? (
+                <FavoriteButtonWithBadge
+                  className="flex-1 h-12"
+                  count={favouritesCount}
+                />
+              ) : (
+                <FavoriteButtonWithBadge
+                  className="flex-1 h-12"
+                />
+              )
+            }
 
               {isActive && (
                 <span className="
@@ -98,7 +113,18 @@ export const MobileMenu: React.FC<Props> = ({
         >
           {({ isActive }) => (
             <>
-              <ShoppingBagWithBadgeButton className="flex-1 h-12"/>
+            {
+              cartCount > 0 ? (
+                <ShoppingBagWithBadgeButton
+                  className="flex-1 h-12"
+                  countBag={cartCount}
+                />
+              ) : (
+                <ShoppingBagWithBadgeButton
+                  className="flex-1 h-12"
+                />
+              )
+            }
 
               {isActive && (
                 <span className="

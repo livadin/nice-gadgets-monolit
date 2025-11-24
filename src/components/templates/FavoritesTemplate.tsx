@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ProductCard } from '../organisms/ProductCard';
 import type { SimpleProduct } from '../../types/CategoryProduct';
 import { MainLoader } from '../atoms/Loaders/MainLoader';
@@ -12,19 +12,14 @@ export const FavoritesTemplate: React.FC<FavoritesTemplateProps> = ({
   products,
   isLoading,
 }) => {
-  const [items] = useState<SimpleProduct[]>(products);
-  const [isEmpty, setIsEmpty] = useState(items.length === 0);
-
-  useEffect(() => {
-    setIsEmpty(items.length === 0);
-  }, [items]);
-
   if (isLoading)
     return (
       <div className="min-h-screen flex items-center justify-center">
         <MainLoader />
       </div>
     );
+
+  const isEmpty = products.length === 0;
 
   return (
     <section className="container mx-auto md:m-0">
@@ -33,13 +28,13 @@ export const FavoritesTemplate: React.FC<FavoritesTemplateProps> = ({
           Favourites
         </h1>
         <p className="text-secondary text-sm font-semibold">
-          {items.length === 0 ?
+          {products.length === 0 ?
             ''
-          : `${items.length} item${items.length !== 1 ? 's' : ''}`}
+          : `${products.length} item${products.length !== 1 ? 's' : ''}`}
         </p>
       </div>
 
-      {isEmpty ?
+      {isEmpty ? (
         <div className="flex flex-col items-center justify-center py-20">
           <img
             src="/nice-gadgets-monolit/gadgets/img/favorite-is-empty.png"
@@ -50,8 +45,9 @@ export const FavoritesTemplate: React.FC<FavoritesTemplateProps> = ({
             Your favourites list is empty
           </p>
         </div>
-      : <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 gap-y-10 mb-20">
-          {items.map((product) => (
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 gap-y-10 mb-20">
+          {products.map((product) => (
             <div
               key={product.id}
               className="flex sm:justify-start justify-center w-full"
@@ -60,7 +56,7 @@ export const FavoritesTemplate: React.FC<FavoritesTemplateProps> = ({
             </div>
           ))}
         </div>
-      }
+      )}
     </section>
   );
 };
