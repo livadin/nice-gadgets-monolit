@@ -61,8 +61,9 @@ export const ItemCard: React.FC<ItemCardProps> = ({
     return null;
   }
 
-  const isAddedToCart = cart.some((item) => item.id === itemProduct.id);
-  const isFavorite = favourites.some((item) => item.id === itemProduct.id);
+  // 1. ВИПРАВЛЯЄМО ПЕРЕВІРКУ (шукаємо за itemId)
+  const isAddedToCart = cart.some((item) => item.itemId === itemProduct.id);
+  const isFavorite = favourites.some((item) => item.itemId === itemProduct.id);
 
   const createSimpleProduct = (): SimpleProduct => ({
     id: itemProduct.id,
@@ -82,7 +83,10 @@ export const ItemCard: React.FC<ItemCardProps> = ({
 
   const handleCartClick = () => {
     if (isAddedToCart) {
-      removeFromCart(itemProduct.id);
+      const itemInCart = cart.find((item) => item.itemId === itemProduct.id);
+      if (itemInCart) {
+        removeFromCart(itemInCart.id);
+      }
     } else {
       addToCart(productToSave);
     }
