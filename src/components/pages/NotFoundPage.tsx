@@ -6,7 +6,7 @@ export const NotFoundPage = () => {
         alt="Service unavailable"
         className="w-[320px]"
       />
-      <p className="mt-10 text-xl">Oops... Page not found</p>
+      <p className="mt-10 text-xl text-white-dark-2 transition-colors duration-300">Oops... Page not found</p>
     </div>
   );
 }
