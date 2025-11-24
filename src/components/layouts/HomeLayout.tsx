@@ -4,11 +4,11 @@ import { Footer } from "../organisms/Footer";
 
 export const HomeLayout = () => {
   return (
-    <>
-    <div className="bg-white transition-colors duration-300">
+    <div className="min-h-screen flex flex-col bg-white transition-colors duration-300">
 
       <Header />
         <main className="
+          flex-1
           pt-[72px] md:pt-20 lg:pt-[120px]
           pb-16
           mx-auto
@@ -19,6 +19,5 @@ export const HomeLayout = () => {
 
       <Footer />
     </div>
-    </>
   );
 };

@@ -36,16 +36,17 @@
   --color-hover-bg-2: #fafbfc;
   --color-white: #ffffff;
   --color-white-dark: #ffffff;
+  --color-white-dark-2: #323542;
   --color-white-2: #ffffff;
   --color-white-card: #ffffff;
   --color-accent-green: #27ae60;
+  --color-accent-green-1: #27ae60;
   --color-accent-red: #eb5757;
   --color-unhover: #fff;
 
   --shadow-custom: 0px 3px 13px 5px #17203166;
+  --shadow-custom-white: 0px 3px 13px 5px #0f1121;
 }
-
-
 
 html.dark {
   --color-primary: #ffffff;
@@ -59,9 +60,11 @@ html.dark {
   --color-hover-bg-2: #323542;
   --color-white: #0f1121;
   --color-white-dark: #ffffff;
+  --color-white-dark-2: #ffffff;
   --color-white-2: #323542;
   --color-white-card: #161827;
   --color-accent-green: #ffffff;
+  --color-accent-green-1: #27ae60;
   --color-accent-red: #eb5757;
   
   --shadow-custom: 0px 3px 13px 5px #17203166;
@@ -111,4 +114,18 @@ body {
 
 @utility animate-underline {
   animation: underline-slide 300ms ease-out forwards;
+}
+
+@utility shadow-accent-green {
+  box-shadow: 0 0 0 2px var(--color-accent-green);
+}
+@utility shadow-accent-green-1 {
+  box-shadow: 0 0 0 2px var(--color-accent-green-1);
+}
+
+@utility shadow-accent-red {
+  box-shadow: 0 0 0 2px var(--color-accent-red);
+}
+@utility shadow-custom-white {
+  box-shadow: 0 0 0 2px var(--color-white-dark-2);
 }

@@ -4,9 +4,10 @@ import { getAccessories, getProducts } from '../../utilities/fetchApi';
 import { ProductsPageTemplate } from '../templates/ProductsPageTemplate/ProductsPageTemplate';
 import { ItemCard } from '../templates/ItemCard/ItemCard';
 import { useCurrentProduct } from '../../hooks/useCurrentProduct';
+import { ErrorComponent } from '../organisms/ErrorComponent';
 
 export const AccessoriesPage = () => {
-  const { data: products, isLoading } = useProducts(getProducts);
+  const { data: products, isLoading, hasError } = useProducts(getProducts);
   const { data: categoryProducts } = useProducts(getAccessories);
   const { currentProduct, productSlug } = useCurrentProduct(categoryProducts);
   
@@ -14,6 +15,10 @@ export const AccessoriesPage = () => {
     return products.filter((p) => p.category === 'accessories');
   }, [products]);
 
+  if (hasError) {
+    return <ErrorComponent />
+  }
+  
   return (
     <>
       {!productSlug ?

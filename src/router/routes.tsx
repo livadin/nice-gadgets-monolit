@@ -24,8 +24,8 @@ export const AppRoutes = () => (
       <Route path='/accessories/:productSlug' element={<AccessoriesPage />}></Route>
       <Route path="/favourites" element={<FavouritePage />} />
       <Route path="/cart" element={<CartPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Route>
-    <Route path="*" element={<NotFoundPage />} />
     <Route path="/home" element={<Navigate to="/" replace />} />
 </Routes>
 );

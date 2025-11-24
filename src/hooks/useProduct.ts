@@ -1,20 +1,18 @@
 import { useEffect, useState } from 'react';
-import {
-  ProductsServiceErrors,
-  productsServiceErrorText,
-} from '../types/errorText';
+import {ProductsServiceErrors} from '../types/errorText';
+import { notifyProductError } from '../utilities/notify';
 
 export const useProducts = <T>(fetcher: () => Promise<T[]>) => {
   const [data, setData] = useState<T[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
 
     const loadProducts = async () => {
       setIsLoading(true);
-      setError('');
+      setHasError(false);
 
       try {
         const result = await fetcher();
@@ -24,11 +22,11 @@ export const useProducts = <T>(fetcher: () => Promise<T[]>) => {
         }
       } catch {
         if (isMounted) {
-          setError(
-            productsServiceErrorText[
-              ProductsServiceErrors.UNABLE_TO_LOAD_PRODUCTS
-            ],
-          );
+          setHasError(true);
+
+          notifyProductError(
+            ProductsServiceErrors.UNABLE_TO_LOAD_PRODUCTS
+          )
         }
       } finally {
         if (isMounted) {
@@ -47,6 +45,6 @@ export const useProducts = <T>(fetcher: () => Promise<T[]>) => {
   return {
     data,
     isLoading,
-    error,
+    hasError,
   };
 };

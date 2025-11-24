@@ -7,9 +7,10 @@ import {
 import { useProducts } from '../../hooks/useProduct';
 import { HomePageTemplate } from '../templates/HomePageTemplate';
 import { useHomePageProducts } from '../../hooks/useHomePageProducts';
+import { ErrorComponent } from '../organisms/ErrorComponent';
 
 export const HomePage: React.FC = () => {
-  const { data: products, isLoading } = useProducts(getProducts);
+  const { data: products, isLoading, hasError } = useProducts(getProducts);
   const { data: phones } = useProducts(getPhones);
   const { data: tablets } = useProducts(getTablets);
   const { data: accessories } = useProducts(getAccessories);
@@ -21,7 +22,11 @@ export const HomePage: React.FC = () => {
     'gadgets/img/category-tablets.webp',
     'gadgets/img/category-accessories.webp',
   ];
-    
+
+  if (hasError) {
+    return <ErrorComponent />
+  }
+
   return (
     <HomePageTemplate
       isLoading={isLoading}
