@@ -17,6 +17,7 @@ type ProductsControlsState = {
   setPerPage: (category: CategoryKey, value: number) => void;
   setCurrentPage: (category: CategoryKey, value: number) => void;
 
+  resetCategory: (category: CategoryKey) => void;
   getCategory: (category: CategoryKey) => CategoryFilters;
 }
 
@@ -66,6 +67,14 @@ export const useProductsControls = create<ProductsControlsState>()(
               ...state.categories[category],
               currentPage: value,
             },
+          },
+        })),
+
+      resetCategory: (category) =>
+        set(state => ({
+          categories: {
+            ...state.categories,
+            [category]: { ...initialCategoryState },
           },
         })),
       getCategory: (category) => get().categories[category],

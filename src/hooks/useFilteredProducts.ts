@@ -23,18 +23,18 @@ export const useFilteredProducts = (
         break;
 
       case 'Newest':
-        result.sort((a, b) => b.year - a.year);
+        result.sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
         break;
 
       case 'Oldest':
-        result.sort((a, b) => a.year - b.year);
+        result.sort((a, b) => (a.year ?? 0) - (b.year ?? 0));
         break;
     }
 
     return result;
   }, [products, sort]);
 
-  
+
   const paginatedProducts = useMemo(() => {
     const start = (currentPage - 1) * perPage;
     const end = start + perPage;

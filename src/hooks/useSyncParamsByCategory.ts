@@ -1,40 +1,55 @@
-import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-
-import {
-  type CategoryKey,
-  useProductsControls,
-} from '../stores/useProductsControls';
-
+import { useProductsControls, type CategoryKey } from '../stores/useProductsControls';
+import { useEffect } from 'react';
 import type { SortOption } from '../types/SortProducts';
 
 export const useSyncParamsByCategory = (category: CategoryKey) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-
+  const [searchParams] = useSearchParams();
   const {
     setSort,
     setPerPage,
     setCurrentPage,
-    getCategory,
+    resetCategory,
   } = useProductsControls();
 
-  const state = getCategory(category);
-
   useEffect(() => {
+    const hasSort = searchParams.has('sort');
+    const hasPerPage = searchParams.has('perPage');
+    const hasPage = searchParams.has('page');
+
+    if (!hasSort) {
+      setSort(category, 'Newest');
+    }
+
+    if (!hasPerPage) {
+      setPerPage(category, 16);
+    }
+
+    if (!hasPage) {
+      setCurrentPage(category, 1);
+    }
+
     const sortFromUrl = searchParams.get('sort') as SortOption | null;
     const perPageFromUrl = Number(searchParams.get('perPage'));
     const pageFromUrl = Number(searchParams.get('page'));
 
-    if (sortFromUrl) setSort(category, sortFromUrl);
-    if (perPageFromUrl) setPerPage(category, perPageFromUrl);
-    if (pageFromUrl) setCurrentPage(category, pageFromUrl);
-  }, [category, searchParams, setCurrentPage, setPerPage, setSort]);
+    if (sortFromUrl) {
+      setSort(category, sortFromUrl);
+    }
 
-  useEffect(() => {
-    setSearchParams({
-      sort: state.sort,
-      perPage: state.perPage.toString(),
-      page: state.currentPage.toString(),
-    });
-  }, [state.sort, state.perPage, state.currentPage, setSearchParams]);
+    if (!Number.isNaN(perPageFromUrl) && perPageFromUrl > 0) {
+      setPerPage(category, perPageFromUrl);
+    }
+
+    if (!Number.isNaN(pageFromUrl) && pageFromUrl > 0) {
+      setCurrentPage(category, pageFromUrl);
+    }
+  }, [
+    category,
+    searchParams,
+    resetCategory,
+    setSort,
+    setPerPage,
+    setCurrentPage,
+  ]);
 };

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import * as Select from "@radix-ui/react-select";
-import { ArrowUpIcon } from "../../atoms/Icons/ArrowUpIcon";
-import { ArrowDownIcon } from "../../atoms/Icons/ArrowDownIcon";
+import React, { useState } from 'react';
+import * as Select from '@radix-ui/react-select';
+import { ArrowUpIcon } from '../../atoms/Icons/ArrowUpIcon';
+import { ArrowDownIcon } from '../../atoms/Icons/ArrowDownIcon';
 
 type DropdownProps = {
   className: string;
@@ -20,26 +20,24 @@ export const Dropdown: React.FC<DropdownProps> = ({
   currentValue,
   onChange,
 }) => {
-  const [selectedItem, setSelectedItem] = useState<string>(currentValue || "");
+  const selected = currentValue || label;
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const handleChange = (newValue: string) => {
-    setSelectedItem(newValue);
-
-    if (onChange) {
-      onChange(newValue);
-    }
+  const handleSelect = (value: string) => {
+    onChange?.(value);
   };
 
   return (
     <div className="relative inline-block">
       {description && (
-        <label className="block text-sm text-secondary mb-1">{description}</label>
+        <label className="block text-sm text-secondary mb-1">
+          {description}
+        </label>
       )}
 
       <Select.Root
-        value={selectedItem}
-        onValueChange={handleChange}
+        value={selected}
+        onValueChange={handleSelect}
         onOpenChange={setIsOpen}
       >
         <Select.Trigger
@@ -47,10 +45,14 @@ export const Dropdown: React.FC<DropdownProps> = ({
             hover:border-secondary transition-colors data-[state=open]:border-primary outline-none ${className}`}
         >
           <Select.Value placeholder={label}>
-            <span className="text-primary transition-colors duration-300">{selectedItem}</span>
+            <span className="text-primary transition-colors duration-300">
+              {selected}
+            </span>
           </Select.Value>
           <Select.Icon>
-            {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+            {isOpen ?
+              <ArrowUpIcon />
+            : <ArrowDownIcon />}
           </Select.Icon>
         </Select.Trigger>
 
@@ -66,7 +68,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
                   key={index}
                   value={item}
                   className={`px-4 py-3 cursor-pointer text-secondary hover:text-primary hover:bg-hover-bg-2 transition-colors duration-300 outline-none ${
-                    index !== items.length - 1 ? "border-b border-element" : ""
+                    index !== items.length - 1 ? 'border-b border-element' : ''
                   }`}
                 >
                   <Select.ItemText>{item}</Select.ItemText>
