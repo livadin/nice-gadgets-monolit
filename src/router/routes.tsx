@@ -8,6 +8,7 @@ import { HomeLayout } from '../components/layouts/HomeLayout';
 import { MainLayout } from '../components/layouts/MainLayout';
 import { FavouritePage } from '../components/pages/FavouritesPage';
 import { CartPage } from '../components/pages/CartPage';
+import { ContactsPage } from '../components/pages/ContactsPage';
 
 export const AppRoutes = () => (
   <Routes>
@@ -24,6 +25,7 @@ export const AppRoutes = () => (
       <Route path='/accessories/:productSlug' element={<AccessoriesPage />}></Route>
       <Route path="/favourites" element={<FavouritePage />} />
       <Route path="/cart" element={<CartPage />} />
+      <Route path='/contacts' element={<ContactsPage />}/>
       <Route path="*" element={<NotFoundPage />} />
     </Route>
     <Route path="/home" element={<Navigate to="/" replace />} />

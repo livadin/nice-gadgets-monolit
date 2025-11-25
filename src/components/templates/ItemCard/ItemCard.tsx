@@ -21,7 +21,7 @@ import type {
   SimpleProduct,
 } from '../../../types/CategoryProduct';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper/types';
 
 type ItemCardProps = {
@@ -191,11 +191,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({
             <Swiper
               spaceBetween={0}
               slidesPerView={1}
-              pagination={{ 
-                clickable: true,
-                dynamicBullets: false,
-               }}
-              modules={[Navigation, Pagination]}
+              modules={[Navigation]}
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               onSlideChange={(swiper) => setMainImage(itemProduct.images[swiper.activeIndex])}
               initialSlide={itemProduct.images.indexOf(mainImage)}

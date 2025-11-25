@@ -2,6 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import { ArrowUpButton } from '../atoms/UtilityButton';
 import { Logo } from '../atoms/Logo/Logo';
+import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
   const handleScrollToTop = () => {
@@ -9,7 +10,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="border-t border-element bg-white transition-colors duration-300">
+    <footer className="border-t border-element bg-white transition-colors duration-300 z-10">
       <div
         className={cn(
           'w-full',
@@ -45,9 +46,8 @@ export const Footer: React.FC = () => {
             Github
           </a>
 
-          <a
-            href="#/contacts"
-            target="_blank"
+          <Link
+            to='/contacts'
             className={cn(
               'font-bold',
               'text-[12px] leading-[11px]',
@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
             )}
           >
             Contacts
-          </a>
+          </Link>
 
           <a
             href="#/rights"
@@ -97,7 +97,7 @@ export const Footer: React.FC = () => {
             Back to top
           </span>
 
-          <ArrowUpButton className='w-[32px] h-[32px] bg-white-2 transition-colors duration-300'/>
+          <ArrowUpButton className='w-8 h-8 bg-white-2 transition-colors duration-300'/>
         </a>
       </div>
     </footer>
