@@ -50,7 +50,7 @@ export const PhonesPage: React.FC = () => {
           isLoading={isLoading}
           itemProduct={currentProduct}
           productList={categoryProducts}
-          productsForSlider={products}
+          allProducts={products}
         />
       }
     </>

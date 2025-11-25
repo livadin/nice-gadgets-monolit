@@ -47,7 +47,7 @@ export const AccessoriesPage = () => {
           isLoading={isLoading}
           itemProduct={currentProduct}
           productList={categoryProducts}
-          productsForSlider={products}
+          allProducts={products}
         />
       }
     </>

@@ -48,7 +48,7 @@ export const TabletsPage = () => {
           isLoading={isLoading}
           itemProduct={currentProduct}
           productList={categoryProducts}
-          productsForSlider={products}
+          allProducts={products}
         />
       }
     </>
