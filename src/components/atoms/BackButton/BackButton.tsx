@@ -9,7 +9,7 @@ type BackButtonProps = {
 
 export const BackButton: React.FC<BackButtonProps> = ({ text, className, onClick }) => {
   return (
-    <button
+    <div role="button"
       onClick={onClick}
       className={cn(
         "flex items-center gap-1",
@@ -22,6 +22,6 @@ export const BackButton: React.FC<BackButtonProps> = ({ text, className, onClick
     >
       <ArrowLeftButton className='border-0'/>
       {text}
-    </button>
+    </div>
   );
 };

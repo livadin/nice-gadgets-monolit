@@ -26,7 +26,8 @@ export const ProductSlider: React.FC<Props> = ({
   const [hasPrev, setHasPrev] = useState(false);
   const [hasNext, setHasNext] = useState(true);
 
-  const showSkeletons = isLoading || !products.length;
+  const safeProducts = products ?? [];
+  const showSkeletons = isLoading;
 
   const handlePrev = () => {
     if (swiperInstance) {
@@ -84,7 +85,7 @@ export const ProductSlider: React.FC<Props> = ({
               <ProductCardSkeleton />
             </SwiperSlide>
           ))
-        : products.map((product) => (
+        : safeProducts.map((product) => (
             <SwiperSlide
               className="w-auto! pb-4"
               key={product.id}
