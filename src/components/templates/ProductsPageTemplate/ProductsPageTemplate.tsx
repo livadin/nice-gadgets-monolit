@@ -42,7 +42,7 @@ export const ProductsPageTemplate: React.FC<Props> = ({
 
     const timeout = setTimeout(() => {
       setLocalLoading(false);
-    }, 400);
+    }, 700);
 
     return () => clearTimeout(timeout);
   }, [currentPage, sort, perPage]);
