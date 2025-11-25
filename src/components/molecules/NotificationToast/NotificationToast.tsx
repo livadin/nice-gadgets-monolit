@@ -50,7 +50,8 @@ export const NotificationToast: React.FC<Props> = ({
             flex items-center gap-4 p-4 bg-white
             border border-element rounded-2xl
             w-[180px]
-            h-[60px]
+            min-h-[72px]
+            md:min-h-[72px]
             md:w-[200px]
             md:h-[60px]
             data-[state=open]:animate-toast-in-right
@@ -67,9 +68,9 @@ export const NotificationToast: React.FC<Props> = ({
           },
         )}
       >
-        <div className="absolute inset-0 flex items-center justify-center text-center px-10">
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-8 gap-1">
           {notificationType !== 'error' && (
-            <Toast.Title className="buttons mb-2">{title}</Toast.Title>
+            <Toast.Title className="buttons">{title}</Toast.Title>
           )}
           <Toast.Description
             className={cn('text-center body-text', {

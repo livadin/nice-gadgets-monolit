@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { SimpleProduct } from '../types/CategoryProduct';
+import { notifyAddToCart, notifyRemoveFromCart } from '../utilities/notify';
+import { formatProductName } from '../utilities/utilityFunctions';
 
 export interface CartItem extends SimpleProduct {
   quantity: number;
@@ -35,12 +37,22 @@ export const useCartStore = create<CartState>()(
         } else {
           set({ cart: [...cart, { ...product, quantity: 1 }] });
         }
+
+        notifyAddToCart(formatProductName(product.name));
       },
 
-      removeFromCart: (itemId) =>
+      removeFromCart: (itemId) => {
+        const { cart } = get();
+        const removedItem = cart.find(item => item.itemId === itemId);
+
         set((state) => ({
           cart: state.cart.filter((item) => item.itemId !== itemId),
-        })),
+        }))
+
+        if (removedItem) {
+          notifyRemoveFromCart(removedItem.name);
+        }
+      },
 
       increaseQuantity: (itemId) =>
         set((state) => ({

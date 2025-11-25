@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { SimpleProduct } from '../types/CategoryProduct';
+import { notifyAddToFavourites, notifyRemoveFromFavourites } from '../utilities/notify';
+import { formatProductName } from '../utilities/utilityFunctions';
 
 interface FavouritesState {
   favourites: SimpleProduct[];
@@ -9,21 +11,40 @@ interface FavouritesState {
 
 export const useFavouritesStore = create<FavouritesState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       favourites: [],
 
-      toggleFavourite: (product) =>
-        set((state) => {
-          const isExists = state.favourites.some((p) => p.itemId === product.itemId);
+      toggleFavourite: (product) => {
+        const { favourites } = get();
 
-          if (isExists) {
-            return {
-              favourites: state.favourites.filter((p) => p.itemId !== product.itemId),
-            };
+        const isExists = favourites.some(
+          (p) => p.itemId === product.itemId
+        );
+
+        if (isExists) {
+          const removedItem = favourites.find(
+            (p) => p.itemId === product.itemId
+          );
+
+          set({
+            favourites: favourites.filter(
+              (p) => p.itemId !== product.itemId
+            ),
+          });
+
+          if (removedItem) {
+            notifyRemoveFromFavourites(formatProductName(removedItem.name));
           }
 
-          return { favourites: [...state.favourites, product] };
-        }),
+          return;
+        }
+
+        set({
+          favourites: [...favourites, product],
+        });
+
+        notifyAddToFavourites(formatProductName(product.name));
+      },
     }),
     {
       name: 'favourites-storage',

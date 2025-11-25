@@ -12,31 +12,30 @@ export const notifyProductError = (error: ProductsServiceError) => {
 };
 
 // cart
-export const notifyAddToCart = () => {
+export const notifyAddToCart = (productName: string) => {
   show()(
-    'Added to cartF',
-    'success',
-  );
-};
-
-export const notifyRemoveFromCart = () => {
-  show()(
-    'Removed from cart',
-    'info'
-  );
-};
-
-// favourites
-export const notifyAddToFavourites = () => {
-  show()(
-    'Added to favourites',
+    `Added to cart: ${productName}`,
     'success'
   );
 };
 
-export const notifyRemoveFromFavourites = () => {
+export const notifyRemoveFromCart = (productName: string) => {
   show()(
-    'Removed from favourites',
+    `Removed from cart: ${productName} `,
+    'info'
+  );
+};
+
+export const notifyAddToFavourites = (productName: string) => {
+  show()(
+    `Added to favourites: ${productName} `,
+    'success'
+  );
+};
+
+export const notifyRemoveFromFavourites = (productName: string) => {
+  show()(
+    `Removed from favourites: ${productName}`,
     'info'
   );
 };
