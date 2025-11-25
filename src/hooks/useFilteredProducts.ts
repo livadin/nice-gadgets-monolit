@@ -2,6 +2,15 @@ import { useMemo } from 'react';
 import { useProductsControls, type CategoryKey } from '../stores/useProductsControls';
 import type { SimpleProduct } from '../types/CategoryProduct';
 
+const getModelNumber = (itemId: string) => {
+  const parts = itemId.split('-');
+  return parseInt(parts[2]) || 0;
+};
+
+const getCapacityNumber = (capacity: string) => {
+  return parseInt(capacity) || 0;
+};
+
 export const useFilteredProducts = (
   products: SimpleProduct[],
   category: CategoryKey
@@ -15,19 +24,59 @@ export const useFilteredProducts = (
 
     switch (sort) {
       case 'Cheapest':
-        result.sort((a, b) => a.price - b.price);
+        result.sort((a, b) => {
+          const priceDiff = a.price - b.price;
+          if (priceDiff !== 0) return priceDiff;
+
+          const modelDiff =
+            getModelNumber(a.itemId) - getModelNumber(b.itemId);
+          if (modelDiff !== 0) return modelDiff;
+
+          return getCapacityNumber(a.capacity)
+            - getCapacityNumber(b.capacity);
+        });
         break;
 
       case 'Most expensive':
-        result.sort((a, b) => b.price - a.price);
+        result.sort((a, b) => {
+          const priceDiff = b.price - a.price;
+          if (priceDiff !== 0) return priceDiff;
+
+          const modelDiff =
+            getModelNumber(b.itemId) - getModelNumber(a.itemId);
+          if (modelDiff !== 0) return modelDiff;
+
+          return getCapacityNumber(b.capacity)
+            - getCapacityNumber(a.capacity);
+        });
         break;
 
       case 'Newest':
-        result.sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
+        result.sort((a, b) => {
+          const yearDiff = (b.year ?? 0) - (a.year ?? 0);
+          if (yearDiff !== 0) return yearDiff;
+
+          const modelDiff =
+            getModelNumber(b.itemId) - getModelNumber(a.itemId);
+          if (modelDiff !== 0) return modelDiff;
+
+          return getCapacityNumber(b.capacity)
+            - getCapacityNumber(a.capacity);
+        });
         break;
 
       case 'Oldest':
-        result.sort((a, b) => (a.year ?? 0) - (b.year ?? 0));
+        result.sort((a, b) => {
+          const yearDiff = (a.year ?? 0) - (b.year ?? 0);
+          if (yearDiff !== 0) return yearDiff;
+
+          const modelDiff =
+            getModelNumber(a.itemId) - getModelNumber(b.itemId);
+          if (modelDiff !== 0) return modelDiff;
+
+          return getCapacityNumber(a.capacity)
+            - getCapacityNumber(b.capacity);
+        });
         break;
     }
 
