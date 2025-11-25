@@ -5,7 +5,7 @@ import { AppRoutes } from './router/routes';
 export const App = () => {
   return (
     <>
-      <AppRoutes />;
+      <AppRoutes />
       <NotificationProvider />
     </>
   )

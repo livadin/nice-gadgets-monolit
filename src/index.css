@@ -29,6 +29,7 @@
   --breakpoint-lg: 1200px;
   --color-primary: #313237;
   --color-primary-dark: #313237;
+  --color-primary-hvcard: #905BFF;
   --color-secondary: #89939a;
   --color-icon: #b4bdc3;
   --color-element: #e2e6e9;
@@ -52,6 +53,7 @@ html.dark {
   --color-primary: #ffffff;
   --color-primary-2: #323542;
   --color-primary-dark: #905BFF;
+  --color-primary-hvcard: #905BFF;
   --color-secondary: #b4bdc3;
   --color-unhover: #75767f;
   --color-icon: #89939a;

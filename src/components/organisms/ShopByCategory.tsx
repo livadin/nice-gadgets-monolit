@@ -23,7 +23,7 @@ export const ShopByCategory: React.FC<Props> = ({
         {CATEGORIES.map((category, categoryIndex) => {
           return (
             <div
-              className="hover:scale-[1.05] transition-all duration-300 ease-linear"
+              className="group hover:scale-[1.05] transition-all duration-300 ease-linear"
               key={category}
             >
               <div
@@ -39,7 +39,7 @@ export const ShopByCategory: React.FC<Props> = ({
                 </Link>
               </div>
               <Link to={preparedCategories[categoryIndex].path}>
-                <h4 className="h4 mb-1">{category}</h4>
+                <h4 className="h4 mb-1 group-hover:text-primary-hvcard transition-colors duration-300">{category}</h4>
               </Link>
               <div className="body-text">{`${categoriesCount[categoryIndex]} models`}</div>
             </div>

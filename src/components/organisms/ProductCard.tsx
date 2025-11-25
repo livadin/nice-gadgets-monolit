@@ -46,7 +46,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         <div className="mb-4 grow">
           <Link to={`/${product.category}/${product.itemId}`}>
-            <h3 className="text-[14px] text-primary transition-colors duration-300 font-normal mb-2 min-h-10 line-clamp-2 max-w-52 wrap-break-word group-hover:text-primary-dark">
+            <h3 className="text-[14px] text-primary transition-colors duration-300 font-normal mb-2 min-h-10 line-clamp-2 max-w-52 wrap-break-word group-hover:text-primary-hvcard">
               {product.name}
             </h3>
           </Link>

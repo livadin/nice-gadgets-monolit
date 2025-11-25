@@ -194,10 +194,10 @@ export const ItemCard: React.FC<ItemCardProps> = ({
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               onSlideChange={(swiper) => setMainImage(itemProduct.images[swiper.activeIndex])}
               initialSlide={itemProduct.images.indexOf(mainImage)}
-              className="w-full h-full [&_.swiper-pagination]:bottom-2! md:[&_.swiper-wrapper]:pb-0! md:[&_.swiper-pagination]:bottom-1!"
+              className="w-full h-full [&_.swiper-slide]:flex! [&_.swiper-slide]:items-center! [&_.swiper-slide]:justify-center!"
               >
                 {itemProduct.images.slice(0, 5).map((img, index) => (
-                  <SwiperSlide key={index} className="flex items-center justify-center">
+                  <SwiperSlide key={index} className="flex items-center justify-center w-full h-full">
                     <img
                       src={img}
                       alt={itemProduct.name}
@@ -279,7 +279,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({
               </div>
             </div>
 
-            <div className="text-xs space-y-2 mt-8">
+            <div className="text-xs text-right space-y-2 mt-8">
               <div className="flex justify-between">
                 <span className="text-secondary">Screen</span>
                 <span className="text-primary">{itemProduct.screen}</span>
@@ -326,7 +326,6 @@ export const ItemCard: React.FC<ItemCardProps> = ({
             Tech specs
           </h3>
           <div className="border-t border-element text-[14px] text-right space-y-2 pt-2">
-            {/* Tech specs list ... */}
             <div className="flex justify-between mt-6">
               <span className="text-secondary">Screen</span>
               <span className="text-primary">{itemProduct.screen}</span>
