@@ -37,7 +37,7 @@ export const TabletsPage = () => {
   );
 
   if (hasError) {
-    return <ErrorComponent />;
+    return <ErrorComponent />
   }
 
   return (

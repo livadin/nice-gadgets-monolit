@@ -32,7 +32,7 @@ export const PhonesPage: React.FC = () => {
     useFilteredProducts(phones, CATEGORY);
 
   if (hasError) {
-    return <ErrorComponent />;
+    return <ErrorComponent />
   }
 
   return (
