@@ -23,7 +23,7 @@ const BANNERS: WelcomeBanner[] = [
   },
   
   {
-    id: 3,
+    id: 2,
     pathVideo: '/nice-gadgets-monolit/gadgets/img/banners/WelcomeSliderBannerAppleWatchVideo.MP4',
     pathImg: '/nice-gadgets-monolit/gadgets/img/banners/WelcomeSliderBannerAppleWatchImg.jpg',
   },
@@ -57,6 +57,7 @@ export const WelcomeSlider: React.FC = () => {
 
   return (
     <section>
+      <div className={!isMd? "w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]": ""}>
       <Swiper
         className="h-[352px] md:h-[220px] lg:h-[432px]"
         modules={[Navigation, Pagination]}
@@ -80,7 +81,7 @@ export const WelcomeSlider: React.FC = () => {
                     muted
                     loop
                     playsInline
-                    className="h-full mx-auto md:w-[490px] lg:w-[1040px] object-cover "
+                    className="h-full mx-auto md:w-[490px] lg:w-[1040px] object-cover"
                   >
                     <source src={banner.pathVideo} type="video/mp4" />
                   </video>
@@ -89,7 +90,7 @@ export const WelcomeSlider: React.FC = () => {
                   <img
                   src={banner.pathImg}
                   alt=""
-                  className="h-full mx-auto md:w-[490px] lg:w-[1040px] object-cover"
+                  className="w-full h-full md:w-[490px] lg:w-[1040px] object-cover object-top"
                 />
                   )
                 } 
@@ -107,7 +108,8 @@ export const WelcomeSlider: React.FC = () => {
             onClick={handleNext}
           ></ArrowRightButton>
         </div>
-      </Swiper>
+        </Swiper>
+        </div>
     </section>
   );
 };
