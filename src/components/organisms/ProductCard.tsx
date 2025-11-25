@@ -40,7 +40,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <img
             src={product.image}
             alt={product.name}
-            className="h-full w-full object-contain transition-all duration-300 ease-linear group-hover:scale-[1.1]"
+            className="h-full w-full text-primary object-contain transition-all duration-300 ease-linear group-hover:scale-[1.1]"
           />
         </Link>
 
