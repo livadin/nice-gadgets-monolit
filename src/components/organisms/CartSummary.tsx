@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { PrimaryButton } from '../atoms/PrimaryButton/PrimaryButtom';
 import type { CartItem } from '../../stores/useCartStore';
+import { useNavigate } from 'react-router-dom';
 
 
 type CartSummaryProps = {
@@ -9,6 +10,8 @@ type CartSummaryProps = {
 
 export const CartSummary: React.FC<CartSummaryProps> = ({ cartProducts }) => {
   const [selectedCheckoutButton, setSelectedCheckoutButton] = useState(false);
+
+  const navigate = useNavigate();
 
   const totalAmount = cartProducts.reduce((sum, product) => {
     return sum + product.price * product.quantity;
@@ -33,7 +36,8 @@ export const CartSummary: React.FC<CartSummaryProps> = ({ cartProducts }) => {
         buttonText="Checkout"
         selected={selectedCheckoutButton}
         onClick={() => {
-            setSelectedCheckoutButton(true);
+            setSelectedCheckoutButton(true)
+            navigate('/checkout');
         }}
       />
     </div>
