@@ -16,7 +16,7 @@ export const FavoritesTemplate: React.FC<FavoritesTemplateProps> = ({
   const isEmpty = !isLoading && products.length === 0;
 
   return (
-    <section className="w-full mb-20">
+    <section className="w-full">
       
       <div className="mb-8 mt-6">
         <BackButton text="Back" className="mt-[25px] md:mt-9" />
