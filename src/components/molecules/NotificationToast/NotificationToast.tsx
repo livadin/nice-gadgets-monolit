@@ -69,14 +69,24 @@ export const NotificationToast: React.FC<Props> = ({
       >
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-8 gap-1">
           {notificationType !== 'error' && (
-            <Toast.Title className="buttons">{title}</Toast.Title>
+            <Toast.Title
+              className={cn('buttons text-center', {
+                'text-accent-green-1': notificationType === 'success',
+                'text-primary': notificationType === 'info',
+              })}
+            >
+              {title}
+            </Toast.Title>
           )}
           <Toast.Description
-            className={cn('text-center body-text wrap-break-word whitespace-normal max-w-full', {
-              'text-accent-red': notificationType === 'error',
-              'text-accent-green-1': notificationType === 'success',
-              'text-primary': notificationType === 'info',
-            })}
+            className={cn(
+              'text-center body-text wrap-break-word whitespace-normal max-w-full',
+              {
+                'text-accent-red': notificationType === 'error',
+                'text-accent-green-1': notificationType === 'success',
+                'text-primary': notificationType === 'info',
+              },
+            )}
           >
             {message}
           </Toast.Description>
