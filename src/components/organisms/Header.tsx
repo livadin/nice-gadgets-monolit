@@ -36,7 +36,11 @@ export const Header: React.FC = () => {
           <div className="flex lg:hidden items-center">
              <SearchButtonWithInput className="w-[48px] h-[48px]" />
           </div>
-          <ThemeButton onClick={location.pathname === '/contacts' ? triggerRefresh : undefined}/>
+          <ThemeButton onClick={
+            location.pathname === '/contacts' || location.pathname === '/rights'
+              ? triggerRefresh
+              : undefined
+          } />
           
           <HeaderActions />
           

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BackButton } from '../../atoms/BackButton/BackButton';
-import { CartSummary } from './CartSummary';
+import { CartSummary } from '../../organisms/CartSummary';
 import { ProductCardCart } from '../../organisms/ProductCardCart';
 import type { CartItem } from '../../../stores/useCartStore';
 import { CartProductSkeleton } from '../../molecules/Skeleton/CartProductSkeleton';

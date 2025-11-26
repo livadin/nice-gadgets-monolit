@@ -51,12 +51,25 @@ export const ProductsPageTemplate: React.FC<Props> = ({
     });
   }, [currentPage]);
 
+  const [savedCategory, setSavedCategory] = useState(title);
+
+  useEffect(() => {
+    if (title) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setSavedCategory(title);
+    }
+  }, [title]);
   return (
     <section className="w-full flex flex-col">
       <div className="w-full mb-6">
-
-           <Breadcrumb product={products[currentPage]} hideProductName />
-
+        <Breadcrumb
+          product={
+            savedCategory ?
+              ({ category: savedCategory } as SimpleProduct)
+            : null
+          }
+          hideProductName
+        />
 
         <h1 className="mb-2 text-primary font-extrabold leading-[41px] md:leading-14 text-[32px] md:text-[48px] tracking-[-1%]">
           {title}

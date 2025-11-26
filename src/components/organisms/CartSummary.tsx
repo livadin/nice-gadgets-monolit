@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { PrimaryButton } from '../../atoms/PrimaryButton/PrimaryButtom';
-import type { CartItem } from '../../../stores/useCartStore';
+import { PrimaryButton } from '../atoms/PrimaryButton/PrimaryButtom';
+import type { CartItem } from '../../stores/useCartStore';
 
 
 type CartSummaryProps = {
