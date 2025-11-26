@@ -14,21 +14,21 @@ export const notifyProductError = (error: ProductsServiceError) => {
 // cart
 export const notifyAddToCart = (productName: string) => {
   show()(
-    `Added to cart: ${productName}`,
+    `Added to cart: ${productName} ✔`,
     'success'
   );
 };
 
 export const notifyRemoveFromCart = (productName: string) => {
   show()(
-    `Removed from cart: ${productName} `,
+    `Removed from cart: ${productName}`,
     'info'
   );
 };
 
 export const notifyAddToFavourites = (productName: string) => {
   show()(
-    `Added to favourites: ${productName} `,
+    `Added to favourites: ${productName} ✔`,
     'success'
   );
 };

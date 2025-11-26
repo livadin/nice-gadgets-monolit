@@ -2,7 +2,6 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { SimpleProduct } from '../types/CategoryProduct';
 import { notifyAddToFavourites, notifyRemoveFromFavourites } from '../utilities/notify';
-import { formatProductName } from '../utilities/utilityFunctions';
 
 interface FavouritesState {
   favourites: SimpleProduct[];
@@ -33,7 +32,7 @@ export const useFavouritesStore = create<FavouritesState>()(
           });
 
           if (removedItem) {
-            notifyRemoveFromFavourites(formatProductName(removedItem.name));
+            notifyRemoveFromFavourites(removedItem.name);
           }
 
           return;
@@ -43,7 +42,7 @@ export const useFavouritesStore = create<FavouritesState>()(
           favourites: [...favourites, product],
         });
 
-        notifyAddToFavourites(formatProductName(product.name));
+        notifyAddToFavourites(product.name);
       },
     }),
     {

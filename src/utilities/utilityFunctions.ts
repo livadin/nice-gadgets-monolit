@@ -72,6 +72,3 @@ export const getProductDetailsByItemId = (itemId: string): DetailedProduct | nul
   return productDetailsMap.get(itemId) || null;
 };
 
-export const formatProductName = (name: string) => {
-  return name.length > 18 ? name.slice(0, 18) + '...' : name;
-};
