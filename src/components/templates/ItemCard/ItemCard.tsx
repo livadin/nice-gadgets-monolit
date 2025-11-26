@@ -1,8 +1,5 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
-import { HomeIcon } from '../../atoms/Icons/HomeIcon';
-import { ArrowRightIcon } from '../../atoms/Icons/ArrowRightIcon';
 import { ProductSlider } from '../../organisms/Sliders/ProductSlider';
 import { PrimaryButton } from '../../atoms/PrimaryButton/PrimaryButtom';
 import {
@@ -23,6 +20,7 @@ import type {
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper/types';
+import { Breadcrumb } from '../../atoms/Breadcrumb/Breadcrumb';
 import { useRecommendedProducts } from '../../../hooks/useRecommendedProducts';
 
 type ItemCardProps = {
@@ -160,15 +158,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({
 
   return (
     <section className="min-h-screen flex flex-col">
-      <div className="flex items-center gap-2 overflow-hidden sm:mb-6 md:mb-10">
-        <HomeIcon className="shrink-0" />
-        <ArrowRightIcon className="shrink-0" />
-        <p className="text-primary capitalize">{itemProduct.category}</p>
-        <ArrowRightIcon />
-        <p className="text-secondary whitespace-nowrap overflow-hidden text-ellipsis">
-          {itemProduct.name}
-        </p>
-      </div>
+      <Breadcrumb product={itemProduct} />
 
       <div className="flex items-center gap-1 mb-4">
         <BackButton
@@ -366,22 +356,28 @@ export const ItemCard: React.FC<ItemCardProps> = ({
               <span className="text-secondary">RAM</span>
               <span className="text-primary">{itemProduct.ram}</span>
             </div>
+            {itemProduct.category === "accessories" ? (
             <div className="flex justify-between">
-              <span className="text-secondary">Built in memory</span>
+              <span className="text-secondary">Display size</span>
               <span className="text-primary">{itemProduct.capacity}</span>
             </div>
-            {itemProduct.camera && (
-              <div className="flex justify-between">
-                <span className="text-secondary">Camera</span>
-                <span className="text-primary">{itemProduct.camera}</span>
-              </div>
+            ) : (
+              <>
+                <div className="flex justify-between">
+                  <span className="text-secondary">Built in memory</span>
+                  <span className="text-primary">{itemProduct.capacity}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-secondary">Camera</span>
+                  <span className="text-primary">{itemProduct.camera}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-secondary">Zoom</span>
+                  <span className="text-primary">{itemProduct.zoom}</span>
+                </div>
+              </>
             )}
-            {itemProduct.zoom && (
-              <div className="flex justify-between">
-                <span className="text-secondary">Zoom</span>
-                <span className="text-primary">{itemProduct.zoom}</span>
-              </div>
-            )}
+            
             <div className="flex justify-between">
               <span className="text-secondary">Cell</span>
               <span className="text-primary wrap-break-words max-w-[60%]">

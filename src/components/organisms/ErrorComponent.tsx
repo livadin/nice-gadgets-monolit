@@ -6,7 +6,7 @@ export const ErrorComponent = () => {
         alt="Service unavailable"
         className="w-[320px]"
       />
-      <p className="mt-10 text-xl">Oops... Something went wrong</p>
+      <p className="mt-10 text-xl text-primary">Oops... Something went wrong</p>
     </div>
   );
 };
