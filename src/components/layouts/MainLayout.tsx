@@ -13,7 +13,7 @@ export const MainLayout = () => {
       <main
         className="
         flex-1
-      bg-white 
+        bg-white 
         transition-colors duration-300
         pt-[72px] lg:pt-[88px]
         pb-16
