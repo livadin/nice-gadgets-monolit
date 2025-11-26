@@ -20,7 +20,7 @@ export const FavoriteButton = ({
 }: FavoriteButtonProps) => (
   <UtilityButton
     onClick={onClick}
-    className={cn('group bg-white-2 hover:bg-white-2', className)}
+    className={cn('group', className)}
     width={width}
     height={height}
   >

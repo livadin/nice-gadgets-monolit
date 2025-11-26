@@ -17,7 +17,7 @@ export const PlusButton = ({
 }: PlusButtonProps) => (
   <UtilityButton
     onClick={onClick}
-    className={cn('group bg-white-2', className)}
+    className={cn('group', className)}
     width={width}
     height={height}
   >
