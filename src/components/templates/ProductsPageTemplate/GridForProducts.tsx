@@ -1,6 +1,6 @@
 import { ProductCard } from '../../organisms/ProductCard';
 import type { SimpleProduct } from '../../../types/CategoryProduct';
-import { ProductCardSkeleton } from '../../molecules/ProductCardSceleton';
+import { ProductCardSkeleton } from '../../molecules/Skeleton/ProductCardSkeleton';
 
 type GridForProductsProps = {
   products: SimpleProduct[];

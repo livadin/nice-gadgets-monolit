@@ -12,14 +12,18 @@ export const MainLayout = () => {
       <ScrollToTop />
       <main
         className="
-        flex-1
-      bg-white 
-        transition-colors duration-300
-        pt-[72px] lg:pt-[88px]
-        pb-16
-        mx-auto
-        max-w-[288px] md:max-w-[592px] lg:max-w-[1136px]
-      "
+          flex-1
+          bg-white 
+          transition-colors duration-300
+          pt-[72px] lg:pt-[88px]
+          pb-16
+          mx-auto
+          w-full
+          px-4 
+          md:px-0 
+          md:max-w-[592px] 
+          lg:max-w-[1136px]
+        "
       >
         <Outlet key={token}/>
       </main>
