@@ -39,3 +39,11 @@ export const notifyRemoveFromFavourites = (productName: string) => {
     'info'
   );
 };
+
+export const notifyCheckoutSuccess = () => {
+  show()(
+    'Thank you for your order! We’ll process it shortly ✔',
+    'success',
+    'Order completed'
+  );
+};

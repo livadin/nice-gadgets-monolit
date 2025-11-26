@@ -12,7 +12,7 @@ export const ProductCardCart: React.FC<ProductCardCartProps> = ({
   const { removeFromCart, increaseQuantity, decreaseQuantity } = useCartStore();
 
   return (
-    <div className="flex flex-col md:flex-row md:items-center md:justify-between p-4 md:p-6 border border-element">
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between p-4 md:p-6 border bg-white-card border-element">
       <div className="flex items-center justify-between gap-x-4 md:gap-x-6">
         <CloseButton
           className="border-0"
@@ -24,7 +24,7 @@ export const ProductCardCart: React.FC<ProductCardCartProps> = ({
             to={`/${cartProduct.category}/${cartProduct.itemId}`}
             className="flex items-center gap-x-4" 
           >
-            <div className="w-[80px] flex items-center justify-center m-[7px]">
+            <div className="w-[80px] h-[80px] flex items-center justify-center m-[7px]">
               <img
                 src={cartProduct.image}
                 alt={cartProduct.name}
@@ -59,7 +59,7 @@ export const ProductCardCart: React.FC<ProductCardCartProps> = ({
           />
         </div>
 
-        <p className="text-[22px] text-primary font-extrabold">
+        <p className="text-[22px] text-primary font-extrabold min-w-20 text-right">
           ${cartProduct.price * cartProduct.quantity}
         </p>
       </div>

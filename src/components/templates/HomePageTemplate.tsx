@@ -58,6 +58,7 @@ export const HomePageTemplate: React.FC<Props> = ({
         <ProductSlider
           title={firstSliderTitle}
           products={firstSliderProducts}
+          isLoading={isLoading}
         />
         <ShopByCategory
           title={categoryTitle}

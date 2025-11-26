@@ -1,9 +1,10 @@
 import React from 'react';
 import { BackButton } from '../../atoms/BackButton/BackButton';
-import { CartSummary } from './CartSummary';
+import { CartSummary } from '../../organisms/CartSummary';
 import { ProductCardCart } from '../../organisms/ProductCardCart';
-import { MainLoader } from '../../atoms/Loaders/MainLoader';
 import type { CartItem } from '../../../stores/useCartStore';
+import { CartProductSkeleton } from '../../molecules/Skeleton/CartProductSkeleton';
+import { CartSummarySkeleton } from '../../molecules/Skeleton/CartSummarySkeleton';
 
 
 type CartPageTemplateProps = {
@@ -16,13 +17,6 @@ export const CartPageTemplate: React.FC<CartPageTemplateProps> = ({
   isLoading,
 }) => {
   const hasProducts = cartProducts.length > 0;
-
-  if (isLoading)
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <MainLoader />
-      </div>
-    );
 
   return (
     <section className="mx-auto flex justify-center">
@@ -37,10 +31,16 @@ export const CartPageTemplate: React.FC<CartPageTemplateProps> = ({
           <div className="flex flex-col gap-4 sm:mb-8 lg:w-[752px]">
             {hasProducts ? (
               cartProducts.map((product) => (
-                  <ProductCardCart
-                    key={product.id}
-                    cartProduct={product}
+                <div
+                  key={product.id}
+                >
+                  {isLoading || !product ?
+                <CartProductSkeleton
                   />
+                : <ProductCardCart
+                    cartProduct={product}
+                  />}
+                </div>
               ))
             ) : (
               <div className="flex flex-col items-center justify-center py-20">
@@ -56,7 +56,11 @@ export const CartPageTemplate: React.FC<CartPageTemplateProps> = ({
             )}
           </div>
 
-          {hasProducts && <CartSummary cartProducts={cartProducts} />}
+          {hasProducts && 
+        (isLoading 
+          ? <CartSummarySkeleton /> 
+          : <CartSummary cartProducts={cartProducts} />)
+      }
         </div>
       </div>
     </section>

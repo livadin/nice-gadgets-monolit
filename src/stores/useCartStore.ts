@@ -1,8 +1,10 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { SimpleProduct } from '../types/CategoryProduct';
-import { notifyAddToCart, notifyRemoveFromCart } from '../utilities/notify';
+import { notifyAddToCart, notifyCheckoutSuccess, notifyRemoveFromCart } from '../utilities/notify';
+import { useNotificationStore } from './notification.store';
 
+const show = () => useNotificationStore.getState().showNotification;
 export interface CartItem extends SimpleProduct {
   quantity: number;
 }
@@ -14,6 +16,7 @@ interface CartState {
   increaseQuantity: (itemId: number | string) => void;
   decreaseQuantity: (itemId: number | string) => void;
   clearCart: () => void;
+  checkout: () => void;
 }
 
 export const useCartStore = create<CartState>()(
@@ -72,6 +75,22 @@ export const useCartStore = create<CartState>()(
         })),
 
       clearCart: () => set({ cart: [] }),
+
+      checkout: () => {
+        const { cart } = get();
+
+        if (!cart.length) {
+          show()(
+            'Your cart is empty',
+            'info'
+          );
+          return;
+        }
+
+        set({ cart: [] });
+
+        notifyCheckoutSuccess();
+      },
     }),
     {
       name: 'cart-storage',

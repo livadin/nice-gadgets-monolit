@@ -1,19 +1,12 @@
-import {
-  getAccessories,
-  getPhones,
-  getProducts,
-  getTablets,
-} from '../../utilities/fetchApi';
+import { getProducts } from '../../utilities/fetchApi';
 import { useProducts } from '../../hooks/useProduct';
 import { HomePageTemplate } from '../templates/HomePageTemplate';
 import { useHomePageProducts } from '../../hooks/useHomePageProducts';
 import { ErrorComponent } from '../organisms/ErrorComponent';
+import { useMemo } from 'react';
 
 export const HomePage: React.FC = () => {
   const { data: products, isLoading, hasError } = useProducts(getProducts);
-  const { data: phones } = useProducts(getPhones);
-  const { data: tablets } = useProducts(getTablets);
-  const { data: accessories } = useProducts(getAccessories);
 
   const { hotPricesProducts, brandNewProducts } = useHomePageProducts(products);
 
@@ -23,8 +16,23 @@ export const HomePage: React.FC = () => {
     'gadgets/img/category-accessories.webp',
   ];
 
+  const phonesCount = useMemo(
+    () => products.filter((p) => p.category === 'phones').length,
+    [products],
+  );
+
+  const tabletsCount = useMemo(
+    () => products.filter((p) => p.category === 'tablets').length,
+    [products],
+  );
+
+  const accessoriesCount = useMemo(
+    () => products.filter((p) => p.category === 'accessories').length,
+    [products],
+  );
+
   if (hasError) {
-    return <ErrorComponent />
+    return <ErrorComponent />;
   }
 
   return (
@@ -36,7 +44,7 @@ export const HomePage: React.FC = () => {
       categoryTitle={'Shop by category'}
       categoryImages={categoryImages}
       categoryColors={['#4d4c4e', '#7b7a7c', '#d7c1cf']}
-      categoriesCount={[phones.length, tablets.length, accessories.length]}
+      categoriesCount={[phonesCount, tabletsCount, accessoriesCount]}
       secondSliderTitle={'Hot prices'}
       secondSliderProducts={hotPricesProducts}
     />
