@@ -41,7 +41,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
         onOpenChange={setIsOpen}
       >
         <Select.Trigger
-          className={`w-[136px] h-10 px-4 py-3 bg-white-2 border border-icon rounded-none text-left flex items-center justify-between 
+          className={`w-[136px] h-10 p-2 pb-1 md:p-4 md:pb-4 bg-white-2 border border-icon rounded-none text-left text-[12px] md:text-[14px] flex items-center justify-between 
             hover:border-secondary transition-colors data-[state=open]:border-primary outline-none ${className}`}
         >
           <Select.Value placeholder={label}>
