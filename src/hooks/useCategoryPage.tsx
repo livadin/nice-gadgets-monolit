@@ -64,7 +64,7 @@ export const useCategoryPage = (
      isOnSearchResultsPage &&
      Array.isArray(searchProducts) &&
      searchProducts.length > 0 &&
-     (resultInfo === '' || resultInfo === queryParam || queryParam.length > 0);
+     (resultInfo === '' || resultInfo === queryParam || queryParam.length >= 0);
 
    const sourceItems = useMemo(() => {
      if (useSearchStore) return searchProducts;

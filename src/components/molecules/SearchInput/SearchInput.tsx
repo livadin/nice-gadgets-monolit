@@ -123,7 +123,7 @@ export const SearchInput: React.FC<SearchProps> = ({ className = '' }) => {
         params.delete('query');
       }
       setSearchParams(params, { replace: true });
-    }, 800),
+    }, 500),
     [searchParams, setSearchParams],
   );
 
