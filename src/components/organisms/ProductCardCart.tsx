@@ -24,7 +24,7 @@ export const ProductCardCart: React.FC<ProductCardCartProps> = ({
             to={`/${cartProduct.category}/${cartProduct.itemId}`}
             className="flex items-center gap-x-4" 
           >
-            <div className="w-[80px] flex items-center justify-center m-[7px]">
+            <div className="w-[80px] h-[80px] flex items-center justify-center m-[7px]">
               <img
                 src={cartProduct.image}
                 alt={cartProduct.name}

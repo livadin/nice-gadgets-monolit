@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 import type { SimpleProduct } from '../../../types/CategoryProduct';
 import { ArrowLeftButton, ArrowRightButton } from '../../atoms/UtilityButton';
 import { useState } from 'react';
-import { ProductCardSkeleton } from '../../molecules/ProductCardSceleton';
+import { ProductCardSkeleton } from '../../molecules/Skeleton/ProductCardSkeleton';
 
 type Props = {
   products: SimpleProduct[];
