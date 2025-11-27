@@ -13,22 +13,30 @@ export const FavoritesTemplate: React.FC<FavoritesTemplateProps> = ({
   products,
   isLoading,
 }) => {
-  const isEmpty = !isLoading && products.length === 0;
+  const isEmpty = products.length === 0;
+  const showSkeletons = isLoading && products.length > 0;
 
   return (
-    <section className="w-full mb-20">
-      
-      <div className="mb-8 mt-6">
-        <BackButton text="Back" className="mt-[25px] md:mt-9" />
+    <section className="w-full">
+      <div>
+        <BackButton
+          text="Back"
+          className="mt-[25px] md:mt-9"
+        />
+
         <h1 className="sm:text-[32px] md:text-[48px] font-bold text-primary mb-2 tracking-tight">
           Favourites
         </h1>
-        <p className="text-secondary text-sm font-semibold">
-          {isLoading ? 'Loading...' : `${products.length} item${products.length !== 1 ? 's' : ''}`}
-        </p>
+        {!isEmpty && (
+          <p className="text-secondary text-sm font-semibold mb-8 md:mb-10">
+            {isLoading ?
+              'Loading...'
+            : `${products.length} item${products.length !== 1 ? 's' : ''}`}
+          </p>
+        )}
       </div>
 
-      {isEmpty ? (
+      {isEmpty ?
         <div className="flex flex-col items-center justify-center min-h-[50vh] w-full text-center">
           <img
             src="/nice-gadgets-monolit/gadgets/img/favorite-is-empty.png"
@@ -39,22 +47,28 @@ export const FavoritesTemplate: React.FC<FavoritesTemplateProps> = ({
             Your favourites list is empty
           </p>
         </div>
-      ) : (
+      : showSkeletons ?
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 gap-y-10">
+          {products.map((product, index) => (
+            <div
+              key={product?.id ?? index}
+              className="w-full mx-auto max-w-[306px] md:max-w-none md:mx-0"
+            >
+              <FavoritesProductSkeleton />
+            </div>
+          ))}
+        </div>
+      : <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 gap-y-10">
           {products.map((product) => (
             <div
               key={product.id}
               className="w-full mx-auto max-w-[306px] md:max-w-none md:mx-0"
             >
-             {isLoading || !product ? (
-                <FavoritesProductSkeleton />
-             ) : (
-                <ProductCard product={product} />
-             )}
+              <ProductCard product={product} />
             </div>
           ))}
         </div>
-      )}
+      }
     </section>
   );
 };

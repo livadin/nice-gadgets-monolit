@@ -159,13 +159,6 @@ body {
   animation: shimmer 1.6s infinite linear;
 }
 
-.primary-button {
-  height: 2.5rem; 
-  font-size: 0.875rem; 
-  transition-property: all;
-  transition-duration: 300ms;
-  width: 175px; 
-}
 
 .primary-button:hover {
   box-shadow: var(--shadow-custom);

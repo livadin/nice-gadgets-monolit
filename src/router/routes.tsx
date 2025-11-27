@@ -11,6 +11,7 @@ import { CartPage } from '../components/pages/CartPage';
 import { ContactsPage } from '../components/pages/ContactsPage';
 import { SearchResultPage } from '../components/pages/SearchResultPage';
 import { RightsPage } from '../components/pages/RightsPage';
+import { CheckoutPage } from '../components/pages/CheckoutPage';
 
 export const AppRoutes = () => (
   <Routes>
@@ -30,6 +31,7 @@ export const AppRoutes = () => (
       <Route path='/contacts' element={<ContactsPage />}/>
       <Route path='/searchResults' element={<SearchResultPage />}/>
       <Route path='/rights' element={<RightsPage />}/>
+      <Route path='/checkout' element={<CheckoutPage />}/>
       <Route path="*" element={<NotFoundPage />} />
     </Route>
     <Route path="/home" element={<Navigate to="/" replace />} />

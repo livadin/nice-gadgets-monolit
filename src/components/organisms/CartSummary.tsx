@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { PrimaryButton } from '../atoms/PrimaryButton/PrimaryButtom';
-import { useCartStore, type CartItem } from '../../stores/useCartStore';
+import { useNavigate } from 'react-router-dom';
+import type { CartItem } from '../../stores/useCartStore';
 
 type CartSummaryProps = {
   cartProducts: CartItem[];
@@ -8,7 +9,9 @@ type CartSummaryProps = {
 
 export const CartSummary: React.FC<CartSummaryProps> = ({ cartProducts }) => {
   const [selectedCheckoutButton, setSelectedCheckoutButton] = useState(false);
-  const { checkout } = useCartStore();
+
+
+  const navigate = useNavigate();
 
   const totalAmount = cartProducts.reduce((sum, product) => {
     return sum + product.price * product.quantity;
@@ -18,15 +21,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({ cartProducts }) => {
     return sum + product.quantity;
   }, 0);
 
-  const handleCheckout = () => {
-    if (!cartProducts.length) {
-      return; 
-    }
-
-    setSelectedCheckoutButton(true);
-    checkout();
-
-  };
+ 
 
   return (
     <div className="flex flex-col items-center justify-center box-border border border-element p-6 h-[190px] lg:h-[206px] lg:w-[368px]">
@@ -42,7 +37,10 @@ export const CartSummary: React.FC<CartSummaryProps> = ({ cartProducts }) => {
         className="w-full h-12"
         buttonText="Checkout"
         selected={selectedCheckoutButton}
-        onClick={handleCheckout}
+        onClick={() => {
+            setSelectedCheckoutButton(true)
+            navigate('/checkout');
+        }}
       />
     </div>
   );
