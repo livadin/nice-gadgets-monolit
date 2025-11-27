@@ -30,6 +30,7 @@
   --color-primary: #313237;
   --color-primary-dark: #313237;
   --color-primary-hvcard: #905BFF;
+  --color-primary-gray: #313237;
   --color-secondary: #89939a;
   --color-icon: #b4bdc3;
   --color-element: #e2e6e9;
@@ -40,6 +41,8 @@
   --color-white-dark-2: #323542;
   --color-white-2: #ffffff;
   --color-white-card: #ffffff;
+  --color-white-gray: #ffffff;
+  --color-white-gray-elements: #ffffff;
   --color-accent-green: #27ae60;
   --color-accent-green-1: #27ae60;
   --color-accent-red: #eb5757;
@@ -54,6 +57,7 @@ html.dark {
   --color-primary-2: #323542;
   --color-primary-dark: #905BFF;
   --color-primary-hvcard: #A378FF;
+  --color-primary-gray: #4A4D58;
   --color-secondary: #b4bdc3;
   --color-unhover: #75767f;
   --color-icon: #89939a;
@@ -65,6 +69,8 @@ html.dark {
   --color-white-dark-2: #ffffff;
   --color-white-2: #323542;
   --color-white-card: #161827;
+  --color-white-gray: #4A4D58;
+  --color-white-gray-elements: #3B3E4A;
   --color-accent-green: #ffffff;
   --color-accent-green-1: #27ae60;
   --color-accent-red: #eb5757;

@@ -17,7 +17,7 @@ export const PlusButton = ({
 }: PlusButtonProps) => (
   <UtilityButton
     onClick={onClick}
-    className={cn('group', className)}
+    className={cn('group bg-white-2 hover:bg-white-gray',className)}
     width={width}
     height={height}
   >

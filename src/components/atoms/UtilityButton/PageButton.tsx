@@ -26,7 +26,12 @@ export const PageButton = ({
     selected={selected}
     disabled={disabled}
     onClick={onClick}
-    className={cn('group', className)}
+    className={cn(
+      selected
+        ? 'group bg-primary-dark'
+        : 'group bg-white-card hover:bg-white-gray-elements',
+      className
+    )}
   >
     <span
       className={cn(

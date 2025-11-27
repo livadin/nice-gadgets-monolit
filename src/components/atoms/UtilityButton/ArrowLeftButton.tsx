@@ -20,7 +20,12 @@ export const ArrowLeftButton = ({
   <UtilityButton
     disabled={disabled}
     onClick={onClick}
-    className={cn('group', className)}
+    className={cn(
+      disabled
+        ? 'group bg-white'
+        : 'group bg-white-2 hover:bg-white-gray',
+      className
+    )}
     width={width}
     height={height}
   >

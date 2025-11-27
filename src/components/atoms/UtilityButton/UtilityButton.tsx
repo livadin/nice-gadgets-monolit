@@ -26,13 +26,14 @@ export const UtilityButton: React.FC<UtilityButtonProps> = ({
 
   const shape = variant === 'round' ? 'rounded-full' : 'rounded-none';
 
-  const states = cn({
-    'border-element text-icon cursor-not-allowed': disabled,
-    'bg-primary border-primary text-white': selected && !disabled,
-    'bg-white border-element text-primary hover:border-primary hover:bg-white':
-      !selected && !disabled,
-  });
-
+  const states = cn(
+  disabled
+    ? 'border-element text-icon cursor-not-allowed'
+    : selected
+    ? 'bg-primary border-primary text-white'
+    : 'border-element text-primary hover:border-primary'
+  );
+  
   return (
     <button
       className={cn(base, shape, states, width, height, className)}

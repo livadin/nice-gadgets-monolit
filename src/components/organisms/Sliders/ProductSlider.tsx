@@ -65,12 +65,12 @@ export const ProductSlider: React.FC<Props> = ({
             className=""
           >
             <ArrowLeftButton
-              className="w-8 h-8 mr-4 hover:bg-white-2"
+              className="w-8 h-8 mr-4"
               onClick={handlePrev}
               disabled={!hasPrev}
             />
             <ArrowRightButton
-              className="w-8 h-8 hover:bg-white-2"
+              className="w-8 h-8"
               onClick={handleNext}
               disabled={!hasNext}
             />
