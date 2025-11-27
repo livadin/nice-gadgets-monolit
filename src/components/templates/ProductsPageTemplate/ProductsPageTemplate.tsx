@@ -60,8 +60,8 @@ export const ProductsPageTemplate: React.FC<Props> = ({
     }
   }, [title]);
   return (
-    <section className="w-full flex flex-col">
-      <div className="w-full mb-6">
+    <section className="w-full flex flex-col items-center">
+      <div className="w-full mb-6 max-w-[288px] md:max-w-[592px] lg:max-w-[1136px]">
         <Breadcrumb
           product={
             savedCategory ?

@@ -113,6 +113,13 @@ html.dark {
 
 html {
   font-family: 'Mont', sans-serif;
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #99a1af;
+    border-radius: 0.25rem;
+  }
 }
 
 html.dark,
