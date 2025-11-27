@@ -76,7 +76,7 @@ export const CheckoutPage: React.FC = () => {
   const cardClassName = cn(
     'group p-6 md:p-8 w-full h-auto rounded-2xl relative', 
     'text-primary flex flex-col gap-6', 
-    'transition-all duration-300 ease-linear',
+    'transition-shadow duration-300 ease-linear',
     'border',
     {
       'bg-white-card': theme === 'light',
@@ -210,7 +210,7 @@ export const CheckoutPage: React.FC = () => {
 
           {/* --- RIGHT COLUMN: DELIVERY FORM  --- */}
           <article className={cn(cardClassName, "h-fit sticky top-24")}>
-            <div>
+            <div className="relative z-10">
               <h2 className="text-2xl font-bold border-b border-gray-400/30 pb-4 mb-6">Delivery Info</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-primary">
                 
