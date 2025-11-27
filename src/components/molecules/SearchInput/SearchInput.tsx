@@ -10,6 +10,8 @@ import { useSearchProducts } from '../../../stores/useSearchProducts';
 
 interface SearchProps {
   className?: string;
+  isSearchOpen?: boolean;
+  onIsSearchOpen?: (value: boolean) => void;
 }
 
 function getFilteredProducts(
@@ -36,25 +38,30 @@ function getFilteredProducts(
   return filteredProducts;
 }
 
-export const SearchInput: React.FC<SearchProps> = ({ className = '' }) => {
+export const SearchInput: React.FC<SearchProps> = ({
+  className = '',
+  onIsSearchOpen,
+  isSearchOpen,
+}) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') || '';
   const [inputValue, setInputValue] = useState(query);
   const [products, setProducts] = useState<SimpleProduct[]>([]);
   const [placeholder, setPlaceholder] = useState('');
   const [showResult, setShowResult] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(isSearchOpen ? true : false);
   const { data: productsFromServer } = useProducts(getProducts);
   const navigate = useNavigate();
   const location = useLocation();
-  const { setSearchProducts, setResultInfo, clearProducts } = useSearchProducts();
+  const { setSearchProducts, setResultInfo, clearProducts } =
+    useSearchProducts();
 
   useEffect(() => {
     setInputValue(query);
   }, [query]);
 
   useEffect(() => {
-    if (query.length > 0) {
+    if (isFocused && query.length > 0) {
       setShowResult(true);
     } else {
       setShowResult(false);
@@ -127,6 +134,13 @@ export const SearchInput: React.FC<SearchProps> = ({ className = '' }) => {
     [searchParams, setSearchParams],
   );
 
+  const handleOnBlur = () => {
+    setIsFocused(false);
+    if (onIsSearchOpen) {
+      onIsSearchOpen(false);
+    }
+  };
+
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
     updateQueryInUrl(event.target.value);
@@ -134,13 +148,16 @@ export const SearchInput: React.FC<SearchProps> = ({ className = '' }) => {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (onIsSearchOpen) {
+      onIsSearchOpen(false);
+    }
     const fixedQuery = inputValue.trim();
     if (fixedQuery.length === 0) return;
 
     if (products.length > 0) {
       setSearchProducts(products);
     } else {
-      clearProducts()
+      clearProducts();
     }
     setResultInfo(fixedQuery);
 
@@ -165,7 +182,8 @@ export const SearchInput: React.FC<SearchProps> = ({ className = '' }) => {
           value={inputValue.trimStart()}
           onChange={handleQueryChange}
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onBlur={handleOnBlur}
+          autoFocus={isSearchOpen}
           placeholder={`Search for ${placeholder}|`}
           className="
             w-full h-12 pl-4 pr-12 

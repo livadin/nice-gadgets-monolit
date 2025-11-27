@@ -38,7 +38,7 @@ export const SearchResultPage: React.FC = () => {
           onPerPageChange={handlePerPageChange}
           onSortChange={handleSortChange}
         />
-      : <div className="h2 text-primary">{`No search results for "${resultInfo}"`}</div>}
+      : <div className="h2 mt-[100px] lg:mt-0 text-primary">{`No search results for "${resultInfo}"`}</div>}
     </>
   );
 };
