@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import { useCurrentProduct } from './useCurrentProduct';
 import { useFilteredProducts } from './useFilteredProducts';
@@ -11,11 +11,12 @@ import {
 } from '../stores/useProductsControls';
 import type { CategoryProduct, SimpleProduct } from '../types/CategoryProduct';
 import { useProducts } from './useProduct';
+import { useSearchProducts } from '../stores/useSearchProducts';
 
 export const useCategoryPage = (
   category: CategoryKey,
   getAllProducts: () => Promise<SimpleProduct[]>,
-  getCategoryProducts: () => Promise<CategoryProduct[]>
+  getCategoryProducts: () => Promise<CategoryProduct[]>,
 ) => {
   const { data: products, isLoading, hasError } = useProducts(getAllProducts);
   const { data: categoryProducts } = useProducts(getCategoryProducts);
@@ -52,12 +53,26 @@ export const useCategoryPage = (
     });
   };
 
-  const categoryItems = useMemo(() => {
-    return products?.filter((p) => p.category === category) ?? [];
-  }, [products, category]);
+   const { pathname } = useLocation();
+   const [searchParams] = useSearchParams();
+   const queryParam = searchParams.get('query') || '';
+
+   const { products: searchProducts, resultInfo } = useSearchProducts();
+
+   const isOnSearchResultsPage = pathname === '/searchResults';
+   const useSearchStore =
+     isOnSearchResultsPage &&
+     Array.isArray(searchProducts) &&
+     searchProducts.length > 0 &&
+     (resultInfo === '' || resultInfo === queryParam || queryParam.length >= 0);
+
+   const sourceItems = useMemo(() => {
+     if (useSearchStore) return searchProducts;
+     return products?.filter((p) => p.category === category) ?? [];
+   }, [useSearchStore, searchProducts, products, category]);
 
   const { products: filteredProducts, totalAfterFilter } = useFilteredProducts(
-    categoryItems,
+    sourceItems,
     category,
   );
 

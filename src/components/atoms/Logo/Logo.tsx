@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 type LogoProps = {
   className?: string;
 };
 
 export const Logo: React.FC<LogoProps> = ({ className = '' }) => {
   return (
-    <a href="/">
+    <Link to={'/'}>
       <span className={`flex items-center text-lg text-primary transition-colors duration-300 ${className}`}>
         <span className="uppercase">m</span>
 
@@ -29,6 +31,6 @@ export const Logo: React.FC<LogoProps> = ({ className = '' }) => {
 
         <span className="uppercase font-semibold">nolit</span>
       </span>
-    </a>
+    </Link>
   );
 };
