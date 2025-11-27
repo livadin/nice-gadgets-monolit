@@ -137,7 +137,7 @@
     "colorsAvailable": ["space gray", "silver", "gold"],
     "color": "gold",
     "images": [
-      "/gadgets//nice-gadgets-monolit/gadgets/img/accessories/apple-watch-series-3/gold/00.webp",
+      "/nice-gadgets-monolit/gadgets/img/accessories/apple-watch-series-3/gold/00.webp",
       "/nice-gadgets-monolit/gadgets/img/accessories/apple-watch-series-3/gold/01.webp",
       "/nice-gadgets-monolit/gadgets/img/accessories/apple-watch-series-3/gold/02.webp"
     ],
@@ -806,7 +806,7 @@
     "capacity": "44mm",
     "priceRegular": 429,
     "priceDiscount": 399,
-    "colorsAvailable": ["space gray", "silver", "gold"],
+    "colorsAvailable": ["spacegray", "silver", "gold"],
     "color": "gold",
     "images": [
       "/nice-gadgets-monolit/gadgets/img/accessories/apple-watch-series-5/gold/00.webp",
