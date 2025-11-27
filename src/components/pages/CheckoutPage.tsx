@@ -40,21 +40,36 @@ export const CheckoutPage: React.FC = () => {
 
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, boolean>>>({});
 
+  // --- ОБРОБКА ВВЕДЕННЯ ---
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
+    // Логіка для телефону: тільки цифри та "+"
+    if (name === 'phone') {
+      if (!/^[0-9+]*$/.test(value)) {
+        return; // Ігноруємо недопустимі символи
+      }
+      if (value.length > 13) {
+        return; // Обмежуємо довжину
+      }
+    }
+
     setFormData((prev) => ({ ...prev, [name]: value }));
     
+    // Прибираємо помилку при введенні
     if (errors[name as keyof FormData]) {
       setErrors((prev) => ({ ...prev, [name]: false }));
     }
   };
 
+  // --- ОБРОБКА ОПЛАТИ (ВАЛІДАЦІЯ) ---
   const handlePayment = () => {
     if (cart.length === 0) return;
 
     const newErrors: Partial<Record<keyof FormData, boolean>> = {};
     let hasError = false;
 
+    // 1. Перевірка на порожні поля
     Object.keys(formData).forEach((key) => {
       const fieldKey = key as keyof FormData;
       if (!formData[fieldKey].trim()) {
@@ -63,10 +78,23 @@ export const CheckoutPage: React.FC = () => {
       }
     });
 
+    // 2. Додаткова перевірка Email (має містити @ та крапку)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (formData.email && !emailRegex.test(formData.email)) {
+      newErrors.email = true;
+      hasError = true;
+    }
+
+    // 3. Додаткова перевірка Телефону (мінімум 10 символів)
+    if (formData.phone && formData.phone.length < 10) {
+      newErrors.phone = true;
+      hasError = true;
+    }
+
     setErrors(newErrors);
 
     if (hasError) {
-      return;
+      return; // Якщо є помилки, не продовжуємо
     }
 
     checkout(); 
@@ -149,7 +177,7 @@ export const CheckoutPage: React.FC = () => {
                     />
                     </Link>
                     
-                    {/* --- TEXT INFO (Name & Price calculation) --- */}
+                    {/* --- TEXT INFO --- */}
                     <div className="flex-grow flex flex-col justify-center items-center md:items-start text-center md:text-left w-full">
                     <Link 
                         to={`/${item.category}/${item.itemId}`}
@@ -274,6 +302,8 @@ export const CheckoutPage: React.FC = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
+                    inputMode="tel"
+                    maxLength={13}
                     className={cn(baseInputClass, errors.phone ? 'border-red-500 ring-red-500/20 animate-shake' : 'border-gray-200 focus:ring-purple-500/50')} 
                     placeholder="+380..." 
                   />
