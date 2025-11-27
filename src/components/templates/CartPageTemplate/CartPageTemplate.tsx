@@ -5,7 +5,7 @@ import { ProductCardCart } from '../../organisms/ProductCardCart';
 import type { CartItem } from '../../../stores/useCartStore';
 import { CartProductSkeleton } from '../../molecules/Skeleton/CartProductSkeleton';
 import { CartSummarySkeleton } from '../../molecules/Skeleton/CartSummarySkeleton';
-
+import cn from 'classnames';
 
 type CartPageTemplateProps = {
   cartProducts: CartItem[];
@@ -21,46 +21,52 @@ export const CartPageTemplate: React.FC<CartPageTemplateProps> = ({
   return (
     <section className="mx-auto flex justify-center">
       <div className="w-full px-4 md:px-0">
-        <BackButton text="Back" className="mt-[25px] md:mt-9" />
+        <BackButton
+          text="Back"
+          className="mt-[25px] md:mt-9"
+        />
 
         <h1 className="sm:text-[32px] md:text-[48px] mt-6 md:mt-4 font-bold text-primary tracking-tight">
           Cart
         </h1>
 
-        <div className="box-border lg:flex items-start my-8 gap-4">
-          <div className="flex flex-col gap-4 sm:mb-8 lg:w-[752px]">
-            {hasProducts ? (
+        <div
+          className={cn('box-border my-8 gap-4', {
+            'lg:flex lg:items-start': hasProducts,
+            'flex justify-center': !hasProducts,
+          })}
+        >
+          <div
+            className={cn('flex flex-col gap-4 sm:mb-8', {
+              'lg:w-[752px]': hasProducts,
+              'w-full items-center': !hasProducts,
+            })}
+          >
+            {hasProducts ?
               cartProducts.map((product) => (
-                <div
-                  key={product.id}
-                >
+                <div key={product.id}>
                   {isLoading || !product ?
-                <CartProductSkeleton
-                  />
-                : <ProductCardCart
-                    cartProduct={product}
-                  />}
+                    <CartProductSkeleton />
+                  : <ProductCardCart cartProduct={product} />}
                 </div>
               ))
-            ) : (
-              <div className="flex flex-col items-center justify-center py-20">
-                  <img
-                    src="/nice-gadgets-monolit/gadgets/img/cart-is-empty.png"
-                    alt="No cart items"
-                    className="w-40 opacity-80"
-                  />
-                  <p className="mt-6 text-secondary text-lg font-semibold">
-                    Your cart is empty
-                  </p>
+            : <div className="flex flex-col items-center justify-center py-20">
+                <img
+                  src="/nice-gadgets-monolit/gadgets/img/cart-is-empty.png"
+                  alt="No cart items"
+                  className="w-40 opacity-80"
+                />
+                <p className="mt-6 text-secondary text-lg font-semibold">
+                  Your cart is empty
+                </p>
               </div>
-            )}
+            }
           </div>
 
-          {hasProducts && 
-        (isLoading 
-          ? <CartSummarySkeleton /> 
-          : <CartSummary cartProducts={cartProducts} />)
-      }
+          {hasProducts &&
+            (isLoading ?
+              <CartSummarySkeleton />
+            : <CartSummary cartProducts={cartProducts} />)}
         </div>
       </div>
     </section>
