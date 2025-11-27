@@ -11,73 +11,141 @@ export interface CartItem extends SimpleProduct {
 
 interface CartState {
   cart: CartItem[];
+  userId: string | null;
   addToCart: (product: SimpleProduct) => void;
   removeFromCart: (itemId: number | string) => void;
   increaseQuantity: (itemId: number | string) => void;
   decreaseQuantity: (itemId: number | string) => void;
   clearCart: () => void;
   checkout: () => void;
+  setUserId: (userId: string | null) => void;
+  loadUserCart: (userId: string) => void;
 }
 
 export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       cart: [],
+      userId: null,
+
+      setUserId: (userId) => {
+        const currentUserId = get().userId;
+        
+        if (!userId && currentUserId) {
+          set({ cart: [], userId: null });
+          return;
+        }
+
+        if (userId && userId !== currentUserId) {
+          set({ userId });
+          get().loadUserCart(userId);
+        }
+      },
+
+      loadUserCart: (userId) => {
+        const storageKey = `cart_${userId}`;
+        const saved = localStorage.getItem(storageKey);
+        
+        if (saved) {
+          try {
+            const cart = JSON.parse(saved);
+            set({ cart, userId });
+          } catch (error) {
+            console.error('Error load shop:', error);
+            set({ cart: [], userId });
+          }
+        } else {
+          set({ cart: [], userId });
+        }
+      },
 
       addToCart: (product) => {
-        const { cart } = get();
+        const { cart, userId } = get();
+
         const existingItem = cart.find((item) => item.itemId === product.itemId);
 
+        let updated: CartItem[];
+
         if (existingItem) {
-          set({
-            cart: cart.map((item) =>
-              item.itemId === product.itemId
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-            ),
-          });
+          updated = cart.map((item) =>
+            item.itemId === product.itemId
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          );
         } else {
-          set({ cart: [...cart, { ...product, quantity: 1 }] });
+          updated = [...cart, { ...product, quantity: 1 }];
+        }
+
+        set({ cart: updated });
+
+        if (userId) {
+          localStorage.setItem(`cart_${userId}`, JSON.stringify(updated));
         }
 
         notifyAddToCart(product.name);
       },
 
       removeFromCart: (itemId) => {
-        const { cart } = get();
-        const removedItem = cart.find(item => item.itemId === itemId);
+        const { cart, userId } = get();
 
-        set((state) => ({
-          cart: state.cart.filter((item) => item.itemId !== itemId),
-        }))
+        const removedItem = cart.find(item => item.itemId === itemId);
+        const updated = cart.filter((item) => item.itemId !== itemId);
+
+        set({ cart: updated });
+
+        if (userId) {
+          localStorage.setItem(`cart_${userId}`, JSON.stringify(updated));
+        }
 
         if (removedItem) {
           notifyRemoveFromCart(removedItem.name);
         }
       },
 
-      increaseQuantity: (itemId) =>
-        set((state) => ({
-          cart: state.cart.map((item) =>
-            item.itemId === itemId
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          ),
-        })),
+      increaseQuantity: (itemId) => {
+        const { cart, userId } = get();
 
-      decreaseQuantity: (itemId) =>
-        set((state) => ({
-          cart: state.cart.map((item) =>
-            item.itemId === itemId && item.quantity > 1
-              ? { ...item, quantity: item.quantity - 1 }
-              : item
-          ),
-        })),
+        const updated = cart.map((item) =>
+          item.itemId === itemId
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
 
-      clearCart: () => set({ cart: [] }),
+        set({ cart: updated });
+
+        if (userId) {
+          localStorage.setItem(`cart_${userId}`, JSON.stringify(updated));
+        }
+      },
+
+      decreaseQuantity: (itemId) => {
+        const { cart, userId } = get();
+
+        const updated = cart.map((item) =>
+          item.itemId === itemId && item.quantity > 1
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        );
+
+        set({ cart: updated });
+
+        if (userId) {
+          localStorage.setItem(`cart_${userId}`, JSON.stringify(updated));
+        }
+      },
+
+      clearCart: () => {
+        const { userId } = get();
+
+        set({ cart: [] });
+
+        if (userId) {
+          localStorage.setItem(`cart_${userId}`, JSON.stringify([]));
+        }
+      },
 
       checkout: () => {
-        const { cart } = get();
+        const { cart, userId } = get();
 
         if (!cart.length) {
           show()(
@@ -89,11 +157,18 @@ export const useCartStore = create<CartState>()(
 
         set({ cart: [] });
 
+        if (userId) {
+          localStorage.setItem(`cart_${userId}`, JSON.stringify([]));
+        }
+
         notifyCheckoutSuccess();
       },
     }),
     {
       name: 'cart-storage',
+      partialize: (state) => ({ 
+        userId: state.userId 
+      }),
     }
   )
 );

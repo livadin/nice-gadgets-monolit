@@ -8,7 +8,9 @@ export const HeaderActions: React.FC = () => {
   const favouritesCount = useFavouritesStore(
     (state) => state.favourites.length,
   );
-  const cartCount = useCartStore((state) => state.cart.length);
+  const cartCount = useCartStore((state) => 
+    state.cart.reduce((total, item) => total + item.quantity, 0)
+  );
 
   return (
     <div className="hidden md:flex items-center h-full">
