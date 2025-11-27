@@ -173,19 +173,25 @@ export const ItemCard: React.FC<ItemCardProps> = ({
         </h3>
       </div>
 
-      <div className="flex flex-col md:flex-row justify-between md:gap-16 mb-20">
-        <div className="flex flex-col md:flex-row gap-6 mb-10 md:mb-0">
-          <div className="flex flex-row md:flex-col gap-3 w-full md:w-20 order-2 md:order-1 justify-center md:justify-start">
+      {/* --- MAIN PRODUCT BLOCK --- */}
+      <div className="flex flex-col md:flex-row items-start justify-center gap-8 md:gap-6 lg:gap-12 xl:gap-16 mb-20 w-full">
+        
+        {/* --- LEFT COLUMN (IMAGES) --- */}
+        <div className="w-full md:flex-1 md:w-1/2 max-w-[600px] flex flex-col-reverse items-center md:items-start md:flex-row gap-4 md:gap-6 lg:gap-8 mx-auto md:mx-0">
+          
+          {/* Thumbnails */}
+          <div className="flex flex-row md:flex-col gap-3 justify-center md:justify-start flex-shrink-0">
             {itemProduct.images.slice(0, 5).map((img, index) => (
               <img
                 key={index}
                 src={img}
                 alt={itemProduct.name}
-                className={`h-14 w-14 object-contain cursor-pointer border md:h-16 md:w-16 lg:h-20 lg:w-20 transition-transform duration-300 border-element hover:border-secondary active:border-primary p-2 rounded-none ${
-                  mainImage === img ?
-                    'scale-110 border-primary'
-                  : 'hover:scale-110'
-                }`}
+                className={`
+                  w-14 h-14 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20 
+                  object-contain cursor-pointer border transition-all duration-300 
+                  border-element hover:border-secondary active:border-primary p-1 bg-white
+                  ${mainImage === img ? 'border-primary' : ''}
+                `}
                 onClick={() => {
                   setMainImage(img);
                   swiperRef.current?.slideTo(index);
@@ -193,7 +199,9 @@ export const ItemCard: React.FC<ItemCardProps> = ({
               />
             ))}
           </div>
-          <div className="w-full sm:w-[288px] md:w-[287px] lg:w-[464px] aspect-square flex items-center justify-center overflow-hidden mx-auto md:mx-0 order-1 md:order-2">
+
+          {/* Main Image Swiper */}
+          <div className="w-full max-w-[320px] md:max-w-full aspect-square flex items-center justify-center overflow-hidden">
             <Swiper
               spaceBetween={0}
               slidesPerView={1}
@@ -221,13 +229,15 @@ export const ItemCard: React.FC<ItemCardProps> = ({
           </div>
         </div>
 
-        <div className="flex flex-col gap-5 md:w-[48%]">
-          <div className="w-full max-w-[320px]">
+        {/* --- RIGHT COLUMN (DETAILS) --- */}
+        <div className="w-full md:flex-1 md:w-1/2 flex flex-col items-end md:items-start">
+          <div className="w-full max-w-none md:max-w-[400px] lg:max-w-[400px] xl:max-w-[480px]">
+            
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-xs text-secondary">Available colors</h3>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex gap-2 mb-8">
               {availableColor.map((color, index) => (
                 <ColorButton
                   key={index}
@@ -238,7 +248,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({
               ))}
             </div>
 
-            <div className="border-t border-element mt-8 pt-4">
+            <div className="border-t border-element pt-6 mb-8">
               <h3 className="text-xs text-secondary mb-2">Select capacity</h3>
               <div className="flex gap-2 flex-wrap">
                 {itemProduct.capacityAvailable.map((cap, index) => (
@@ -247,14 +257,14 @@ export const ItemCard: React.FC<ItemCardProps> = ({
                     page={cap}
                     selected={itemProduct.capacity === cap}
                     onClick={() => onCapacityClick(cap)}
-                    className="text-[12px] px-6 py-2.5"
+                    className="text-[12px] px-4 py-2"
                   />
                 ))}
               </div>
             </div>
 
-            <div className="border-t border-element pt-4 mt-8">
-              <div className="flex items-center gap-4 mb-4">
+            <div className="border-t border-element pt-6">
+              <div className="flex items-center gap-4 mb-6">
                 <span className="text-primary text-[32px] font-extrabold">
                   ${itemProduct.priceDiscount || itemProduct.priceRegular}
                 </span>
@@ -265,35 +275,34 @@ export const ItemCard: React.FC<ItemCardProps> = ({
                 )}
               </div>
 
-              <div className="flex items-center gap-3 lg:gap-4">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="flex-1 h-12">
                 {isAddedToCart ?
-                  <Link
-                    to="/cart"
-                    className="flex-1 max-w-[263px] h-12"
-                  >
+                  <Link to="/cart" className="block w-full h-full">
                     <PrimaryButton
                       buttonText="Go to cart"
                       selected={isAddedToCart}
                       onClick={() => {}}
-                      className="flex-1 w-full max-w-[263px] h-12"
+                      className="w-full h-full"
                     />
                   </Link>
                 : <PrimaryButton
                     buttonText="Add to cart"
                     selected={isAddedToCart}
                     onClick={handleCartClick}
-                    className="flex-1 w-full max-w-[263px] h-12"
+                    className="w-full h-full"
                   />
                 }
+                </div>
                 <FavoriteButton
-                  className="w-12 h-12"
+                  className="w-12 h-12 flex-shrink-0"
                   selected={isFavorite}
                   onClick={handleFavoriteClick}
                 />
               </div>
             </div>
 
-            <div className="text-xs text-right space-y-2 mt-8">
+            <div className="text-xs space-y-2">
               <div className="flex justify-between">
                 <span className="text-secondary">Screen</span>
                 <span className="text-primary">{itemProduct.screen}</span>
@@ -315,9 +324,10 @@ export const ItemCard: React.FC<ItemCardProps> = ({
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-10">
-        <div className="w-auto lg:w-[48%]">
-          <h3 className="text-2xl font-extrabold mb-4 text-primary">About</h3>
+      {/* --- INFO BLOCKS (About / Tech Specs) --- */}
+      <div className="flex flex-col lg:flex-row justify-between gap-10 lg:gap-16">
+        <div className="w-full lg:flex-1">
+          <h3 className="text-2xl font-extrabold mb-6 text-primary">About</h3>
           {itemProduct.description.map((desc, i) => (
             <div
               key={i}
@@ -326,7 +336,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({
               <h4 className="font-bold text-[16px] lg:text-xl mb-4 text-primary">
                 {desc.title}
               </h4>
-              <div className="text-secondary font-medium text-[14px] space-y-2">
+              <div className="text-secondary font-medium text-[14px] space-y-4">
                 {desc.text.map((paragraph, j) => (
                   <p key={j}>{paragraph}</p>
                 ))}
@@ -335,12 +345,12 @@ export const ItemCard: React.FC<ItemCardProps> = ({
           ))}
         </div>
 
-        <div className="w-auto lg:w-[48%] mb-12 lg:mb-14">
-          <h3 className="text-2xl font-extrabold mb-4 text-primary">
+        <div className="w-full lg:flex-1 mb-12">
+          <h3 className="text-2xl font-extrabold mb-6 text-primary">
             Tech specs
           </h3>
-          <div className="border-t border-element text-[14px] text-right space-y-2 pt-2">
-            <div className="flex justify-between mt-6">
+          <div className="border-t border-element text-[14px] space-y-2 pt-4">
+            <div className="flex justify-between">
               <span className="text-secondary">Screen</span>
               <span className="text-primary">{itemProduct.screen}</span>
             </div>
@@ -380,7 +390,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({
             
             <div className="flex justify-between">
               <span className="text-secondary">Cell</span>
-              <span className="text-primary wrap-break-words max-w-[60%]">
+              <span className="text-primary text-right max-w-[60%]">
                 {itemProduct.cell.join(', ')}
               </span>
             </div>

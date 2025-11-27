@@ -29,7 +29,7 @@ export const SearchButtonWithInput: React.FC<SearchButtonWithInputProps> = ({ cl
 
                 animate-underline
             ">
-                <SearchInput />
+                <SearchInput onIsSearchOpen={setIsSearchOpen} isSearchOpen={isSearchOpen}/>
             </div>
           )}
         </div>

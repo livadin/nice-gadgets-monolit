@@ -20,9 +20,10 @@ export const MainLayout = () => {
           mx-auto
           w-full
           px-4 
-          md:px-0 
-          md:max-w-[592px] 
+          md:px-6 
+          md:max-w-full
           lg:max-w-[1136px]
+          lg:px-4
         "
       >
         <Outlet key={token}/>
