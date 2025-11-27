@@ -33,28 +33,33 @@ export const AppRoutes = () => (
       <Route path='/searchResults' element={<SearchResultPage />}/>
       <Route path='/rights' element={<RightsPage />}/>
       <Route path='/checkout' element={<CheckoutPage />}/>
-      {/* <Route path="*" element={<NotFoundPage />} /> */}
+      <Route path="*" element={<NotFoundPage />} />
     </Route>
 
-    <Route path='/sign-in/*' element={
-      <SignedOut>
-        <SignIn 
-          routing="path"
-          path="/sign-in"
-          signUpUrl="/sign-up"
-        />
-      </SignedOut>
-    } />
-    
-    <Route path='/sign-up' element={
-      <SignedOut>
-        <SignUp 
-          routing="path"
-          path="/sign-up"
-          signInUrl="/sign-in"
-        />
-      </SignedOut>
-    } />
-    
+    <Route
+        path="/sign-in/*"
+        element={
+          <SignedOut>
+            <SignIn
+              routing="path"
+              path="/sign-in"
+              signUpUrl="/sign-up"
+            />
+          </SignedOut>
+        }
+      />
+
+      <Route
+        path="/sign-up/*"
+        element={
+          <SignedOut>
+            <SignUp
+              routing="path"
+              path="/sign-up"
+              signInUrl="/sign-in"
+            />
+          </SignedOut>
+        }
+      />
   </Routes>
 );
