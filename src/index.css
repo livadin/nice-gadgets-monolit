@@ -88,6 +88,13 @@ html.dark {
   .body-text {
     @apply text-secondary font-normal leading-[21px] text-[14px];
   }
+  .scrollbar::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 rounded;
+  }
 }
 
 html {

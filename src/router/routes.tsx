@@ -9,6 +9,7 @@ import { MainLayout } from '../components/layouts/MainLayout';
 import { FavouritePage } from '../components/pages/FavouritesPage';
 import { CartPage } from '../components/pages/CartPage';
 import { ContactsPage } from '../components/pages/ContactsPage';
+import { SearchResultPage } from '../components/pages/SearchResultPage';
 import { RightsPage } from '../components/pages/RightsPage';
 import { CheckoutPage } from '../components/pages/CheckoutPage';
 
@@ -28,6 +29,7 @@ export const AppRoutes = () => (
       <Route path="/favourites" element={<FavouritePage />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path='/contacts' element={<ContactsPage />}/>
+      <Route path='/searchResults' element={<SearchResultPage />}/>
       <Route path='/rights' element={<RightsPage />}/>
       <Route path='/checkout' element={<CheckoutPage />}/>
       <Route path="*" element={<NotFoundPage />} />

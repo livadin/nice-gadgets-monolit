@@ -42,7 +42,7 @@ export const ContactsPage: React.FC = () => {
     },
     {
       name: 'Marta Vatamaniuk',
-      role: 'developer',
+      role: 'Developer',
       text: 'A developer who thinks creatively and consciously seeks ways to solve problems. I enjoy turning complex tasks into clear and effective solutions.',
       img: '/nice-gadgets-monolit/gadgets/img/developers/MartaVatamaniuk.jpg',
       git: 'https://github.com/vtmnkmarta',
@@ -52,7 +52,7 @@ export const ContactsPage: React.FC = () => {
     },
     {
       name: 'Bohdan Diatliuk',
-      role: 'developer',
+      role: 'Developer',
       text: 'I’m a developer who approaches tasks with curiosity and logic, always looking for smart and practical ways to overcome challenges. I enjoy transforming intricate ideas into simple, reliable, and well-structured solutions.',
       img: '/nice-gadgets-monolit/gadgets/img/developers/BohdanDiatliuk.jpg',
       git: 'https://github.com/Bohdan-Diatliuk',
