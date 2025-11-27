@@ -29,7 +29,7 @@ export const Header: React.FC = () => {
         </div>
 
         <div className="hidden lg:block w-[320px]">
-          <SearchInput onSearch={() => {}} />
+          <SearchInput />
         </div>
 
         <div className="flex items-center h-full">
