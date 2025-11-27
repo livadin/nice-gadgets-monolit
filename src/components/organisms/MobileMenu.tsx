@@ -26,15 +26,15 @@ export const MobileMenu: React.FC<Props> = ({
         isOpen ? "translate-x-0" : "translate-x-full"
       )}
     >
-      <div className="flex items-center justify-between h-12 border-b border-element pl-4 pr-0">
+      <div className="flex items-center justify-between h-12 md:h-20 border-b border-element pl-4 pr-0">
         <Logo />
-        <CloseButton onClick={onClose} className="h-full w-12"/>
+        <CloseButton onClick={onClose} className="h-full w-12 md:w-20"/>
       </div>
 
       <div className="
-        flex flex-col items-center
-        mt-6 space-y-4
-        text-sm font-extrabold uppercase
+        flex flex-col items-center md:justify-center h-screen
+        mt-6 md:mt-0 space-y-4 md:space-y-12
+        text-sm md:text-3xl font-extrabold uppercase
       ">
         {NAV_ITEMS.map(item => (
           <NavLink
@@ -76,19 +76,19 @@ export const MobileMenu: React.FC<Props> = ({
         <NavLink
           to="/favourites"
           onClick={onClose}
-          className="relative flex-1 h-12 flex items-center justify-center"
+          className="relative flex-1 h-12 md:h-20 flex items-center justify-center"
         >
           {({ isActive }) => (
             <>
             {
               favouritesCount > 0 ? (
                 <FavoriteButtonWithBadge
-                  className="flex-1 h-12"
+                  className="flex-1 h-12 md:h-20"
                   count={favouritesCount}
                 />
               ) : (
                 <FavoriteButtonWithBadge
-                  className="flex-1 h-12"
+                  className="flex-1 h-12 md:h-20"
                 />
               )
             }
@@ -109,19 +109,19 @@ export const MobileMenu: React.FC<Props> = ({
         <NavLink
           to="/cart"
           onClick={onClose}
-          className="relative flex-1 h-12 flex items-center justify-center"
+          className="relative flex-1 h-12 md:h-20 flex items-center justify-center"
         >
           {({ isActive }) => (
             <>
             {
               cartCount > 0 ? (
                 <ShoppingBagWithBadgeButton
-                  className="flex-1 h-12"
+                  className="flex-1 h-12 md:h-20"
                   countBag={cartCount}
                 />
               ) : (
                 <ShoppingBagWithBadgeButton
-                  className="flex-1 h-12"
+                  className="flex-1 h-12 md:h-20"
                 />
               )
             }

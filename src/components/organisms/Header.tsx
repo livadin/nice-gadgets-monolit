@@ -68,7 +68,7 @@ export const Header: React.FC = () => {
             </SignedIn>
 
           <MenuButton
-            className="md:hidden h-full w-12 lg:w-16 transition-colors duration-300"
+            className="lg:hidden h-full w-12 lg:w-16 transition-colors duration-300"
             onClick={() => setIsMenuOpen(true)}
           />
         </div>

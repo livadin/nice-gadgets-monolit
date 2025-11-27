@@ -18,7 +18,7 @@ export const Navbar: React.FC<Props> = ({ className }) => {
   return (
     <nav
       className={cn(
-        "hidden md:flex items-center h-full text-xs font-extrabold text-secondary md:gap-8 lg:gap-16",
+        "hidden lg:flex items-center h-full text-xs font-extrabold text-secondary md:gap-8 lg:gap-16",
         className
       )}
     >

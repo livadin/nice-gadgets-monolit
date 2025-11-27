@@ -166,9 +166,6 @@ export const useCartStore = create<CartState>()(
     }),
     {
       name: 'cart-storage',
-      partialize: (state) => ({ 
-        userId: state.userId 
-      }),
     }
   )
 );
