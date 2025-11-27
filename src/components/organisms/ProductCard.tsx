@@ -97,7 +97,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 buttonText="Go to cart"
                 selected={isAdded}
                 onClick={() => {}}
-                className="flex-1 w-full max-w-[263px] h-10"
+                className="flex-1 w-full text-sm max-w-[263px] h-10"
               />
             </Link>
           ) : (
@@ -105,7 +105,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               buttonText="Add to cart"
               selected={isAdded}
               onClick={handleAddToCart}
-              className="flex-1 w-full max-w-[263px] h-10"
+              className="flex-1 w-full text-sm max-w-[263px] h-10"
             />
           )}
         </div>

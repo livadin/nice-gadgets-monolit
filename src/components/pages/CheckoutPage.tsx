@@ -40,8 +40,20 @@ export const CheckoutPage: React.FC = () => {
 
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, boolean>>>({});
 
+  // --- INPUT HANDLING ---
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
+    // --- PHONE LOGIC ---
+    if (name === 'phone') {
+      if (!/^[0-9+]*$/.test(value)) {
+        return;
+      }
+      if (value.length > 13) {
+        return;
+      }
+    }
+
     setFormData((prev) => ({ ...prev, [name]: value }));
     
     if (errors[name as keyof FormData]) {
@@ -49,12 +61,14 @@ export const CheckoutPage: React.FC = () => {
     }
   };
 
+  // --- PAYMENT HANDLING (VALIDATION) ---
   const handlePayment = () => {
     if (cart.length === 0) return;
 
     const newErrors: Partial<Record<keyof FormData, boolean>> = {};
     let hasError = false;
 
+    // --- 1. EMPTY FIELDS CHECK ---
     Object.keys(formData).forEach((key) => {
       const fieldKey = key as keyof FormData;
       if (!formData[fieldKey].trim()) {
@@ -62,6 +76,19 @@ export const CheckoutPage: React.FC = () => {
         hasError = true;
       }
     });
+
+    // --- 2. EMAIL VALIDATION ---
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (formData.email && !emailRegex.test(formData.email)) {
+      newErrors.email = true;
+      hasError = true;
+    }
+
+    // --- 3. PHONE VALIDATION ---
+    if (formData.phone && formData.phone.length < 10) {
+      newErrors.phone = true;
+      hasError = true;
+    }
 
     setErrors(newErrors);
 
@@ -76,7 +103,7 @@ export const CheckoutPage: React.FC = () => {
   const cardClassName = cn(
     'group p-6 md:p-8 w-full h-auto rounded-2xl relative', 
     'text-primary flex flex-col gap-6', 
-    'transition-all duration-300 ease-linear',
+    'transition-shadow duration-300 ease-linear',
     'border',
     {
       'bg-white-card': theme === 'light',
@@ -149,7 +176,7 @@ export const CheckoutPage: React.FC = () => {
                     />
                     </Link>
                     
-                    {/* --- TEXT INFO (Name & Price calculation) --- */}
+                    {/* --- TEXT INFO --- */}
                     <div className="flex-grow flex flex-col justify-center items-center md:items-start text-center md:text-left w-full">
                     <Link 
                         to={`/${item.category}/${item.itemId}`}
@@ -210,7 +237,7 @@ export const CheckoutPage: React.FC = () => {
 
           {/* --- RIGHT COLUMN: DELIVERY FORM  --- */}
           <article className={cn(cardClassName, "h-fit sticky top-24")}>
-            <div>
+            <div className="relative z-10">
               <h2 className="text-2xl font-bold border-b border-gray-400/30 pb-4 mb-6">Delivery Info</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-primary">
                 
@@ -274,6 +301,8 @@ export const CheckoutPage: React.FC = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
+                    inputMode="tel"
+                    maxLength={13}
                     className={cn(baseInputClass, errors.phone ? 'border-red-500 ring-red-500/20 animate-shake' : 'border-gray-200 focus:ring-purple-500/50')} 
                     placeholder="+380..." 
                   />
