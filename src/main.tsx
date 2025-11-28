@@ -11,20 +11,20 @@ const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ClerkProvider
-      publishableKey={PUBLISHABLE_KEY} 
-      appearance={{
-         baseTheme: dark,
-         variables: {
+    <HashRouter>
+      <ClerkProvider
+        publishableKey={PUBLISHABLE_KEY}
+        appearance={{
+          baseTheme: dark,
+          variables: {
             colorBackground: 'var(--clerk-bg)',
-         },
-      }}
-    >
-      <ClerkSyncProvider>
-        <HashRouter>
+          },
+        }}
+      >
+        <ClerkSyncProvider>
           <App />
-        </HashRouter>
-      </ClerkSyncProvider>
-    </ClerkProvider>
+        </ClerkSyncProvider>
+      </ClerkProvider>
+    </HashRouter>
   </StrictMode>,
-)
+);
