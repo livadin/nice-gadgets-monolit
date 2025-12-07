@@ -38,7 +38,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           className="h-[200px] flex items-center justify-center mb-6"
         >
           <img
-            src={product.image}
+            src={import.meta.env.BASE_URL + product.image}
             alt={product.name}
             className="h-full w-full text-primary object-contain transition-all duration-300 ease-linear group-hover:scale-[1.1]"
           />

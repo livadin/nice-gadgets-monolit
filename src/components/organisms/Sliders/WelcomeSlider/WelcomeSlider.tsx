@@ -13,19 +13,19 @@ import { ArrowRightButton } from '../../../atoms/UtilityButton/ArrowRightButton'
 const BANNERS: WelcomeBanner[] = [
   {
     id: 0,
-    pathVideo: '/nice-gadgets-monolit/gadgets/img/banners/WelcomeSliderBannerPhoneVideo.MP4',
-    pathImg: '/nice-gadgets-monolit/gadgets/img/banners/WelcomeSliderBannerPhoneImg.jpg',
+    pathVideo: 'gadgets/img/banners/WelcomeSliderBannerPhoneVideo.MP4',
+    pathImg: 'gadgets/img/banners/WelcomeSliderBannerPhoneImg.jpg',
   },
   {
     id: 1,
-    pathVideo: '/nice-gadgets-monolit/gadgets/img/banners/WelcomeSliderBannerIPadVideo.MP4',
-    pathImg: '/nice-gadgets-monolit/gadgets/img/banners/WelcomeSliderBannerIPadImg.jpg',
+    pathVideo: 'gadgets/img/banners/WelcomeSliderBannerIPadVideo.MP4',
+    pathImg: 'gadgets/img/banners/WelcomeSliderBannerIPadImg.jpg',
   },
   
   {
     id: 2,
-    pathVideo: '/nice-gadgets-monolit/gadgets/img/banners/WelcomeSliderBannerAppleWatchVideo.MP4',
-    pathImg: '/nice-gadgets-monolit/gadgets/img/banners/WelcomeSliderBannerAppleWatchImg.jpg',
+    pathVideo: 'gadgets/img/banners/WelcomeSliderBannerAppleWatchVideo.MP4',
+    pathImg: 'gadgets/img/banners/WelcomeSliderBannerAppleWatchImg.jpg',
   },
 ];
 

@@ -1,8 +1,7 @@
 import axios from 'axios';
 import type { CategoryProduct, SimpleProduct } from '../types/CategoryProduct';
 
-const BASE_URL =
-  'https://fs-aug25-monolit-digital.github.io/nice-gadgets-monolit/gadgets/';
+const BASE_URL = import.meta.env.BASE_URL;
 
 function wait(delay: number) {
   return new Promise((resolve) => {
@@ -22,14 +21,14 @@ function request<T>(fileName: string): Promise<T> {
 }
 
 export const getPhones = () => {
-    return request<CategoryProduct[]>('phones.json');
+    return request<CategoryProduct[]>('gadgets/phones.json');
 }
 export const getTablets = () => {
-  return request<CategoryProduct[]>('tablets.json');
+  return request<CategoryProduct[]>('gadgets/tablets.json');
 };
 export const getAccessories = () => {
-  return request<CategoryProduct[]>('accessories.json');
+  return request<CategoryProduct[]>('gadgets/accessories.json');
 };
 export const getProducts = () => {
-  return request<SimpleProduct[]>('products.json');
+  return request<SimpleProduct[]>('gadgets/products.json');
 };
