@@ -184,7 +184,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({
             {itemProduct.images.slice(0, 5).map((img, index) => (
               <img
                 key={index}
-                src={img}
+                src={import.meta.env.BASE_URL + img}
                 alt={itemProduct.name}
                 className={`
                   w-14 h-14 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20 
@@ -219,7 +219,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({
                   className="flex items-center justify-center w-full h-full"
                 >
                   <img
-                    src={img}
+                    src={import.meta.env.BASE_URL + img}
                     alt={itemProduct.name}
                     className="max-w-full max-h-full object-contain"
                   />
