@@ -64,24 +64,6 @@ export const ContactsPage: React.FC = () => {
   ];
   return (
     <section className="py-0 h-auto lg:py-8">
-      <video
-        className="fixed top-0 left-0 w-full h-full object-cover z-0"
-        autoPlay
-        loop
-        muted
-        playsInline
-      >
-        {theme === 'dark' ?
-          <source
-            src="/nice-gadgets-monolit/gadgets/img/video/contactsBG.mp4"
-            type="video/mp4"
-          />
-        : <source
-            src="/nice-gadgets-monolit/gadgets/img/video/contactsBgWhite.mp4"
-            type="video/mp4"
-          />
-        }
-      </video>
       <h1 className="relative h1 text-center mb-8 z-10 lg:mb12">
         Monolit Team
       </h1>
