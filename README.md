@@ -129,6 +129,18 @@ Using DaisyUI allows scalable and maintainable theming while keeping the codebas
 
 ---
 
+### ✅ User Authentication — Clerk Integration
+
+The application supports secure user authentication powered by Clerk.
+
+This enables:
+
+- Sign in / Sign up via email or social providers
+- Personalized user experience (e.g., user-specific cart and favourites)
+- Persistent authentication across sessions
+
+---
+
 ### ✅ Toast / Notification System
 
 The application includes a custom notification system to give instant feedback, for example:
@@ -214,6 +226,10 @@ This ensures that the user's choices are preserved even after refreshing the pag
 - **Swiper.js** – Implements responsive and interactive sliders for product showcases.
 - **Classnames (cn)** – Simplifies conditional class handling for dynamic styling.
 
+---
+
+### Authentication
+- **Clerk** — secure user authentication with signup/signin flows and protected routing.
 ---
 
 ### Architecture & Structure
