@@ -2,7 +2,7 @@
 The **Monolit Digital Store** is a modern e-commerce web application for selling gadgets such as smartphones, tablets, and accessories.
 The project is built using Atomic Design principles, fully responsive layout, and a modern JavaScript stack.
 ### Live Demo
-Experience the live website: [Monolit Digital Store Demo](https://fs-aug25-monolit-digital.github.io/nice-gadgets-monolit/)
+Experience the live website: [Monolit Digital Store Demo](https://nice-gadgets-monolit.netlify.app/)
 
 # Design Reference
 - [Design Reference (Light)](https://www.figma.com/design/T5ttF21UnT6RRmCQQaZc6L/Phone-catalog--V2--Original?node-id=0-1&t=0ASdgDdVnZ46JKIX-1)
